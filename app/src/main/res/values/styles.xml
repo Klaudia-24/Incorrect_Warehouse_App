@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="LoginActivity" parent="Theme.AppCompat.NoActionBar">
-    </style>
-
-    <style name="BackgroundImgStyle" parent="Theme.AppCompat.NoActionBar">
+    <style name="LoginActivityStyle" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/main_background</item>
     </style>
+
+    <style name="NavigationActivityStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/other_background</item>
+    </style>
+
 </resources>
