@@ -7,6 +7,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
+
 class PostgreSqlDatabase {
 
     private val ip="192.168.1.19:5432"
@@ -33,6 +34,15 @@ class PostgreSqlDatabase {
             Log.e("Error :", ex2.message!!)
         }
         Log.d("TEST",conn?.isValid(1000).toString())
+    }
+
+    fun connTestURL(){
+        // http://192.168.1.19:5000/database
+
+
+
+
+
     }
 
     fun hashString(input: String): String {
