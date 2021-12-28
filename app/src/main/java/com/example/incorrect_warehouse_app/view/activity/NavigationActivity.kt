@@ -1,4 +1,4 @@
-package com.example.incorrect_warehouse_app.activity
+package com.example.incorrect_warehouse_app.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
