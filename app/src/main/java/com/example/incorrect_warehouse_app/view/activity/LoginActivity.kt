@@ -26,23 +26,6 @@ class LoginActivity : AppCompatActivity() {
 
         var viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-
-//
-//        val warehouseService: WarehouseService = retrofit.create(WarehouseService::class.java)
-
-//        val warehouseService: WarehouseService = retrofit.create(WarehouseService::class.java)
-//        warehouseService.getAllUsersRoles().enqueue(object: Callback<Any>{
-//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-//                Log.i("Login activity", response.toString())
-//            }
-//
-//            override fun onFailure(call: Call<Any>, t: Throwable) {
-//                Log.i("Login activity", t.message?: "Null message")
-//            }
-//        })
-
-
-
         signInButton.setOnClickListener setOnClickListner@{
 
             val userLogin = userLoginEditText.text.toString()
@@ -65,8 +48,5 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             Log.d("TEST","LoginActivity: after NavigationActivity start")
         }
-
-
     }
-
 }
