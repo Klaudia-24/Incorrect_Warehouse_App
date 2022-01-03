@@ -8,4 +8,7 @@ interface RetrofitService {
     @GET("products")
     fun getAllProducts(): Call<List<Product>>
 
+    @GET("signIn")
+    fun isSignInSuccessful(): Call<String>
+
 }
