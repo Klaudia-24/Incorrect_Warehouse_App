@@ -24,7 +24,7 @@ class ProductAdapter(private var productList: List<Product>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.productName.text = productList[position].name
-        holder.productSize.text = productList[position].sizeOfProduct.toString()
+        holder.productSize.text = productList[position].sizeofproduct.toString()
         holder.productAmount.text = productList[position].amount.toString()
         holder.productPrice.text = productList[position].price.toString()
     }

@@ -1,9 +1,9 @@
 package com.example.incorrect_warehouse_app.model
 
 data class Reservation(
-    val reservationId: Int,
-    val employeeId: Int,
-    val reservationDate: String,
-    val productId: Int,
+    val reservationid: Int,
+    val employeeid: Int,
+    val reservationdate: String,
+    val productid: Int,
     val amount: Int
 )

@@ -48,17 +48,17 @@ class LoginActivity : AppCompatActivity() {
             val userLogin = userLoginEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            if(userLogin.isEmpty()){
-                userLoginEditText.error = "Enter Your user name"
-                userLoginEditText.requestFocus()
-                return@setOnClickListner
-            }
-
-            if(password.isEmpty()){
-                passwordEditText.error = "Enter Your password"
-                passwordEditText.requestFocus()
-                return@setOnClickListner
-            }
+//            if(userLogin.isEmpty()){
+//                userLoginEditText.error = "Enter Your user name"
+//                userLoginEditText.requestFocus()
+//                return@setOnClickListner
+//            }
+//
+//            if(password.isEmpty()){
+//                passwordEditText.error = "Enter Your password"
+//                passwordEditText.requestFocus()
+//                return@setOnClickListner
+//            }
 
             Log.d("TEST","LoginActivity: before NavigationActivity start")
             val intent = Intent(this, NavigationActivity::class.java)

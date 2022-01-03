@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface RetrofitService {
 
-    @GET("products/1")
+    @GET("products")
     fun getAllProducts(): Call<List<Product>>
 
 }

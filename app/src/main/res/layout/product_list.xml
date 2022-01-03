@@ -10,6 +10,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Name"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="@color/blue_dark_1"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -18,6 +21,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/productName"
         android:text="Size"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -26,6 +31,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/productSize"
         android:text="Amount"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -34,6 +41,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/productAmount"
         android:text="Price"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
