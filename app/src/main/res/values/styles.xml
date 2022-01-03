@@ -8,4 +8,8 @@
         <item name="android:windowBackground">@drawable/other_background</item>
     </style>
 
+    <style name="DisplayDataActivityStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/other_background</item>
+    </style>
+
 </resources>

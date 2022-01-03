@@ -17,7 +17,8 @@
             android:name="com.example.incorrect_warehouse_app.view.activity.NavigationActivity"
             android:exported="false"
             android:theme="@style/NavigationActivityStyle"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            />
 
         <activity
             android:name="com.example.incorrect_warehouse_app.view.activity.LoginActivity"
@@ -30,6 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.incorrect_warehouse_app.view.activity.DisplayDataActivity"
+            android:exported="false"
+            android:theme="@style/DisplayDataActivityStyle"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 
