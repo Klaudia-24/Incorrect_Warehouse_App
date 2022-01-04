@@ -10,18 +10,9 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 
 class NavigationActivity : AppCompatActivity() {
 
-    //val productsButton = findViewById<Button>(R.id.productsButton)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-
-//        productsButton.setOnClickListener {
-//
-//            Log.d("TEST","NavigationActivity: after navigation start")
-//            val intent = Intent(this, DisplayDataActivity::class.java)
-//            startActivity(intent)
-//        }
 
         Log.d("TEST","NavigationActivity start")
 
@@ -32,8 +23,5 @@ class NavigationActivity : AppCompatActivity() {
             startActivity(intent)
             Log.d("TEST","productsButton: after DisplayDataActivity start")
         }
-
     }
-
-
 }

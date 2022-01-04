@@ -24,7 +24,7 @@ class DisplayDataActivity : AppCompatActivity() {
         initRetrofitInstance()
     }
 
-    fun initRetrofitInstance(){
+    private fun initRetrofitInstance(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
         displayDataViewModel.getProductsData()
         //observer
