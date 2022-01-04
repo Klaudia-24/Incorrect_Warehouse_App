@@ -18,27 +18,27 @@ class LoginViewModel: ViewModel() {
 
     fun signInUser(login: String, password: String, onResult: (Boolean)->Unit){
 
-        Log.d("TEST","LoginViewModel: signInUser")
+        //Log.d("TEST","LoginViewModel: signInUser")
 
         val hashedPassword = hashString(password)
-        Log.d("TEST", hashedPassword)
+        //Log.d("TEST", hashedPassword)
 
         val signInRequest = SignInRequest(login, hashedPassword)
-        Log.d("TEST", signInRequest.toString())
+        //Log.d("TEST", signInRequest.toString())
 
         retrofitService.isSignInSuccessful(signInRequest).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                Log.d("TEST","LoginViewModel: onResponse")
-                Log.d("TEST body",response.body().toString())
+                //Log.d("TEST","LoginViewModel: onResponse")
+                //Log.d("TEST body",response.body().toString())
                 signInStatus = response.body().toString()
-                Log.d("TEST signInStatus",signInStatus.toString())
+                //Log.d("TEST signInStatus",signInStatus.toString())
                 //currentUser = response.body()!!
 
                 onResult(response.body().toBoolean())
             }
             override fun onFailure(call: Call<String>, t: Throwable) {
                 //failure
-                Log.d("TEST onFailure",t.message.toString())
+                //Log.d("TEST onFailure",t.message.toString())
                 onResult(false)
             }
         })
@@ -46,19 +46,19 @@ class LoginViewModel: ViewModel() {
 
     fun getCurrentUser(login: String, onResult: (CurrentUser?)->Unit){
 
-        Log.d("TEST login",login)
+        //Log.d("TEST login",login)
 
         retrofitService.getCurrentUser(login).enqueue(object : Callback<CurrentUser?> {
             override fun onResponse(call: Call<CurrentUser?>, response: Response<CurrentUser?>) {
-                Log.d("TEST","getCurrentUser onResponse")
+                //Log.d("TEST","getCurrentUser onResponse")
                 Log.d("TEST body", response.body().toString())
                 currentUser = response.body()!!
                 onResult(response.body())
             }
             override fun onFailure(call: Call<CurrentUser?>, t: Throwable) {
                 //failure
-                Log.d("TEST","getCurrentUser onFailure")
-                Log.d("TEST onFailure",t.message.toString())
+                //Log.d("TEST","getCurrentUser onFailure")
+                //Log.d("TEST onFailure",t.message.toString())
                 onResult(null)
             }
         })
@@ -78,17 +78,3 @@ class LoginViewModel: ViewModel() {
     }
 
 }
-
-//fun getProductsData(){
-//    val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-//
-//    retrofitService.getAllProducts().enqueue(object : Callback<List<Product>> {
-//        override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
-//            //success
-//            productList.value = response.body()
-//        }
-//        override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-//            // failure
-//        }
-//    })
-//}

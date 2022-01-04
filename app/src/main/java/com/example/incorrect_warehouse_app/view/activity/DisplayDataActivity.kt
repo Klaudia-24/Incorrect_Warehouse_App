@@ -20,7 +20,7 @@ class DisplayDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_data)
-        Log.d("TEST","DisplayDataActivity: DisplayDataActivity start")
+        //Log.d("TEST","DisplayDataActivity: DisplayDataActivity start")
         initRetrofitInstance()
     }
 

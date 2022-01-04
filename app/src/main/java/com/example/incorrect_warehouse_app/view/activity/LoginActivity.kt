@@ -7,10 +7,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
-import com.example.incorrect_warehouse_app.model.PostgreSqlDatabase
-import com.example.incorrect_warehouse_app.model.Product
-import com.example.incorrect_warehouse_app.model.ProductAdapter
-import com.example.incorrect_warehouse_app.model.RetrofitService
+import com.example.incorrect_warehouse_app.model.*
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import com.example.incorrect_warehouse_app.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
@@ -43,48 +40,33 @@ class LoginActivity : AppCompatActivity() {
 //                return@setOnClickListner
 //            }
 
-            Log.d("TEST","before loginViewModel")
+            //Log.d("TEST","before loginViewModel")
 
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-            Log.d("TEST","before signInUser method")
+            //Log.d("TEST","before signInUser method")
             //loginViewModel.signInUser(userLogin, password)
 
             loginViewModel.signInUser("SWilson", "user2"){
-                Log.d("TEST","before if")
-                Log.d("TEST signInStatus: ", it.toString())
+                //Log.d("TEST","before if")
+                //Log.d("TEST signInStatus: ", it.toString())
 
                 if(it){
                     loginViewModel.getCurrentUser("SWilson"){
-                        Log.d("TEST","LoginActivity if")
-                        Log.d("TEST current user: ", it.toString())
+                        //Log.d("TEST","LoginActivity if")
+                        //Log.d("TEST current user: ", it.toString())
 
-                        Log.d("TEST","LoginActivity: before NavigationActivity start")
-                        val intent = Intent(this, NavigationActivity::class.java)
-                        startActivity(intent)
-                        Log.d("TEST","LoginActivity: after NavigationActivity start")
+                        val currUser = it
+
+                        //Log.d("TEST","LoginActivity: before NavigationActivity start")
+                        Intent(this, NavigationActivity::class.java).also {
+                            it.putExtra("EXTRA_CURRENT_USER", currUser)
+                            startActivity(it)
+                        }
+
+                        //Log.d("TEST","LoginActivity: after NavigationActivity start")
                     }
-
                 }
             }
-
-
-
-
         }
     }
 }
-
-//private fun initRetrofitInstance(){
-//    displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-//    displayDataViewModel.getProductsData()
-//    //observer
-//    displayDataViewModel.productList.observe(this,{
-//        initAdapter(it)
-//    })
-//}
-//
-//private fun initAdapter(productsList: List<Product>){
-//    recViewDisplayData.layoutManager = LinearLayoutManager(this)
-//    val adapter = ProductAdapter(productsList)
-//    recViewDisplayData.adapter = adapter
-//}
