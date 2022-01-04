@@ -39,10 +39,16 @@ class ProfileActivity : AppCompatActivity() {
         userSalary.setText(currUser.salary.toString())
         userRole.setText(currUser.rolename)
 
-
         backToNavButton.setOnClickListener {
             val intent = Intent(this, NavigationActivity::class.java)
             startActivity(intent)
+        }
+
+        signOutButton.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            finish()
         }
     }
 }
