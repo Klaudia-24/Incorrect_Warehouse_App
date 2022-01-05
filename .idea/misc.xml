@@ -3,16 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_cancel.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_log_in.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_my_profile.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_navigation.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_signIn.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/button_sign_in.xml" value="0.2703125" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/ic_add.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/ic_arrow_back.xml" value="0.2703125" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/ic_delete.xml" value="0.2703125" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/ic_user.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/drawable/login_edit_field.xml" value="0.2703125" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/accountant_nav_fragment.xml" value="0.2504528985507246" />
-        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/activity_display_data.xml" value="0.2504528985507246" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/activity_display_data.xml" value="0.264" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/activity_navigation.xml" value="0.264" />
@@ -20,7 +24,9 @@
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/administrator_nav_fragment.xml" value="0.2504528985507246" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/employee_list.xml" value="0.2504528985507246" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/my_profile_nav_fragment.xml" value="0.2504528985507246" />
-        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/product_list.xml" value="0.4" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/product_edit_dialog.xml" value="0.4" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/product_list.xml" value="0.264" />
+        <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/product_list_2.xml" value="0.25416666666666665" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/sales_representative_nav_fragment.xml" value="0.2504528985507246" />
         <entry key="..\:/PL_INFORMATYKA/SEMESTR_7/Praca_dyplomowa_Warehouse_Apps/Incorrect_Warehouse_App/app/src/main/res/layout/warehouseman_nav_fragment.xml" value="0.2504528985507246" />
       </map>

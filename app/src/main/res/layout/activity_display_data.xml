@@ -3,12 +3,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.DisplayDataActivity">
+
+    <RelativeLayout
+        android:id="@+id/navRecView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/blue_dark_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/backToNavButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/blue_dark_4"
+            android:clickable="true"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/dataTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Reservations"
+            android:textColor="@color/blue_dark_1"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recViewDisplayData"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"/>
+        android:layout_height="510dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/optionsRecView"
+        app:layout_constraintTop_toBottomOf="@+id/navRecView"
+        tools:layout_editor_absoluteX="5dp"
+        />
+
+<!--    <ListView-->
+<!--        android:id="@+id/listViewDisplayData"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="510dp"-->
+<!--        android:layout_margin="5dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/optionsRecView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/navRecView"-->
+<!--        tools:layout_editor_absoluteX="5dp"-->
+<!--        />-->
+
+
+    <RelativeLayout
+        android:id="@+id/optionsRecView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/blue_dark_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recViewDisplayData">
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/blue_dark_5"
+            android:clickable="true"
+            android:src="@drawable/ic_delete" />
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/blue_dark_5"
+            android:clickable="true"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

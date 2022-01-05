@@ -1,5 +1,6 @@
 package com.example.incorrect_warehouse_app.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
+import com.example.incorrect_warehouse_app.model.CurrentUser
 import com.example.incorrect_warehouse_app.model.Product
 import com.example.incorrect_warehouse_app.model.ProductAdapter
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
@@ -16,15 +18,31 @@ import kotlinx.android.synthetic.main.activity_display_data.*
 class DisplayDataActivity : AppCompatActivity() {
 
     private lateinit var displayDataViewModel: DisplayDataViewModel
+//    val currUser = intent.getSerializableExtra("EXTRA_CURRENT_USER") as CurrentUser
+//    val listType = intent.getSerializableExtra("EXTRA_LIST_TYPE")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_data)
         //Log.d("TEST","DisplayDataActivity: DisplayDataActivity start")
-        initRetrofitInstance()
+
+        val currUser = intent.getSerializableExtra("EXTRA_CURRENT_USER") as CurrentUser
+        val listType = intent.getSerializableExtra("EXTRA_LIST_TYPE") as String
+
+//        Log.d("TEST DisplayDataAct:",currUser?.toString())
+//        Log.d("TEST DisplayDataAct:", listType)
+
+        initRetrofitInstanceProducts()
+
+        backToNavButton.setOnClickListener {
+            Intent(this, NavigationActivity::class.java).also {
+                it.putExtra("EXTRA_CURRENT_USER", currUser)
+                startActivity(it)
+            }
+        }
     }
 
-    private fun initRetrofitInstance(){
+    private fun initRetrofitInstanceProducts(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
         displayDataViewModel.getProductsData()
         //observer

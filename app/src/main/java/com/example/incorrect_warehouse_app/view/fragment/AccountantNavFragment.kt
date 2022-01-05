@@ -57,10 +57,20 @@ class AccountantNavFragment: Fragment() {
             }
         }
 
-        employeeButton.setOnClickListener {
+//        productsButton.setOnClickListener {
+//            activity?.let {
+//                val intent = Intent(it, DisplayDataActivity::class.java)
+//                it.startActivity(intent)
+//            }
+//        }
 
+        productsButton.setOnClickListener {
             activity?.let {
-                val intent = Intent(it, DisplayDataActivity::class.java)
+                val intent = Intent(it, DisplayDataActivity::class.java).also {
+                    it.putExtra("EXTRA_CURRENT_USER", currUser)
+                    it.putExtra("EXTRA_LIST_TYPE", "products")
+                    //startActivity(it)
+                }
                 it.startActivity(intent)
             }
         }

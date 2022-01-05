@@ -15,8 +15,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var profileViewModel: ProfileViewModel
 
-    private var loginViewModel: LoginViewModel? = null
-    private var currentUser = loginViewModel?.currentUser
+    //private var loginViewModel: LoginViewModel? = null
+    //private var currentUser = loginViewModel?.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
