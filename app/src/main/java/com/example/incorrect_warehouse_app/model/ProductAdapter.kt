@@ -10,16 +10,32 @@ import com.google.android.material.textview.MaterialTextView
 class ProductAdapter(private var productList: List<Product>):
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    inner class ViewHolder(productView: View): RecyclerView.ViewHolder(productView){
+    private lateinit var mListner: onItemClickListner
+
+    interface onItemClickListner{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListner){
+        mListner = listener
+    }
+
+    inner class ViewHolder(productView: View, listener: onItemClickListner): RecyclerView.ViewHolder(productView){
         val productName: MaterialTextView = productView.findViewById(R.id.productName)
         val productSize: MaterialTextView = productView.findViewById(R.id.productSize)
         val productAmount: MaterialTextView = productView.findViewById(R.id.productAmount)
         val productPrice: MaterialTextView = productView.findViewById(R.id.productPrice)
+
+        init {
+            productView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.product_list, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, mListner)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

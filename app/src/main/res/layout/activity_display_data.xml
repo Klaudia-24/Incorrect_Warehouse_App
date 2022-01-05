@@ -71,17 +71,29 @@
             android:id="@+id/deleteButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="50dp"
             android:layout_marginBottom="10dp"
             android:background="@color/blue_dark_5"
             android:clickable="true"
             android:src="@drawable/ic_delete" />
 
         <ImageButton
+            android:id="@+id/modifyButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/blue_dark_5"
+            android:clickable="true"
+            android:src="@drawable/ic_mode_edit" />
+
+        <ImageButton
             android:id="@+id/addButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="280dp"
+            android:layout_marginStart="250dp"
             android:layout_marginBottom="10dp"
             android:background="@color/blue_dark_5"
             android:clickable="true"
