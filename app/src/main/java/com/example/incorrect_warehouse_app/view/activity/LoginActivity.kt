@@ -5,15 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.*
-import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import com.example.incorrect_warehouse_app.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
@@ -59,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
                         //Log.d("TEST","LoginActivity: before NavigationActivity start")
                         Intent(this, NavigationActivity::class.java).also {
+                            Log.d("TEST LoginActivity:",currUser?.roleid.toString())
                             it.putExtra("EXTRA_CURRENT_USER", currUser)
                             startActivity(it)
                         }

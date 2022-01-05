@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.incorrect_warehouse_app.R
 
-class WarehousemanNavFragment: Fragment() {
+class SalesRepNavFragment: Fragment() {
 
     companion object{
         fun newInstance() = WarehousemanNavFragment()
@@ -19,6 +19,6 @@ class WarehousemanNavFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.warehouseman_nav_fragment, container, false)
+        return inflater.inflate(R.layout.sales_representative_nav_fragment, container, false)
     }
 }

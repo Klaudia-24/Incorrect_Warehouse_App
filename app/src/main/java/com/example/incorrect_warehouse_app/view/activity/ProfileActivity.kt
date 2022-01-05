@@ -23,9 +23,6 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         Log.d("TEST ProfileActivity:", "start")
-        Log.d("TEST ProfileActivity:",currentUser?.name.toString())
-        Log.d("TEST ProfileActivity:",loginViewModel?.currentUser?.surname.toString())
-
 
         //surname.setText(intent.getStringExtra("EXTRA_SURNAME"))
 //        name.setText(loginViewModel.currentUser?.name)
@@ -40,8 +37,11 @@ class ProfileActivity : AppCompatActivity() {
         userRole.setText(currUser.rolename)
 
         backToNavButton.setOnClickListener {
-            val intent = Intent(this, NavigationActivity::class.java)
-            startActivity(intent)
+            Intent(this, NavigationActivity::class.java).also {
+                Log.d("TEST LoginActivity:",currUser?.roleid.toString())
+                it.putExtra("EXTRA_CURRENT_USER", currUser)
+                startActivity(it)
+            }
         }
 
         signOutButton.setOnClickListener{
