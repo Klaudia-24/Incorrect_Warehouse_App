@@ -31,6 +31,12 @@ interface RetrofitService {
     @POST("reservations")
     fun addNewReservation(@Body reservation: Reservation): Call<String>
 
+    @PUT("reservations")
+    fun modifyReservation(@Body reservation: Reservation): Call<String>
+
+    @DELETE("reservations/{id}")
+    fun deleteReservation(@Path("id") id: Int): Call<String>
+
     // EMPLOYEES
     @GET("employees")
     fun getAllEmployees(): Call<List<Employee>>

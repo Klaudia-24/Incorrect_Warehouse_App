@@ -16,8 +16,6 @@ class DisplayDataViewModel: ViewModel() {
 
     val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
-    var addedProductStatus: String? = null
-
     fun getProductsData(){
 
         retrofitService.getAllProducts().enqueue(object : Callback<List<Product>> {
@@ -61,17 +59,13 @@ class DisplayDataViewModel: ViewModel() {
 
     fun deleteProduct(id: Int, onResult: (Boolean)->Unit){
 
-        Log.d("TEST deleteProduct id:", id.toString())
-
         retrofitService.deleteProduct(id).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){
 
-                Log.d("TEST deleteProduct:", "onResponse")
                 onResult(response.body().toBoolean())
             }
             override fun onFailure(call: Call<String>, t: Throwable) {
 
-                Log.d("TEST deleteProduct:", "onFailure")
                 onResult(false)
             }
         })
@@ -92,6 +86,47 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
+    fun addNewReservationData(newReservation: Reservation, onResult: (Boolean)->Unit){
+
+        retrofitService.addNewReservation(newReservation).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun modifyReservation(reservation: Reservation, onResult: (Boolean)->Unit){
+
+        retrofitService.modifyReservation(reservation).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun deleteReservation(id: Int, onResult: (Boolean)->Unit){
+
+        retrofitService.deleteReservation(id).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
 
     // EMPLOYEE
 
@@ -104,6 +139,48 @@ class DisplayDataViewModel: ViewModel() {
             }
             override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
                 // failure
+            }
+        })
+    }
+
+    fun addNewEmployeeData(newEmployee: Employee, onResult: (Boolean)->Unit){
+
+        retrofitService.addNewEmployee(newEmployee).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun modifyEmployee(employee: Employee, onResult: (Boolean)->Unit){
+
+        retrofitService.modifyEmployee(employee).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun deleteEmployee(id: Int, onResult: (Boolean)->Unit){
+
+        retrofitService.deleteEmployee(id).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
             }
         })
     }
