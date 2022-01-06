@@ -15,7 +15,11 @@ import com.example.incorrect_warehouse_app.model.Product
 import com.example.incorrect_warehouse_app.model.ProductAdapter
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
+import kotlinx.android.synthetic.main.activity_display_data.view.*
+import kotlinx.android.synthetic.main.product_delete_dialog.view.*
 import kotlinx.android.synthetic.main.product_dialog.view.*
+import kotlinx.android.synthetic.main.product_dialog.view.cancelButton
+import kotlinx.android.synthetic.main.product_dialog.view.dialogProdNameET
 import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
 import kotlinx.android.synthetic.main.product_list.view.*
 
@@ -129,7 +133,7 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 modifyProductDialogWindow.saveButton.setOnClickListener {
 
-                    var newProduct = selectedProductId?.let { it1 ->
+                    var product = selectedProductId?.let { it1 ->
                         Product(
                             it1,
                             modifyProductDialogWindow.dialogProdNameET.text.toString(),
@@ -139,8 +143,8 @@ class DisplayDataActivity : AppCompatActivity() {
                         )
                     }
 
-                    if (newProduct != null) {
-                        displayDataViewModel.modifyProduct(newProduct){
+                    if (product != null) {
+                        displayDataViewModel.modifyProduct(product){
 
                             if(it){
                                 initRetrofitInstanceProducts()
@@ -160,7 +164,72 @@ class DisplayDataActivity : AppCompatActivity() {
 
         deleteButton.setOnClickListener {
 
+            Log.d("TEST deleteButton:", "dialog window open")
 
+            if(selectedItem==null){
+                Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
+            }else {
+
+                val deleteProductDialogWindow = LayoutInflater.from(this).inflate(R.layout.product_delete_dialog, null)
+                val mBuilder = AlertDialog.Builder(this).setView(deleteProductDialogWindow)
+                deleteProductDialogWindow.dialogDeleteWindowTitle.text = "Delete Product"
+                val mAlertDialog = mBuilder.show()
+
+                Log.d("TEST deleteButton:", "after initialization")
+
+                var productsList: List<Product>? = null
+                displayDataViewModel.productList.observe(this, {
+                    productsList = it
+                })
+
+                Log.d("TEST deleteButton:", "product list get")
+
+                var selectedProductId: Int? = null
+                var prodName: String? = null
+                var prodSize: String? = null
+                var prodAmount: String? = null
+                var prodPrice: String? = null
+
+                selectedItem?.let { it1 ->
+//                    deleteProductDialogWindow.dialogDeleteProdName.setText(productsList?.get(it1)?.name.toString())
+//                    deleteProductDialogWindow.dialogDeleteProdSize.setText(productsList?.get(it1)?.sizeofproduct.toString())
+//                    deleteProductDialogWindow.dialogDeleteProdAmount.setText(productsList?.get(it1)?.amount.toString())
+//                    deleteProductDialogWindow.dialogDeleteProdPrice.setText(productsList?.get(it1)?.price.toString())
+
+                    prodName = productsList?.get(it1)?.name.toString()
+                    prodSize = productsList?.get(it1)?.sizeofproduct.toString()
+                    prodAmount = productsList?.get(it1)?.amount.toString()
+                    prodPrice = productsList?.get(it1)?.price.toString()
+                    selectedProductId = productsList?.get(it1)?.productid
+                }
+
+                deleteProductDialogWindow.dialogDeleteProdName.text = prodName
+                deleteProductDialogWindow.dialogDeleteProdSize.text = prodSize
+                deleteProductDialogWindow.dialogDeleteProdAmount.text = prodAmount
+                deleteProductDialogWindow.dialogDeleteProdPrice.text = prodPrice
+
+
+                Log.d("TEST deleteButton:", "after setting texts")
+
+                deleteProductDialogWindow.confirmButton.setOnClickListener {
+
+                    selectedProductId?.let { it1 ->
+                        displayDataViewModel.deleteProduct(it1){
+
+                            if(it){
+                                initRetrofitInstanceProducts()
+                            }
+                        }
+                    }
+
+                    mAlertDialog.dismiss()
+                }
+
+                deleteProductDialogWindow.cancelButton.setOnClickListener {
+
+                    mAlertDialog.dismiss()
+                }
+            }
         }
 
         refreshButton.setOnClickListener {

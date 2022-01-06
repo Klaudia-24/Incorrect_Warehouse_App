@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark_7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/dialogDeleteWindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue_dark_1"
+            android:layout_marginTop="0dp"/>
+
+        <TextView
+            android:id="@+id/productNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textSize="22sp"
+            android:textColor="@color/blue_dark_1"
+            android:layout_marginTop="60dp"/>
+        <TextView
+            android:id="@+id/dialogDeleteProdName"
+            android:inputType="text"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:textSize="22sp"
+            android:textColor="@color/blue_dark_1"
+            android:ems="10"
+            android:background="@drawable/rounded_border"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/productSizeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size:"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp"
+            android:layout_marginTop="135dp"/>
+        <TextView
+            android:id="@+id/dialogDeleteProdSize"
+            android:inputType="number"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
+            android:ems="10"
+            android:background="@drawable/rounded_border"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="130dp"/>
+
+        <TextView
+            android:id="@+id/productAmountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount: "
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
+            android:layout_marginTop="195dp"/>
+        <TextView
+            android:id="@+id/dialogDeleteProdAmount"
+            android:inputType="number"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
+            android:ems="10"
+            android:background="@drawable/rounded_border"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="190dp"/>
+
+        <TextView
+            android:id="@+id/productPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:"
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
+            android:layout_marginTop="255dp"/>
+        <TextView
+            android:id="@+id/dialogDeleteProdPrice"
+            android:inputType="numberDecimal"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
+            android:ems="10"
+            android:background="@drawable/rounded_border"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="7dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="250dp"/>
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_navigation"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="310dp"
+            android:layout_alignParentLeft="true"
+            />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_cancel"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="310dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

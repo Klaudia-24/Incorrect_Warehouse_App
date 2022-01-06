@@ -58,4 +58,19 @@ class DisplayDataViewModel: ViewModel() {
             }
         })
     }
+
+    fun deleteProduct(productid: Int, onResult: (Boolean)->Unit){
+        val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
+
+        retrofitService.deleteProduct(productid).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
 }
