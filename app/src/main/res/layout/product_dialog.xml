@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark_7">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,21 +13,33 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/productName"
+            android:id="@+id/dialogWindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue_dark_1"
+            android:layout_marginTop="0dp"/>
+
+        <TextView
+            android:id="@+id/productNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name: "
             android:textSize="22sp"
             android:textColor="@color/blue_dark_1"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="38dp"/>
         <EditText
-            android:id="@+id/productNameEditText"
+            android:id="@+id/dialogProdNameET"
+            android:inputType="text"
             android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:textSize="22sp"
             android:textColor="@color/blue_dark_1"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="25dp"/>
 
         <TextView
             android:id="@+id/productSizeText"
@@ -35,15 +48,16 @@
             android:text="Size:"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="90dp"/>
         <EditText
-            android:id="@+id/productSize"
+            android:id="@+id/dialogProdSizeET"
+            android:inputType="number"
             android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="78dp"/>
 
         <TextView
             android:id="@+id/productAmountText"
@@ -52,15 +66,16 @@
             android:text="Amount: "
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="150dp"/>
+            android:layout_marginTop="142dp"/>
         <EditText
-            android:id="@+id/productAmount"
+            android:id="@+id/dialogProdAmountET"
+            android:inputType="number"
             android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="150dp"/>
+            android:layout_marginTop="133dp"/>
 
         <TextView
             android:id="@+id/productPriceText"
@@ -69,37 +84,41 @@
             android:text="Price:"
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="200dp"/>
+            android:layout_marginTop="194dp"/>
         <EditText
-            android:id="@+id/productPrice"
+            android:id="@+id/dialogProdPriceET"
+            android:inputType="numberDecimal"
             android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="200dp"/>
+            android:layout_marginTop="185dp"/>
 
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="130dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_navigation"
             android:text="Save"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_marginStart="30sp"
-            android:layout_marginTop="250dp"/>
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="250dp"
+            android:layout_alignParentLeft="true"
+            />
 
         <Button
             android:id="@+id/cancelButton"
-            android:layout_width="130dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_cancel"
             android:text="Cancel"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_marginStart="200sp"
-            android:layout_marginTop="250dp"/>
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="250dp"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 

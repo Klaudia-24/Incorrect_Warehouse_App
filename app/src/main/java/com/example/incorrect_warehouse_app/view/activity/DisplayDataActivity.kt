@@ -3,8 +3,9 @@ package com.example.incorrect_warehouse_app.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
+import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +14,10 @@ import com.example.incorrect_warehouse_app.model.CurrentUser
 import com.example.incorrect_warehouse_app.model.Product
 import com.example.incorrect_warehouse_app.model.ProductAdapter
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
-import com.example.incorrect_warehouse_app.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
+import kotlinx.android.synthetic.main.product_dialog.view.*
+import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
+import kotlinx.android.synthetic.main.product_list.view.*
 
 class DisplayDataActivity : AppCompatActivity() {
 
@@ -41,8 +44,73 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
 
+        reserveButton.setOnClickListener {
+
+        }
+
         addButton.setOnClickListener {
+            Log.d("TEST addButton:", "dialog window open")
+
+            val addProductDialogWindow = LayoutInflater.from(this).inflate(R.layout.product_dialog, null)
+            val mBuilder = AlertDialog.Builder(this).setView(addProductDialogWindow)
+            addProductDialogWindow.dialogWindowTitle.text = "New Product"
+            val mAlertDialog = mBuilder.show()
+
+            addProductDialogWindow.saveButton.setOnClickListener{
+
+                Log.d("TEST saveButton:","")
+
+
+                val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
+                val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString()//to int
+                val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString()
+                val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString()
+
+                Log.d("TEST saveButton:", prodName)
+                Log.d("TEST saveButton:", prodSize)
+                Log.d("TEST saveButton:", prodAmount)
+                Log.d("TEST saveButton:", prodPrice)
+                mAlertDialog.dismiss()
+            }
+
+            addProductDialogWindow.cancelButton.setOnClickListener{
+
+                Log.d("TEST cancelButton:","")
+
+                mAlertDialog.dismiss()
+            }
+
             Log.d("TEST addButton:", selectedItem.toString())
+
+            var productsList: List<Product>? = null
+            displayDataViewModel.productList.observe(this,{
+                productsList = it
+            })
+
+            selectedItem?.let { it1 -> productsList?.get(it1)?.sizeofproduct.toString() }?.let { it2 ->
+                Log.d("TEST addButton:",
+                    it2
+                )
+            }
+            selectedItem?.let { it1 -> productsList?.get(it1)?.amount.toString() }?.let { it2 ->
+                Log.d("TEST addButton:",
+                    it2
+                )
+            }
+        }
+
+        modifyButton.setOnClickListener {
+
+
+        }
+
+        deleteButton.setOnClickListener {
+
+
+        }
+
+        refreshButton.setOnClickListener {
+            initRetrofitInstanceProducts()
         }
     }
 
