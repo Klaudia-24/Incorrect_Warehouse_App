@@ -21,12 +21,26 @@ interface RetrofitService {
     @PUT("products")
     fun modifyProduct(@Body product: Product): Call<String>
 
-    @DELETE("products")
-    fun deleteProduct(@Body productId: Int): Call<String>
+    @DELETE("products/{id}")
+    fun deleteProduct(@Path("id") id: Int): Call<String>
 
-    //RESERVATIONS
-    @GET("reservation")
+    // RESERVATIONS
+    @GET("reservations")
     fun getAllReservations(): Call<List<Reservation>>
 
-    //EMPLOYEES
+    @POST("reservations")
+    fun addNewReservation(@Body reservation: Reservation): Call<String>
+
+    // EMPLOYEES
+    @GET("employees")
+    fun getAllEmployees(): Call<List<Employee>>
+
+    @POST("employees")
+    fun addNewEmployee(@Body employee: Employee): Call<String>
+
+    @PUT("employees")
+    fun modifyEmployee(@Body employee: Employee): Call<String>
+
+    @DELETE("employees")
+    fun deleteEmployee(@Body employeeId: Int): Call<String>
 }

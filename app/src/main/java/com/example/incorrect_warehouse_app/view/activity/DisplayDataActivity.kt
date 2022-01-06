@@ -206,7 +206,7 @@ class DisplayDataActivity : AppCompatActivity() {
                             prodSize = productsList?.get(it1)?.sizeofproduct.toString()
                             prodAmount = productsList?.get(it1)?.amount.toString()
                             prodPrice = productsList?.get(it1)?.price.toString()
-                            selectedProductId = productsList?.get(it1)?.productid
+                            selectedProductId = productsList?.get(it1)?.productid.toString().toInt()
                         }
 
                         deleteProductDialogWindow.dialogDeleteProdName.text = prodName
@@ -221,14 +221,13 @@ class DisplayDataActivity : AppCompatActivity() {
 
                             Log.d("TEST selectedProductId:", selectedProductId.toString())
 
-                            selectedProductId?.let { it1 ->
-                                displayDataViewModel.deleteProduct(it1){
-
+                            if(selectedProductId!=null) {
+                                displayDataViewModel.deleteProduct(selectedProductId!!){
+                                    Log.d("TEST status:", it.toString())
                                     if(it){
                                         initRetrofitInstanceProducts()
+                                        selectedProductId = null
                                     }
-
-                                    Log.d("TEST status:", it.toString())
                                 }
                             }
 
