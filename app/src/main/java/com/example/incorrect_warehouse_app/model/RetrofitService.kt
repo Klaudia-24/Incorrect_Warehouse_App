@@ -22,4 +22,10 @@ interface RetrofitService {
 
     @POST("currentUser")
     fun getCurrentUser(@Body login: String): Call<CurrentUser>
+
+    @POST("products")
+    fun addNewProduct(@Body product: Product): Call<String>
+
+    @PUT("products")
+    fun modifyProduct(@Body product: Product): Call<String>
 }

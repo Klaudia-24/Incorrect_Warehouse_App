@@ -25,9 +25,9 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/blue_dark_5"
                 android:clickable="true"
-                android:src="@drawable/ic_arrow_back" />
+                android:src="@drawable/ic_arrow_back"
+                android:background="?android:attr/selectableItemBackground"/>
 
             <ImageView
                 android:id="@+id/profileImage"

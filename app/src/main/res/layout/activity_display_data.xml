@@ -21,9 +21,9 @@
             android:layout_height="60dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:background="@color/blue_dark_4"
             android:clickable="true"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <TextView
             android:id="@+id/dataTitle"
@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Reservations"
             android:textColor="@color/blue_dark_1"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -76,9 +75,9 @@
             android:layout_marginStart="25dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:background="@color/blue_dark_5"
             android:clickable="true"
-            android:src="@drawable/ic_archive" />
+            android:src="@drawable/ic_archive"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/addButton"
@@ -89,9 +88,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_toLeftOf="@+id/modifyButton"
-            android:background="@color/blue_dark_5"
             android:clickable="true"
-            android:src="@drawable/ic_add" />
+            android:src="@drawable/ic_add"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/modifyButton"
@@ -101,9 +100,9 @@
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
-            android:background="@color/blue_dark_5"
             android:clickable="true"
-            android:src="@drawable/ic_mode_edit" />
+            android:src="@drawable/ic_mode_edit"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/deleteButton"
@@ -112,10 +111,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/blue_dark_5"
             android:layout_toRightOf="@+id/modifyButton"
             android:clickable="true"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <ImageButton
             android:id="@+id/refreshButton"
@@ -124,10 +123,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="0dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/blue_dark_5"
             android:layout_toRightOf="@+id/deleteButton"
             android:clickable="true"
-            android:src="@drawable/ic_refresh" />
+            android:src="@drawable/ic_refresh"
+            android:background="?android:attr/selectableItemBackground"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

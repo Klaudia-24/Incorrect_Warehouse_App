@@ -10,6 +10,7 @@ import com.example.incorrect_warehouse_app.viewModel.LoginViewModel
 import com.example.incorrect_warehouse_app.viewModel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.employee_list.*
+import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -33,7 +34,9 @@ class ProfileActivity : AppCompatActivity() {
         userLogin.setText(currUser.login)
         userEmail.setText(currUser.email)
         userAddress.setText(currUser.address)
-        userSalary.setText(currUser.salary.toString())
+        userSalary.setText(currUser.salary.toString() + " " + java.util.Currency.getInstance("GBP").getSymbol(
+            Locale.ENGLISH
+        ))
         userRole.setText(currUser.rolename)
 
         backToNavButton.setOnClickListener {

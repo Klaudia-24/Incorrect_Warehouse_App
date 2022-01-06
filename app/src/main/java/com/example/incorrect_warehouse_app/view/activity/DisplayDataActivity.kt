@@ -32,6 +32,9 @@ class DisplayDataActivity : AppCompatActivity() {
         val currUser = intent.getSerializableExtra("EXTRA_CURRENT_USER") as CurrentUser
         val listType = intent.getSerializableExtra("EXTRA_LIST_TYPE") as String
 
+        //(R.id.dataTitle)
+        dataTitle.setText(listType)
+
 //        Log.d("TEST DisplayDataAct:",currUser?.toString())
 //        Log.d("TEST DisplayDataAct:", listType)
 
@@ -60,16 +63,25 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 Log.d("TEST saveButton:","")
 
-
                 val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
-                val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString()//to int
-                val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString()
-                val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString()
+                val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
+                val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
+                val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
 
                 Log.d("TEST saveButton:", prodName)
-                Log.d("TEST saveButton:", prodSize)
-                Log.d("TEST saveButton:", prodAmount)
-                Log.d("TEST saveButton:", prodPrice)
+                Log.d("TEST saveButton:", prodSize.toString())
+                Log.d("TEST saveButton:", prodAmount.toString())
+                Log.d("TEST saveButton:", prodPrice.toString())
+
+                var newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
+
+                displayDataViewModel.addNewProductData(newProduct){
+
+                    if(it){
+                        initRetrofitInstanceProducts()
+                    }
+                }
+
                 mAlertDialog.dismiss()
             }
 
@@ -82,26 +94,68 @@ class DisplayDataActivity : AppCompatActivity() {
 
             Log.d("TEST addButton:", selectedItem.toString())
 
-            var productsList: List<Product>? = null
-            displayDataViewModel.productList.observe(this,{
-                productsList = it
-            })
 
-            selectedItem?.let { it1 -> productsList?.get(it1)?.sizeofproduct.toString() }?.let { it2 ->
-                Log.d("TEST addButton:",
-                    it2
-                )
-            }
-            selectedItem?.let { it1 -> productsList?.get(it1)?.amount.toString() }?.let { it2 ->
-                Log.d("TEST addButton:",
-                    it2
-                )
-            }
         }
 
         modifyButton.setOnClickListener {
 
+            Log.d("TEST modifyButton:", "dialog window open")
 
+            if(selectedItem==null){
+                Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
+            }else {
+
+                val modifyProductDialogWindow =
+                    LayoutInflater.from(this).inflate(R.layout.product_dialog, null)
+                val mBuilder = AlertDialog.Builder(this).setView(modifyProductDialogWindow)
+                modifyProductDialogWindow.dialogWindowTitle.text = "Edit Product"
+                val mAlertDialog = mBuilder.show()
+
+                var productsList: List<Product>? = null
+                displayDataViewModel.productList.observe(this, {
+                    productsList = it
+                })
+
+                var selectedProductId: Int? = null
+
+                selectedItem?.let { it1 ->
+                    modifyProductDialogWindow.dialogProdNameET.setText(productsList?.get(it1)?.name.toString())
+                    modifyProductDialogWindow.dialogProdSizeET.setText(productsList?.get(it1)?.sizeofproduct.toString())
+                    modifyProductDialogWindow.dialogProdAmountET.setText(productsList?.get(it1)?.amount.toString())
+                    modifyProductDialogWindow.dialogProdPriceET.setText(productsList?.get(it1)?.price.toString())
+
+                    selectedProductId = productsList?.get(it1)?.productid
+                }
+
+                modifyProductDialogWindow.saveButton.setOnClickListener {
+
+                    var newProduct = selectedProductId?.let { it1 ->
+                        Product(
+                            it1,
+                            modifyProductDialogWindow.dialogProdNameET.text.toString(),
+                            modifyProductDialogWindow.dialogProdSizeET.text.toString().toInt(),
+                            modifyProductDialogWindow.dialogProdAmountET.text.toString().toInt(),
+                            modifyProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
+                        )
+                    }
+
+                    if (newProduct != null) {
+                        displayDataViewModel.modifyProduct(newProduct){
+
+                            if(it){
+                                initRetrofitInstanceProducts()
+                            }
+                        }
+                    }
+
+                    mAlertDialog.dismiss()
+                }
+
+                modifyProductDialogWindow.cancelButton.setOnClickListener {
+
+                    mAlertDialog.dismiss()
+                }
+            }
         }
 
         deleteButton.setOnClickListener {
@@ -133,7 +187,7 @@ class DisplayDataActivity : AppCompatActivity() {
                 //var itemPosition = position+1
                 selectedItem = position
 
-                Toast.makeText(this@DisplayDataActivity, "Selected item: $position", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@DisplayDataActivity, "Selected item: $position", Toast.LENGTH_SHORT).show()
             }
 
         })

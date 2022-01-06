@@ -68,7 +68,7 @@ class AccountantNavFragment: Fragment() {
             activity?.let {
                 val intent = Intent(it, DisplayDataActivity::class.java).also {
                     it.putExtra("EXTRA_CURRENT_USER", currUser)
-                    it.putExtra("EXTRA_LIST_TYPE", "products")
+                    it.putExtra("EXTRA_LIST_TYPE", "Products")
                     //startActivity(it)
                 }
                 it.startActivity(intent)

@@ -1,11 +1,13 @@
 package com.example.incorrect_warehouse_app.model
 
+import android.icu.util.Currency
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.incorrect_warehouse_app.R
 import com.google.android.material.textview.MaterialTextView
+import java.util.*
 
 class ProductAdapter(private var productList: List<Product>):
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -42,7 +44,9 @@ class ProductAdapter(private var productList: List<Product>):
         holder.productName.text = productList[position].name
         holder.productSize.text = productList[position].sizeofproduct.toString()
         holder.productAmount.text = productList[position].amount.toString()
-        holder.productPrice.text = productList[position].price.toString()
+        holder.productPrice.text = productList[position].price.toString() + " " + java.util.Currency.getInstance("GBP").getSymbol(
+            Locale.ENGLISH
+        )
     }
 
     override fun getItemCount(): Int {
