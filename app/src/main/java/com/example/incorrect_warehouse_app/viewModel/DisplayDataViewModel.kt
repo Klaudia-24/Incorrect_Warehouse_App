@@ -1,5 +1,6 @@
 package com.example.incorrect_warehouse_app.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.incorrect_warehouse_app.model.Product
@@ -59,16 +60,18 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
-    fun deleteProduct(productid: Int, onResult: (Boolean)->Unit){
+    fun deleteProduct(productId: Int, onResult: (Boolean)->Unit){
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
-        retrofitService.deleteProduct(productid).enqueue(object : Callback<String> {
+        retrofitService.deleteProduct(productId).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){
 
+                Log.d("TEST deleteProduct:", "onResponse")
                 onResult(response.body().toBoolean())
             }
             override fun onFailure(call: Call<String>, t: Throwable) {
 
+                Log.d("TEST deleteProduct:", "onFailure")
                 onResult(false)
             }
         })

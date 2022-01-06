@@ -22,7 +22,7 @@ interface RetrofitService {
     fun modifyProduct(@Body product: Product): Call<String>
 
     @DELETE("products")
-    fun deleteProduct(@Body productid: Int): Call<String>
+    fun deleteProduct(@Body productId: Int): Call<String>
 
     //RESERVATIONS
     @GET("reservation")

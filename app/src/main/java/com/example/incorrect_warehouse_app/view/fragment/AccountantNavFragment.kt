@@ -74,6 +74,17 @@ class AccountantNavFragment: Fragment() {
                 it.startActivity(intent)
             }
         }
+
+        employeeButton.setOnClickListener {
+            activity?.let {
+                val intent = Intent(it, DisplayDataActivity::class.java).also {
+                    it.putExtra("EXTRA_CURRENT_USER", currUser)
+                    it.putExtra("EXTRA_LIST_TYPE", "Employees")
+                    //startActivity(it)
+                }
+                it.startActivity(intent)
+            }
+        }
     }
 
     //        myProfileButtonNav.setOnClickListener{

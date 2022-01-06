@@ -34,6 +34,18 @@
             android:textColor="@color/blue_dark_8"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/refreshButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:src="@drawable/ic_refresh"
+            android:background="?android:attr/selectableItemBackground"/>
     </RelativeLayout>
 
 
@@ -70,21 +82,21 @@
             android:id="@+id/reserveButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_toLeftOf="@+id/addButton"
+            android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:src="@drawable/ic_archive"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:src="@drawable/ic_archive" />
 
         <ImageButton
             android:id="@+id/addButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:layout_toLeftOf="@+id/modifyButton"
@@ -96,10 +108,11 @@
             android:id="@+id/modifyButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@+id/deleteButton"
             android:clickable="true"
             android:src="@drawable/ic_mode_edit"
             android:background="?android:attr/selectableItemBackground"/>
@@ -108,25 +121,16 @@
             android:id="@+id/deleteButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@+id/modifyButton"
+            android:layout_alignParentRight="true"
             android:clickable="true"
             android:src="@drawable/ic_delete"
             android:background="?android:attr/selectableItemBackground"/>
 
-        <ImageButton
-            android:id="@+id/refreshButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@+id/deleteButton"
-            android:clickable="true"
-            android:src="@drawable/ic_refresh"
-            android:background="?android:attr/selectableItemBackground"/>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
