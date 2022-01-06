@@ -10,9 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
-import com.example.incorrect_warehouse_app.model.CurrentUser
-import com.example.incorrect_warehouse_app.model.Product
-import com.example.incorrect_warehouse_app.model.ProductAdapter
+import com.example.incorrect_warehouse_app.model.*
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_display_data.view.*
@@ -248,6 +246,13 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Employees" -> {
 
+                initRetrofitInstanceEmployees()
+
+            }
+            "Reservations" -> {
+
+                initRetrofitInstanceReservations()
+
             }
         }
 
@@ -260,23 +265,64 @@ class DisplayDataActivity : AppCompatActivity() {
         displayDataViewModel.getProductsData()
         //observer
         displayDataViewModel.productList.observe(this,{
-            initAdapter(it)
+            initAdapterProducts(it)
         })
     }
 
-    private fun initAdapter(productsList: List<Product>){
+    private fun initAdapterProducts(productsList: List<Product>){
         recViewDisplayData.layoutManager = LinearLayoutManager(this)
         val adapter = ProductAdapter(productsList)
         recViewDisplayData.adapter = adapter
         adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListner{
             override fun onItemClick(position: Int) {
 
-                //var itemPosition = position+1
                 selectedItem = position
 
                 //Toast.makeText(this@DisplayDataActivity, "Selected item: $position", Toast.LENGTH_SHORT).show()
             }
 
+        })
+    }
+
+    private fun initRetrofitInstanceReservations(){
+        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
+        displayDataViewModel.getReservationsData()
+        //observer
+        displayDataViewModel.reservationList.observe(this,{
+            initAdapterReservations(it)
+        })
+    }
+
+    private fun initAdapterReservations(reservationsList: List<Reservation>){
+        recViewDisplayData.layoutManager = LinearLayoutManager(this)
+        val adapter = ReservationAdapter(reservationsList)
+        recViewDisplayData.adapter = adapter
+        adapter.setOnItemClickListener(object : ReservationAdapter.onItemClickListner{
+            override fun onItemClick(position: Int) {
+
+                selectedItem = position
+            }
+        })
+    }
+
+    private fun initRetrofitInstanceEmployees(){
+        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
+        displayDataViewModel.getEmployeeData()
+        //observer
+        displayDataViewModel.employeeList.observe(this,{
+            initAdapterEmployees(it)
+        })
+    }
+
+    private fun initAdapterEmployees(employeesList: List<Employee>){
+        recViewDisplayData.layoutManager = LinearLayoutManager(this)
+        val adapter = EmployeeAdapter(employeesList)
+        recViewDisplayData.adapter = adapter
+        adapter.setOnItemClickListener(object : EmployeeAdapter.onItemClickListner{
+            override fun onItemClick(position: Int) {
+
+                selectedItem = position
+            }
         })
     }
 }

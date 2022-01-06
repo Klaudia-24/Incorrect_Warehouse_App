@@ -3,10 +3,7 @@ package com.example.incorrect_warehouse_app.viewModel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.incorrect_warehouse_app.model.Product
-import com.example.incorrect_warehouse_app.model.RetrofitInstance
-import com.example.incorrect_warehouse_app.model.RetrofitService
-import com.example.incorrect_warehouse_app.model.SignInRequest
+import com.example.incorrect_warehouse_app.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,10 +11,14 @@ import retrofit2.Response
 class DisplayDataViewModel: ViewModel() {
 
     var productList = MutableLiveData<List<Product>>()
+    var reservationList = MutableLiveData<List<Reservation>>()
+    var employeeList = MutableLiveData<List<Employee>>()
+
+    val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
+
     var addedProductStatus: String? = null
 
     fun getProductsData(){
-        val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
         retrofitService.getAllProducts().enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
@@ -31,7 +32,6 @@ class DisplayDataViewModel: ViewModel() {
     }
 
     fun addNewProductData(newProduct: Product, onResult: (Boolean)->Unit){
-        val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
         retrofitService.addNewProduct(newProduct).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){
@@ -46,7 +46,6 @@ class DisplayDataViewModel: ViewModel() {
     }
 
     fun modifyProduct(product: Product, onResult: (Boolean)->Unit){
-        val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
         retrofitService.modifyProduct(product).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){
@@ -61,7 +60,6 @@ class DisplayDataViewModel: ViewModel() {
     }
 
     fun deleteProduct(id: Int, onResult: (Boolean)->Unit){
-        val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
         Log.d("TEST deleteProduct id:", id.toString())
 
@@ -78,4 +76,36 @@ class DisplayDataViewModel: ViewModel() {
             }
         })
     }
+
+    // RESERVATIONS
+
+    fun getReservationsData(){
+
+        retrofitService.getAllReservations().enqueue(object : Callback<List<Reservation>> {
+            override fun onResponse(call: Call<List<Reservation>>, response: Response<List<Reservation>>){
+                //success
+                reservationList.value = response.body()
+            }
+            override fun onFailure(call: Call<List<Reservation>>, t: Throwable) {
+                // failure
+            }
+        })
+    }
+
+
+    // EMPLOYEE
+
+    fun getEmployeeData(){
+
+        retrofitService.getAllEmployees().enqueue(object : Callback<List<Employee>> {
+            override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>){
+                //success
+                employeeList.value = response.body()
+            }
+            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
+                // failure
+            }
+        })
+    }
+
 }
