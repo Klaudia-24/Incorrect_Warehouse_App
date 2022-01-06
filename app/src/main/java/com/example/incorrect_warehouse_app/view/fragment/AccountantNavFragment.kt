@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.CurrentUser
 import com.example.incorrect_warehouse_app.view.activity.DisplayDataActivity
-import com.example.incorrect_warehouse_app.view.activity.NavigationActivity
 import com.example.incorrect_warehouse_app.view.activity.ProfileActivity
 import kotlinx.android.synthetic.main.accountant_nav_fragment.*
 
@@ -18,7 +17,7 @@ class AccountantNavFragment: Fragment() {
     private var currUser: CurrentUser? = null
 
     companion object{
-        fun newInstance() = WarehousemanNavFragment()
+        fun newInstance() = AccountantNavFragment()
     }
 
     override fun onCreateView(
