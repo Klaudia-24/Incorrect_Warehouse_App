@@ -82,35 +82,86 @@ class DisplayDataActivity : AppCompatActivity() {
 //            else -> null
 //        }
 
+        val layoutParamsReserveButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        val layoutParamsAddButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        val layoutParamsModifyButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        val layoutParamsDeleteButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
 
         when(listType){
+
             "Products" -> {
 
-                val relativeLayout: RelativeLayout = findViewById(R.id.optionsRecView)
-                val layoutParamsAddButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-                //wszystkie val i setMargin osobno w klamrach
-                layoutParamsAddButton.setMargins(140, 5, 50, 10)
-
-                val layoutParamsEditButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-                layoutParamsEditButton.setMargins(400, 5, 50, 10)
-
+//                val relativeLayout: RelativeLayout = findViewById(R.id.optionsRecView)
+//                val layoutParamsAddButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+//                //wszystkie val i setMargin osobno w klamrach
+//                layoutParamsAddButton.setMargins(140, 5, 50, 10)
+//
+//                val layoutParamsEditButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+//                layoutParamsEditButton.setMargins(400, 5, 50, 10)
 
                 when (currUser.roleid) {
                     "admin" -> {
+//                        reserveButton.isClickable = false
+//                        reserveButton.isEnabled = false
+//                        reserveButton.isVisible = false
+//                        addButton.layoutParams = layoutParamsAddButton
+//                        modifyButton.layoutParams = layoutParamsEditButton
+
+                    }
+                    "warMan" -> {
+
                         reserveButton.isClickable = false
                         reserveButton.isEnabled = false
                         reserveButton.isVisible = false
-                        addButton.layoutParams = layoutParamsAddButton
-                        modifyButton.layoutParams = layoutParamsEditButton
-                    }
-                    "warMan" -> {
+
+                        addButton.isClickable = false
+                        addButton.isEnabled = false
+                        addButton.isVisible = false
+
+                        deleteButton.isClickable = false
+                        deleteButton.isEnabled = false
+                        deleteButton.isVisible = false
+
+                        layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                        modifyButton.layoutParams = layoutParamsModifyButton
 
 
                     }
                     "salRep" -> {
 
+                        modifyButton.isClickable = false
+                        modifyButton.isEnabled = false
+                        modifyButton.isVisible = false
+
+                        addButton.isClickable = false
+                        addButton.isEnabled = false
+                        addButton.isVisible = false
+
+                        deleteButton.isClickable = false
+                        deleteButton.isEnabled = false
+                        deleteButton.isVisible = false
+
+                        layoutParamsReserveButton.setMargins(600, 30, 50, 10)
+                        reserveButton.layoutParams = layoutParamsModifyButton
+
                     }
                     "acc" -> {
+
+                        reserveButton.isClickable = false
+                        reserveButton.isEnabled = false
+                        reserveButton.isVisible = false
+
+                        layoutParamsAddButton.setMargins(250, 5, 50, 10)
+                        layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                        layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+
+                        addButton.layoutParams = layoutParamsAddButton
+                        modifyButton.layoutParams = layoutParamsModifyButton
+                        deleteButton.layoutParams = layoutParamsDeleteButton
 
                     }
                     else -> null
@@ -305,9 +356,19 @@ class DisplayDataActivity : AppCompatActivity() {
                 refreshButton.setOnClickListener {
                     initRetrofitInstanceProducts()
                 }
-
             }
             "Employees" -> {
+
+                layoutParamsAddButton.setMargins(250, 5, 50, 10)
+                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+
+                reserveButton.isClickable = false
+                reserveButton.isEnabled = false
+                reserveButton.isVisible = false
+                addButton.layoutParams = layoutParamsAddButton
+                modifyButton.layoutParams = layoutParamsModifyButton
+                deleteButton.layoutParams = layoutParamsDeleteButton
 
                 initRetrofitInstanceEmployees()
 
@@ -372,16 +433,6 @@ class DisplayDataActivity : AppCompatActivity() {
 
                             selectedEmployeeId = employeesList?.get(it1)?.employeeid
                         }
-
-//                        data class Employee(
-//                            val employeeid: Int,
-//                            val name: String,
-//                            val surname: String,
-//                            val salary: Float,
-//                            val email: String,
-//                            val address: String,
-//                            val rolename: String
-//                        )
 
                         modifyEmployeeDialogWindow.saveButton.setOnClickListener {
 
@@ -476,6 +527,17 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
             }
             "Reservations" -> {
+
+                layoutParamsAddButton.setMargins(250, 5, 50, 10)
+                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+
+                reserveButton.isClickable = false
+                reserveButton.isEnabled = false
+                reserveButton.isVisible = false
+                addButton.layoutParams = layoutParamsAddButton
+                modifyButton.layoutParams = layoutParamsModifyButton
+                deleteButton.layoutParams = layoutParamsDeleteButton
 
                 initRetrofitInstanceReservations()
 
