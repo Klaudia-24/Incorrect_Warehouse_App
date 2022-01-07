@@ -4,21 +4,35 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.*
+import com.example.incorrect_warehouse_app.view.fragment.AccountantNavFragment
+import com.example.incorrect_warehouse_app.view.fragment.AdministratorNavFragment
+import com.example.incorrect_warehouse_app.view.fragment.SalesRepNavFragment
+import com.example.incorrect_warehouse_app.view.fragment.WarehousemanNavFragment
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_display_data.view.*
+import kotlinx.android.synthetic.main.employee_dialog.view.*
 import kotlinx.android.synthetic.main.product_delete_dialog.view.*
 import kotlinx.android.synthetic.main.product_dialog.view.*
 import kotlinx.android.synthetic.main.product_dialog.view.cancelButton
 import kotlinx.android.synthetic.main.product_dialog.view.dialogProdNameET
+import kotlinx.android.synthetic.main.product_dialog.view.dialogWindowTitle
 import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
+import kotlinx.android.synthetic.main.product_dialog.view.saveButton
 import kotlinx.android.synthetic.main.product_list.view.*
 
 class DisplayDataActivity : AppCompatActivity() {
@@ -49,9 +63,56 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
 
+//        when (currUser.roleid) {
+//            "admin" -> {
+//                Log.d("TEST when admin:", currUser.roleid)
+//            }
+//            "warMan" -> {
+//
+//
+//            }
+//            "salRep" -> {
+//
+//            }
+//            "acc" -> {
+//
+//            }
+//            else -> null
+//        }
+
 
         when(listType){
             "Products" -> {
+
+                val relativeLayout: RelativeLayout = findViewById(R.id.optionsRecView)
+                val layoutParamsAddButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+                //wszystkie val i setMargin osobno w klamrach
+                layoutParamsAddButton.setMargins(140, 5, 50, 10)
+
+                val layoutParamsEditButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+                layoutParamsEditButton.setMargins(400, 5, 50, 10)
+
+
+                when (currUser.roleid) {
+                    "admin" -> {
+                        reserveButton.isClickable = false
+                        reserveButton.isEnabled = false
+                        reserveButton.isVisible = false
+                        addButton.layoutParams = layoutParamsAddButton
+                        modifyButton.layoutParams = layoutParamsEditButton
+                    }
+                    "warMan" -> {
+
+
+                    }
+                    "salRep" -> {
+
+                    }
+                    "acc" -> {
+
+                    }
+                    else -> null
+                }
 
                 initRetrofitInstanceProducts()
 
@@ -60,7 +121,7 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
 
                 addButton.setOnClickListener {
-                    Log.d("TEST addButton:", "dialog window open")
+                    //Log.d("TEST addButton:", "dialog window open")
 
                     val addProductDialogWindow = LayoutInflater.from(this).inflate(R.layout.product_dialog, null)
                     val mBuilder = AlertDialog.Builder(this).setView(addProductDialogWindow)
@@ -69,17 +130,17 @@ class DisplayDataActivity : AppCompatActivity() {
 
                     addProductDialogWindow.saveButton.setOnClickListener{
 
-                        Log.d("TEST saveButton:","")
+                        //Log.d("TEST saveButton:","")
 
                         val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
                         val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
                         val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
                         val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
 
-                        Log.d("TEST saveButton:", prodName)
-                        Log.d("TEST saveButton:", prodSize.toString())
-                        Log.d("TEST saveButton:", prodAmount.toString())
-                        Log.d("TEST saveButton:", prodPrice.toString())
+//                        Log.d("TEST saveButton:", prodName)
+//                        Log.d("TEST saveButton:", prodSize.toString())
+//                        Log.d("TEST saveButton:", prodAmount.toString())
+//                        Log.d("TEST saveButton:", prodPrice.toString())
 
                         var newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
 
@@ -248,10 +309,121 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 initRetrofitInstanceEmployees()
 
+                addButton.setOnClickListener {
+
+                    val addEmployeeDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_dialog, null)
+                    val mBuilder = AlertDialog.Builder(this).setView(addEmployeeDialogWindow)
+                    addEmployeeDialogWindow.dialogWindowTitle.text = "New Employee"
+                    val mAlertDialog = mBuilder.show()
+
+                    addEmployeeDialogWindow.saveButton.setOnClickListener{
+
+                        val empName = addEmployeeDialogWindow.dialogEmpNameET.text.toString()
+                        val empSurname = addEmployeeDialogWindow.dialogEmpSurnameET.text.toString()
+                        val empSalary = addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat()
+                        val empAddress = addEmployeeDialogWindow.dialogEmpAddressET.text.toString()
+
+                        var newEmployee = Employee(0,empName,empSurname,empSalary,empAddress)
+
+                        displayDataViewModel.addNewEmployeeData(newEmployee){
+
+                            if(it){
+                                initRetrofitInstanceEmployees()
+                            }
+                        }
+
+                        mAlertDialog.dismiss()
+                    }
+
+                    addEmployeeDialogWindow.cancelButton.setOnClickListener{
+
+                        Log.d("TEST cancelButton:","")
+
+                        mAlertDialog.dismiss()
+                    }
+                }
+
+                modifyButton.setOnClickListener {
+
+                    if(selectedItem==null){
+                        Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
+                    }else {
+
+                        val modifyEmployeeDialogWindow =
+                            LayoutInflater.from(this).inflate(R.layout.employee_dialog, null)
+                        val mBuilder = AlertDialog.Builder(this).setView(modifyEmployeeDialogWindow)
+                        modifyEmployeeDialogWindow.dialogWindowTitle.text = "Edit Employee"
+                        val mAlertDialog = mBuilder.show()
+
+                        var employeesList: List<Employee>? = null
+                        displayDataViewModel.employeeList.observe(this, {
+                            employeesList = it
+                        })
+
+                        var selectedEmployeeId: Int? = null
+
+                        selectedItem?.let { it1 ->
+                            modifyEmployeeDialogWindow.dialogEmpNameET.setText(employeesList?.get(it1)?.name.toString())
+                            modifyEmployeeDialogWindow.dialogEmpSurnameET.setText(employeesList?.get(it1)?.surname.toString())
+                            modifyEmployeeDialogWindow.dialogEmpSalaryET.setText(employeesList?.get(it1)?.salary.toString())
+                            modifyEmployeeDialogWindow.dialogEmpAddressET.setText(employeesList?.get(it1)?.address.toString())
+
+                            selectedEmployeeId = employeesList?.get(it1)?.employeeid
+                        }
+
+//                        data class Employee(
+//                            val employeeid: Int,
+//                            val name: String,
+//                            val surname: String,
+//                            val salary: Float,
+//                            val email: String,
+//                            val address: String,
+//                            val rolename: String
+//                        )
+
+                        modifyEmployeeDialogWindow.saveButton.setOnClickListener {
+
+                            var employee = selectedEmployeeId?.let { it1 ->
+                                Employee(
+                                    it1,
+                                    modifyEmployeeDialogWindow.dialogEmpNameET.text.toString(),
+                                    modifyEmployeeDialogWindow.dialogEmpSurnameET.text.toString(),
+                                    modifyEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
+                                    modifyEmployeeDialogWindow.dialogEmpAddressET.text.toString()
+                                )
+                            }
+
+                            if (employee != null) {
+                                displayDataViewModel.modifyEmployee(employee){
+
+                                    if(it){
+                                        initRetrofitInstanceProducts()
+                                    }
+                                }
+                            }
+
+                            mAlertDialog.dismiss()
+                        }
+
+                        modifyEmployeeDialogWindow.cancelButton.setOnClickListener {
+
+                            mAlertDialog.dismiss()
+                        }
+                    }
+                }
+
+                refreshButton.setOnClickListener {
+                    initRetrofitInstanceEmployees()
+                }
             }
             "Reservations" -> {
 
                 initRetrofitInstanceReservations()
+
+
+                refreshButton.setOnClickListener {
+                    initRetrofitInstanceReservations()
+                }
 
             }
         }

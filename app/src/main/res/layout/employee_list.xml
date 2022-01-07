@@ -7,7 +7,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Name"
@@ -18,18 +18,19 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeSurname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeName"
         android:text="Surname"
         android:textStyle="bold"
         android:textSize="22sp"
         android:textColor="@color/blue_dark_1"
-        android:layout_marginStart="90dp"/>
+        android:layout_marginStart="10dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeSalaryText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
         android:text="Salary: "
@@ -39,39 +40,20 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeSalary"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeSalaryText"
         android:text="Salary"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="60dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeRoleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
-        android:text="Role: "
-        android:textSize="18sp"
-        android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="150dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
-        android:text="Role"
-        android:textSize="18sp"
-        android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="195dp"/>
+        android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeAddressText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeRole"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeSalaryText"
         android:text="Address:"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
@@ -79,32 +61,13 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empEmployeeAddress"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeRole"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeSalaryText"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeAddressText"
         android:text="Address"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="80dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeEmailText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeAddress"
-        android:text="E-mail:"
-        android:textSize="18sp"
-        android:textColor="@color/blue_dark_2"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeAddress"
-        android:text="E-mail"
-        android:textSize="18sp"
-        android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="60dp"/>
+        android:layout_marginStart="7dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

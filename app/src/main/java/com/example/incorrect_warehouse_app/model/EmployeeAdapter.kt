@@ -26,9 +26,7 @@ class EmployeeAdapter(private var employeeList: List<Employee>):
         val employeeName: MaterialTextView = employeeView.findViewById(R.id.empEmployeeName)
         val employeeSurname: MaterialTextView = employeeView.findViewById(R.id.empEmployeeSurname)
         val salary: MaterialTextView = employeeView.findViewById(R.id.empEmployeeSalary)
-        val roleName: MaterialTextView = employeeView.findViewById(R.id.empEmployeeRole)
         val address: MaterialTextView = employeeView.findViewById(R.id.empEmployeeAddress)
-        val email: MaterialTextView = employeeView.findViewById(R.id.empEmployeeEmail)
 
         init {
             employeeView.setOnClickListener {
@@ -48,9 +46,7 @@ class EmployeeAdapter(private var employeeList: List<Employee>):
         holder.salary.text = employeeList[position].salary.toString() + " " + java.util.Currency.getInstance("GBP").getSymbol(
             Locale.ENGLISH
         )
-        holder.roleName.text = employeeList[position].rolename
         holder.address.text = employeeList[position].address
-        holder.email.text = employeeList[position].email
     }
 
     override fun getItemCount(): Int {
