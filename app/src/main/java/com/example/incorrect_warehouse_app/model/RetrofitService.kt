@@ -49,4 +49,18 @@ interface RetrofitService {
 
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<String>
+
+    // EMPLOYEES ADMIN
+
+    @GET("admin/employees")
+    fun getAllEmployeesAdmin(): Call<List<EmployeeAdminData>>
+
+    @POST("admin/employees")
+    fun addNewEmployeeAdmin(@Body employeeAdminData: EmployeeAdminData): Call<String>
+
+    @PUT("admin/employees")
+    fun modifyEmployeeAdmin(@Body employeeAdminData: EmployeeAdminData): Call<String>
+
+    @DELETE("admin/employees/{id}")
+    fun deleteEmployeeAdmin(@Path("id") id: Int): Call<String>
 }

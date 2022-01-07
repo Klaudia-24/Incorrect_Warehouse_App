@@ -13,6 +13,7 @@ class DisplayDataViewModel: ViewModel() {
     var productList = MutableLiveData<List<Product>>()
     var reservationList = MutableLiveData<List<Reservation>>()
     var employeeList = MutableLiveData<List<Employee>>()
+    var employeeAdminList = MutableLiveData<List<EmployeeAdminData>>()
 
     val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
@@ -174,6 +175,61 @@ class DisplayDataViewModel: ViewModel() {
     fun deleteEmployee(id: Int, onResult: (Boolean)->Unit){
 
         retrofitService.deleteEmployee(id).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun getEmployeeDataAdmin(){
+
+        retrofitService.getAllEmployeesAdmin().enqueue(object : Callback<List<EmployeeAdminData>> {
+            override fun onResponse(call: Call<List<EmployeeAdminData>>, response: Response<List<EmployeeAdminData>>){
+                //success
+                employeeAdminList.value = response.body()
+            }
+            override fun onFailure(call: Call<List<EmployeeAdminData>>, t: Throwable) {
+                // failure
+            }
+        })
+    }
+
+    fun addNewEmployeeDataAdmin(newEmployeeAdmin: EmployeeAdminData, onResult: (Boolean)->Unit){
+
+        retrofitService.addNewEmployeeAdmin(newEmployeeAdmin).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun modifyEmployeeAdmin(employee: EmployeeAdminData, onResult: (Boolean)->Unit){
+
+        retrofitService.modifyEmployeeAdmin(employee).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun deleteEmployeeAdmin(id: Int, onResult: (Boolean)->Unit){
+
+        retrofitService.deleteEmployeeAdmin(id).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){
 
                 onResult(response.body().toBoolean())

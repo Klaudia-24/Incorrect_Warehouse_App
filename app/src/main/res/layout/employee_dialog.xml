@@ -76,19 +76,20 @@
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
             android:layout_marginTop="165dp"/>
+
         <EditText
             android:id="@+id/dialogEmpSalaryET"
-            android:inputType="numberDecimal"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:textSize="18sp"
-            android:textColor="@color/blue_dark_2"
-            android:ems="10"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="160dp"
             android:background="@drawable/rounded_border"
+            android:ems="10"
+            android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="160dp"/>
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/employeeAddressText"

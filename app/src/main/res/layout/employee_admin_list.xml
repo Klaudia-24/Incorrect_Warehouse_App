@@ -50,23 +50,23 @@
         android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeRoleText"
+        android:id="@+id/empEmployeeSalaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
         android:layout_marginStart="160dp"
-        android:text="Role:"
+        android:text="Salary:"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/empEmployeeRole"
+        android:id="@+id/empEmployeeSalary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
-        app:layout_constraintStart_toEndOf="@+id/empEmployeeRoleText"
-        android:text="Role"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeSalaryText"
+        android:text="Salary"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         android:layout_marginStart="7dp"/>
@@ -88,6 +88,50 @@
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeLoginText"
         app:layout_constraintStart_toEndOf="@+id/empEmployeeEmailText"
         android:text="E-mail"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
+        android:layout_marginStart="7dp"/>
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empEmployeeRoleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeEmailText"
+        android:text="Role: "
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empEmployeeRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeEmailText"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeRoleText"
+        android:text="Role"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
+        android:layout_marginStart="7dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empEmployeeAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeRoleText"
+        android:text="Address:"
+        android:textSize="18sp"
+        android:textColor="@color/blue_dark_2"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empEmployeeAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/empEmployeeRoleText"
+        app:layout_constraintStart_toEndOf="@+id/empEmployeeAddressText"
+        android:text="Address"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         android:layout_marginStart="7dp"/>
