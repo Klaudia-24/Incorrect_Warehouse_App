@@ -33,7 +33,6 @@
             android:layout_marginTop="60dp"/>
         <TextView
             android:id="@+id/dialogDeleteProdName"
-            android:inputType="text"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:textSize="22sp"
@@ -56,7 +55,6 @@
             android:layout_marginTop="135dp"/>
         <TextView
             android:id="@+id/dialogDeleteProdSize"
-            android:inputType="number"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:textSize="18sp"
@@ -79,7 +77,6 @@
             android:layout_marginTop="195dp"/>
         <TextView
             android:id="@+id/dialogDeleteProdAmount"
-            android:inputType="number"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:textSize="18sp"
@@ -102,7 +99,6 @@
             android:layout_marginTop="255dp"/>
         <TextView
             android:id="@+id/dialogDeleteProdPrice"
-            android:inputType="numberDecimal"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:textSize="18sp"
