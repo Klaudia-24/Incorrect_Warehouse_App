@@ -73,5 +73,15 @@ class AdministratorNavFragment: Fragment() {
                 it.startActivity(intent)
             }
         }
+
+        newEmployeeButton.setOnClickListener {
+            activity?.let {
+                val intent = Intent(it, DisplayDataActivity::class.java).also {
+                    it.putExtra("EXTRA_CURRENT_USER", currUser)
+                    it.putExtra("EXTRA_LIST_TYPE", "New employees")
+                }
+                it.startActivity(intent)
+            }
+        }
     }
 }
