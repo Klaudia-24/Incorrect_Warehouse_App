@@ -47,6 +47,6 @@ interface RetrofitService {
     @PUT("employees")
     fun modifyEmployee(@Body employee: Employee): Call<String>
 
-    @DELETE("employees")
-    fun deleteEmployee(@Body employeeId: Int): Call<String>
+    @DELETE("employees/{id}")
+    fun deleteEmployee(@Path("id") id: Int): Call<String>
 }

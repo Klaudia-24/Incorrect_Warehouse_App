@@ -25,8 +25,10 @@ import com.example.incorrect_warehouse_app.view.fragment.WarehousemanNavFragment
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_display_data.view.*
+import kotlinx.android.synthetic.main.employee_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_dialog.view.*
 import kotlinx.android.synthetic.main.product_delete_dialog.view.*
+import kotlinx.android.synthetic.main.product_delete_dialog.view.confirmButton
 import kotlinx.android.synthetic.main.product_dialog.view.*
 import kotlinx.android.synthetic.main.product_dialog.view.cancelButton
 import kotlinx.android.synthetic.main.product_dialog.view.dialogProdNameET
@@ -346,7 +348,7 @@ class DisplayDataActivity : AppCompatActivity() {
                 modifyButton.setOnClickListener {
 
                     if(selectedItem==null){
-                        Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
                     }else {
 
                         val modifyEmployeeDialogWindow =
@@ -397,7 +399,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 displayDataViewModel.modifyEmployee(employee){
 
                                     if(it){
-                                        initRetrofitInstanceProducts()
+                                        initRetrofitInstanceEmployees()
                                     }
                                 }
                             }
@@ -406,6 +408,63 @@ class DisplayDataActivity : AppCompatActivity() {
                         }
 
                         modifyEmployeeDialogWindow.cancelButton.setOnClickListener {
+
+                            mAlertDialog.dismiss()
+                        }
+                    }
+                }
+
+                deleteButton.setOnClickListener {
+
+                    if(selectedItem==null){
+                        Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
+                    }else {
+
+                        val deleteEmployeeDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_delete_dialog, null)
+                        val mBuilder = AlertDialog.Builder(this).setView(deleteEmployeeDialogWindow)
+                        deleteEmployeeDialogWindow.dialogEmpDeleteWindowTitle.text = "Delete Employee"
+                        val mAlertDialog = mBuilder.show()
+
+                        var employeesList: List<Employee>? = null
+                        displayDataViewModel.employeeList.observe(this, {
+                            employeesList = it
+                        })
+
+                        var selectedEmployeeId: Int? = null
+                        var empName: String? = null
+                        var empSurname: String? = null
+                        var empSalary: Float? = null
+                        var empAddress: String? = null
+
+                        selectedItem?.let { it1 ->
+
+                            empName = employeesList?.get(it1)?.name.toString()
+                            empSurname = employeesList?.get(it1)?.surname.toString()
+                            empSalary = employeesList?.get(it1)?.salary.toString().toFloat()
+                            empAddress = employeesList?.get(it1)?.address.toString()
+                            selectedEmployeeId = employeesList?.get(it1)?.employeeid.toString().toInt()
+                        }
+
+                        deleteEmployeeDialogWindow.dialogDeleteEmpName.text = empName
+                        deleteEmployeeDialogWindow.dialogDeleteEmpSurname.text = empSurname
+                        deleteEmployeeDialogWindow.dialogDeleteEmpSalary.text = empSalary.toString()
+                        deleteEmployeeDialogWindow.dialogDeleteEmpAddress.text = empAddress
+
+                        deleteEmployeeDialogWindow.confirmButton.setOnClickListener {
+
+                            if(selectedEmployeeId!=null) {
+                                displayDataViewModel.deleteEmployee(selectedEmployeeId!!){
+                                    if(it){
+                                        initRetrofitInstanceEmployees()
+                                        selectedEmployeeId = null
+                                    }
+                                }
+                            }
+
+                            mAlertDialog.dismiss()
+                        }
+
+                        deleteEmployeeDialogWindow.cancelButton.setOnClickListener {
 
                             mAlertDialog.dismiss()
                         }
