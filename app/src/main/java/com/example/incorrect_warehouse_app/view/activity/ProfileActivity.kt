@@ -14,7 +14,7 @@ import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var profileViewModel: ProfileViewModel
+    //private lateinit var profileViewModel: ProfileViewModel
 
     //private var loginViewModel: LoginViewModel? = null
     //private var currentUser = loginViewModel?.currentUser
