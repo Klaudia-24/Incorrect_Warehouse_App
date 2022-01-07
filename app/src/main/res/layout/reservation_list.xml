@@ -18,7 +18,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductSizeText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductName"
         android:text="Size: "
@@ -28,37 +28,40 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductSize"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductName"
+        app:layout_constraintStart_toEndOf="@+id/resProductSizeText"
         android:text="Size"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="50dp"/>
+        android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductAmountText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductName"
+        app:layout_constraintStart_toStartOf="parent"
         android:text="Amount: "
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="150dp"/>
+        android:layout_marginStart="160dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductAmount"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductName"
+        app:layout_constraintStart_toEndOf="@+id/resProductAmountText"
         android:text="Amount"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="230dp"/>
+        android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductPriceText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
         android:text="Price:"
@@ -68,37 +71,40 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resProductPrice"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
+        app:layout_constraintStart_toEndOf="@+id/resProductPriceText"
         android:text="Price"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="50dp"/>
+        android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resDateText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
+        app:layout_constraintStart_toStartOf="parent"
         android:text="Date:"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="150dp"/>
+        android:layout_marginStart="160dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resDate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
+        app:layout_constraintStart_toEndOf="@+id/resDateText"
         android:text="Date"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
-        android:layout_marginStart="230dp"/>
+        android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resEmpNameText"
-        android:layout_width="match_parent"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
         android:text="Employee:"
@@ -108,22 +114,23 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resEmployeeName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
+        app:layout_constraintStart_toEndOf="@+id/resEmpNameText"
         android:text="Name"
         android:textSize="16sp"
-        android:textColor="@color/blue_dark_3"
-        android:layout_marginStart="80dp"/>
+        android:textColor="@color/blue_dark_3"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/resEmployeeSurname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
+        app:layout_constraintStart_toEndOf="@+id/resEmployeeName"
         android:text="Surname"
         android:textSize="16sp"
         android:textColor="@color/blue_dark_3"
-        android:layout_marginStart="150dp"/>
+        android:layout_marginStart="7dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

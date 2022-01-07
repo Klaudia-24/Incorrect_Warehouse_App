@@ -1,11 +1,13 @@
 package com.example.incorrect_warehouse_app.model
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.incorrect_warehouse_app.R
 import com.google.android.material.textview.MaterialTextView
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ReservationAdapter(private var reservationList: List<Reservation>):
@@ -49,7 +51,28 @@ class ReservationAdapter(private var reservationList: List<Reservation>):
         holder.productPrice.text = reservationList[position].price.toString() + " " + java.util.Currency.getInstance("GBP").getSymbol(
             Locale.ENGLISH
         )
-        holder.reservationDate.text = reservationList[position].reservationdate
+
+        val simpleDateFormat = SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss")
+        //val date = reservationList[position].reservationdate
+        //val date = LocalDateTime.parse(reservationList[position].reservationdate)
+        //Log.d("TEST onBindViewH 1:",date.toString())
+        //val newDate = simpleDateFormat.format(date)
+
+//        val parser = SimpleDateFormat("EEE, dd MM yyyy 'T'HH:mm:ss z")
+//        val formatter = SimpleDateFormat("dd-MM-yyyy")
+//        Log.d("TEST onBindViewH date:",reservationList[position].resdate)
+//        Log.d("TEST onBindViewH 1:","before")
+        //val output = formatter.format(parser.parse("Wed, 08 Dec 2021 00:00:00 GMT"))
+
+        //Log.d("TEST onBindViewH 2:",output.toString())
+
+
+        //Log.d("TEST onBindViewH 2:",newDate.toString())
+
+        //holder.reservationDate.text = simpleDateFormat.format(reservationList[position].reservationdate)
+
+
+        holder.reservationDate.text = reservationList[position].resdate
         holder.employeeName.text = reservationList[position].employeename
         holder.employeeSurname.text = reservationList[position].employeesurname
     }

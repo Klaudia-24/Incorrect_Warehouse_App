@@ -5,7 +5,7 @@ data class Reservation(
     val employeeid: Int,
     val employeename: String,
     val employeesurname: String,
-    val reservationdate: String,
+    val resdate: String,
     val name: String,
     val sizeofproduct: Int,
     val price: Float,
