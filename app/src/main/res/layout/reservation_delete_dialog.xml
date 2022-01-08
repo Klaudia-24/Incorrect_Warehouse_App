@@ -13,184 +13,142 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/dialogDeleteEmpAdminWindowTitle"
+            android:id="@+id/dialogDeleteResWindowTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
             android:text="Title"
-            android:textColor="@color/blue_dark_1"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue_dark_1"
+            android:layout_marginTop="0dp"/>
 
         <TextView
-            android:id="@+id/employeeNameText"
+            android:id="@+id/productNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminName"
+            android:layout_alignTop="@+id/dialogDeleteResProdNameET"
             android:layout_marginTop="5dp"
-            android:text="Name: "
+            android:text="Product: "
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/dialogDeleteEmpAdminName"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="80dp"
+            android:id="@+id/dialogDeleteResProdNameET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="40dp"
             android:ems="10"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/blue_dark_1"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/employeeSurnameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminSurname"
-            android:layout_marginTop="5dp"
-            android:text="Surname:"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/dialogDeleteEmpAdminSurname"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/dialogDeleteEmpAdminName"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/employeeSalaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminSalary"
-            android:layout_marginTop="5dp"
-            android:text="Salary: "
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/dialogDeleteEmpAdminSalary"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/dialogDeleteEmpAdminSurname"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/employeeAddressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminAddress"
-            android:layout_marginTop="5dp"
-            android:text="Address:"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/dialogDeleteEmpAdminAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dialogDeleteEmpAdminSalary"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
             android:maxWidth="250dp"
             android:maxLines="2"
             android:paddingBottom="10dp"
-            android:ems="10"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/employeeLoginText"
+            android:id="@+id/amountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminLogin"
+            android:layout_alignTop="@+id/dialogDeleteResAmountET"
             android:layout_marginTop="5dp"
-            android:text="Login: "
+            android:text="Amount:"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/dialogDeleteEmpAdminLogin"
+            android:id="@+id/dialogDeleteResAmountET"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/dialogDeleteEmpAdminAddress"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/dialogDeleteResProdNameET"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/employeeEmailText"
+            android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminEmail"
+            android:layout_alignTop="@+id/dialogDeleteResDateET"
             android:layout_marginTop="5dp"
-            android:text="E-mail:"
+            android:text="Date: "
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/dialogDeleteEmpAdminEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dialogDeleteEmpAdminLogin"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
-            android:maxWidth="250dp"
-            android:maxLines="2"
-            android:paddingBottom="10dp"
-            android:ems="10"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/employeeRoleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/dialogDeleteEmpAdminRole"
-            android:layout_marginTop="5dp"
-            android:text="Role:"
-            android:textColor="@color/blue_dark_2"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/dialogDeleteEmpAdminRole"
+            android:id="@+id/dialogDeleteResDateET"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/dialogDeleteEmpAdminEmail"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/dialogDeleteResAmountET"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteResPriceET"
+            android:layout_marginTop="5dp"
+            android:text="Price: "
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/dialogDeleteResPriceET"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/dialogDeleteResDateET"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/employeeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteResEmpNameET"
+            android:layout_marginTop="5dp"
+            android:text="Employee: "
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/dialogDeleteResEmpNameET"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/dialogDeleteResPriceET"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/dialogDeleteResEmpSurnameET"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/dialogDeleteResPriceET"
+            android:layout_toRightOf="@+id/dialogDeleteResEmpNameET"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
             android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:textColor="@color/blue_dark_2"
@@ -200,7 +158,7 @@
             android:id="@+id/confirmButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dialogDeleteEmpAdminRole"
+            android:layout_below="@+id/dialogDeleteResEmpNameET"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="10sp"
             android:layout_marginTop="20dp"
@@ -213,7 +171,7 @@
             android:id="@+id/cancelButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/dialogDeleteEmpAdminRole"
+            android:layout_below="@+id/dialogDeleteResEmpNameET"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10sp"

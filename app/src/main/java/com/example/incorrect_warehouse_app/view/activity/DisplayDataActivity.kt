@@ -41,6 +41,7 @@ import kotlinx.android.synthetic.main.product_dialog.view.dialogWindowTitle
 import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
 import kotlinx.android.synthetic.main.product_dialog.view.saveButton
 import kotlinx.android.synthetic.main.product_list.view.*
+import kotlinx.android.synthetic.main.reservation_delete_dialog.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -760,8 +761,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Reservations" -> {
 
-                layoutParamsModifyButton.setMargins(400, 30, 50, 10)
-                layoutParamsDeleteButton.setMargins(850, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(650, 30, 50, 10)
 
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
@@ -769,13 +769,78 @@ class DisplayDataActivity : AppCompatActivity() {
                 addButton.isClickable = false
                 addButton.isEnabled = false
                 addButton.isVisible = false
-                modifyButton.layoutParams = layoutParamsModifyButton
+                modifyButton.isClickable = false
+                modifyButton.isEnabled = false
+                modifyButton.isVisible = false
                 deleteButton.layoutParams = layoutParamsDeleteButton
 
                 initRetrofitInstanceReservations()
 
                 when (currUser.roleid) {
                     "admin" -> {
+
+                        deleteButton.setOnClickListener {
+
+                            if(selectedItem==null){
+                                Toast.makeText(this@DisplayDataActivity, "No reservation selected", Toast.LENGTH_SHORT).show()
+                            }else {
+
+                                val deleteResDialogWindow = LayoutInflater.from(this).inflate(R.layout.reservation_delete_dialog, null)
+                                val mBuilder = AlertDialog.Builder(this).setView(deleteResDialogWindow)
+                                deleteResDialogWindow.dialogDeleteResWindowTitle.text = "Delete erservation"
+                                val mAlertDialog = mBuilder.show()
+
+                                var reservationsList: List<Reservation>? = null
+                                displayDataViewModel.reservationList.observe(this, {
+                                    reservationsList = it
+                                })
+
+                                var selectedResId: Int? = null
+                                var resProduct: String? = null
+                                var resAmount: Int? = null
+                                var resDate: String? = null
+                                var resPrice: Float? = null
+                                var resEmpName: String? = null
+                                var resEmpSurname: String? = null
+
+                                selectedItem?.let { it1 ->
+
+                                    resProduct = reservationsList?.get(it1)?.name.toString()
+                                    resAmount = reservationsList?.get(it1)?.amount.toString().toInt()
+                                    resDate = reservationsList?.get(it1)?.resdate.toString()
+                                    resPrice = reservationsList?.get(it1)?.price.toString().toFloat()
+                                    resEmpName = reservationsList?.get(it1)?.employeename.toString()
+                                    resEmpSurname = reservationsList?.get(it1)?.employeesurname.toString()
+                                    selectedResId = reservationsList?.get(it1)?.reservationid.toString().toInt()
+                                }
+
+                                deleteResDialogWindow.dialogDeleteResProdNameET.text = resProduct
+                                deleteResDialogWindow.dialogDeleteResAmountET.text = resAmount.toString()
+                                deleteResDialogWindow.dialogDeleteResDateET.text = resDate
+                                deleteResDialogWindow.dialogDeleteResPriceET.text = resPrice.toString()
+                                deleteResDialogWindow.dialogDeleteResEmpNameET.text = resEmpName
+                                deleteResDialogWindow.dialogDeleteResEmpSurnameET.text = resEmpSurname
+
+                                deleteResDialogWindow.confirmButton.setOnClickListener {
+
+                                    if(selectedResId!=null) {
+                                        displayDataViewModel.deleteReservation(selectedResId!!){
+                                            if(it){
+                                                initRetrofitInstanceReservations()
+                                                selectedResId = null
+                                            }
+                                        }
+                                    }
+
+                                    mAlertDialog.dismiss()
+                                }
+
+                                deleteResDialogWindow.cancelButton.setOnClickListener {
+
+                                    mAlertDialog.dismiss()
+                                }
+                            }
+                        }
 
                     }
                     "salRep" -> {
