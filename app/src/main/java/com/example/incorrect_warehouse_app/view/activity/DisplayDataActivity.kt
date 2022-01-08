@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.employee_admin_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.dialogEmpDeleteWindowTitle
 import kotlinx.android.synthetic.main.employee_dialog.view.*
+import kotlinx.android.synthetic.main.new_reservation_dialog.view.*
 import kotlinx.android.synthetic.main.product_delete_dialog.view.*
 import kotlinx.android.synthetic.main.product_delete_dialog.view.confirmButton
 import kotlinx.android.synthetic.main.product_dialog.view.*
@@ -39,6 +40,8 @@ import kotlinx.android.synthetic.main.product_dialog.view.dialogWindowTitle
 import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
 import kotlinx.android.synthetic.main.product_dialog.view.saveButton
 import kotlinx.android.synthetic.main.product_list.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DisplayDataActivity : AppCompatActivity() {
 
@@ -172,6 +175,61 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 reserveButton.setOnClickListener {
 
+                    if(selectedItem==null){
+                        Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
+                    }else {
+
+                        val reserveDialogWindow =
+                            LayoutInflater.from(this).inflate(R.layout.new_reservation_dialog, null)
+                        val mBuilder = AlertDialog.Builder(this).setView(reserveDialogWindow)
+                        reserveDialogWindow.dialogNewResWindowTitle.text = "Reserve product"
+                        val mAlertDialog = mBuilder.show()
+
+                        var productsList: List<Product>? = null
+                        displayDataViewModel.productList.observe(this, {
+                            productsList = it
+                        })
+
+                        var selectedProductId: Int? = null
+
+                        selectedItem?.let { it1 ->
+                            reserveDialogWindow.dialogNewResProdNameET.setText(productsList?.get(it1)?.name.toString())
+                            reserveDialogWindow.dialogNewResAmountET.setText(productsList?.get(it1)?.amount.toString())
+
+                            selectedProductId = productsList?.get(it1)?.productid
+                        }
+
+                        val sdf = SimpleDateFormat("dd-MM-yyyy")
+                        val currentDate = sdf.format(Date())
+                        reserveDialogWindow.dialogNewResDateET.setText(currentDate.toString())
+
+                        reserveDialogWindow.saveButton.setOnClickListener {
+
+                            var newReservation = selectedProductId?.let { it1 ->
+                                NewReservation(
+                                    currUser.employeeid,
+                                    reserveDialogWindow.dialogNewResDateET.text.toString(),
+                                    it1,
+                                    reserveDialogWindow.dialogNewResAmountET.text.toString().toInt()
+                                )
+                            }
+
+                            if (newReservation != null) {
+                                displayDataViewModel.addNewReservationData(newReservation){
+
+                                    if(it){
+                                        initRetrofitInstanceProducts()
+                                    }
+                                }
+                            }
+                            mAlertDialog.dismiss()
+                        }
+
+                        reserveDialogWindow.cancelButton.setOnClickListener {
+
+                            mAlertDialog.dismiss()
+                        }
+                    }
                 }
 
                 addButton.setOnClickListener {
@@ -210,14 +268,8 @@ class DisplayDataActivity : AppCompatActivity() {
 
                     addProductDialogWindow.cancelButton.setOnClickListener{
 
-                        Log.d("TEST cancelButton:","")
-
                         mAlertDialog.dismiss()
                     }
-
-                    Log.d("TEST addButton:", selectedItem.toString())
-
-
                 }
 
                 modifyButton.setOnClickListener {

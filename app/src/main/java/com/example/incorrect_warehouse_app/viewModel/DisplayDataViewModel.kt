@@ -88,7 +88,7 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
-    fun addNewReservationData(newReservation: Reservation, onResult: (Boolean)->Unit){
+    fun addNewReservationData(newReservation: NewReservation, onResult: (Boolean)->Unit){
 
         retrofitService.addNewReservation(newReservation).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>){

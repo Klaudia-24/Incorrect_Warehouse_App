@@ -13,7 +13,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/dialogWindowTitle"
+            android:id="@+id/dialogNewResWindowTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
@@ -27,34 +27,34 @@
             android:id="@+id/productNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name: "
-            android:textSize="22sp"
-            android:textColor="@color/blue_dark_1"
+            android:text="Product: "
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
             android:layout_marginTop="45dp"/>
         <EditText
-            android:id="@+id/dialogProdNameET"
+            android:id="@+id/dialogNewResProdNameET"
             android:inputType="text"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:textSize="22sp"
-            android:textColor="@color/blue_dark_1"
+            android:textSize="18sp"
+            android:textColor="@color/blue_dark_2"
             android:ems="10"
             android:background="@drawable/rounded_border"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="40dp"/>
 
         <TextView
-            android:id="@+id/productSizeText"
+            android:id="@+id/amountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Size:"
+            android:text="Amount:"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp"
             android:layout_marginTop="105dp"/>
         <EditText
-            android:id="@+id/dialogProdSizeET"
+            android:id="@+id/dialogNewResAmountET"
             android:inputType="number"
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -64,53 +64,31 @@
             android:background="@drawable/rounded_border"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="100dp"/>
 
         <TextView
-            android:id="@+id/productAmountText"
+            android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount: "
+            android:text="Date: "
             android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
             android:layout_marginTop="165dp"/>
 
-        <EditText
-            android:id="@+id/dialogProdAmountET"
+        <TextView
+            android:id="@+id/dialogNewResDateET"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="160dp"
             android:background="@drawable/rounded_border"
             android:ems="10"
-            android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:paddingTop="5dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/productPriceText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Price:"
-            android:textSize="18sp"
-            android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="225dp"/>
-        <EditText
-            android:id="@+id/dialogProdPriceET"
-            android:inputType="numberDecimal"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:textSize="18sp"
-            android:textColor="@color/blue_dark_2"
-            android:ems="10"
-            android:background="@drawable/rounded_border"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="220dp"/>
 
         <Button
             android:id="@+id/saveButton"
@@ -121,7 +99,7 @@
             android:textAllCaps="false"
             android:textSize="20sp"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="220dp"
             android:layout_alignParentLeft="true"
             />
 
@@ -134,7 +112,7 @@
             android:textAllCaps="false"
             android:textSize="20sp"
             android:layout_marginRight="10sp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="220dp"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>

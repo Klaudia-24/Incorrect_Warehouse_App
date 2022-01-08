@@ -11,7 +11,7 @@ interface RetrofitService {
     @POST("currentUser")
     fun getCurrentUser(@Body login: String): Call<CurrentUser>
 
-    // PRODUCTS
+// PRODUCTS
     @GET("products")
     fun getAllProducts(): Call<List<Product>>
 
@@ -24,12 +24,12 @@ interface RetrofitService {
     @DELETE("products/{id}")
     fun deleteProduct(@Path("id") id: Int): Call<String>
 
-    // RESERVATIONS
+// RESERVATIONS
     @GET("reservations")
     fun getAllReservations(): Call<List<Reservation>>
 
     @POST("reservations")
-    fun addNewReservation(@Body reservation: Reservation): Call<String>
+    fun addNewReservation(@Body newReservation: NewReservation): Call<String>
 
     @PUT("reservations")
     fun modifyReservation(@Body reservation: Reservation): Call<String>
@@ -37,7 +37,7 @@ interface RetrofitService {
     @DELETE("reservations/{id}")
     fun deleteReservation(@Path("id") id: Int): Call<String>
 
-    // EMPLOYEES
+// EMPLOYEES
     @GET("employees")
     fun getAllEmployees(): Call<List<Employee>>
 
@@ -50,7 +50,7 @@ interface RetrofitService {
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<String>
 
-    // EMPLOYEES ADMIN
+// EMPLOYEES ADMIN
     @GET("admin/employees")
     fun getAllEmployeesAdmin(): Call<List<EmployeeAdminData>>
 
@@ -66,7 +66,7 @@ interface RetrofitService {
     @DELETE("admin/employees/{id}")
     fun deleteEmployeeAdmin(@Path("id") id: Int): Call<String>
 
-    // ROLE
+// ROLE
     @GET("roles")
     fun getAllRoles(): Call<List<Role>>
 }
