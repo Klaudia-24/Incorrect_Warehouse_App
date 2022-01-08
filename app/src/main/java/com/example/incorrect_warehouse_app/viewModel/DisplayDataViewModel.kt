@@ -11,6 +11,7 @@ import retrofit2.Response
 class DisplayDataViewModel: ViewModel() {
 
     var productList = MutableLiveData<List<Product>>()
+    var lowStockProductList = MutableLiveData<List<Product>>()
     var reservationList = MutableLiveData<List<Reservation>>()
     var employeeList = MutableLiveData<List<Employee>>()
     var employeeAdminList = MutableLiveData<List<EmployeeAdminData>>()
@@ -24,6 +25,19 @@ class DisplayDataViewModel: ViewModel() {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
                 //success
                 productList.value = response.body()
+            }
+            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                // failure
+            }
+        })
+    }
+
+    fun getLowStockProductsData(){
+
+        retrofitService.getLowStockProducts().enqueue(object : Callback<List<Product>> {
+            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
+                //success
+                lowStockProductList.value = response.body()
             }
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 // failure

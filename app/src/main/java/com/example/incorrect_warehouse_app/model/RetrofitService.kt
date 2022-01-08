@@ -15,6 +15,9 @@ interface RetrofitService {
     @GET("products")
     fun getAllProducts(): Call<List<Product>>
 
+    @GET("products/lowStock")
+    fun getLowStockProducts(): Call<List<Product>>
+
     @POST("products")
     fun addNewProduct(@Body product: Product): Call<String>
 

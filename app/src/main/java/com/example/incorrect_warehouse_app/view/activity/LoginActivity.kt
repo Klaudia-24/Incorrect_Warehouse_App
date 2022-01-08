@@ -42,12 +42,14 @@ class LoginActivity : AppCompatActivity() {
             //Log.d("TEST","before signInUser method")
             //loginViewModel.signInUser(userLogin, password)
 
-            loginViewModel.signInUser("CHBaker", "user1"){
+            // warMan: JBrown user6
+
+            loginViewModel.signInUser("JBrown", "user6"){
                 //Log.d("TEST","before if")
                 //Log.d("TEST signInStatus: ", it.toString())
 
                 if(it){
-                    loginViewModel.getCurrentUser("CHBaker"){
+                    loginViewModel.getCurrentUser("JBrown"){
                         //Log.d("TEST","LoginActivity if")
                         //Log.d("TEST current user: ", it.toString())
 

@@ -78,7 +78,7 @@
 
     <View style="@style/ListDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/empEmployeeAddress"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice"
         android:layout_marginTop="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

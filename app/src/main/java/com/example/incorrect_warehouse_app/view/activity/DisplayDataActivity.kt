@@ -809,18 +809,27 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Low stock" ->{
 
-                layoutParamsAddButton.setMargins(250, 5, 50, 10)
-                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
-                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
-
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
-                addButton.layoutParams = layoutParamsAddButton
-                modifyButton.layoutParams = layoutParamsModifyButton
-                deleteButton.layoutParams = layoutParamsDeleteButton
 
+                addButton.isClickable = false
+                addButton.isEnabled = false
+                addButton.isVisible = false
 
+                modifyButton.isClickable = false
+                modifyButton.isEnabled = false
+                modifyButton.isVisible = false
+
+                deleteButton.isClickable = false
+                deleteButton.isEnabled = false
+                deleteButton.isVisible = false
+
+                initRetrofitInstanceLowStockProducts()
+
+                refreshButton.setOnClickListener {
+                    initRetrofitInstanceLowStockProducts()
+                }
 
             }
             "New employees" ->{
@@ -934,6 +943,15 @@ class DisplayDataActivity : AppCompatActivity() {
     private fun initRetrofitInstanceRoles(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
         displayDataViewModel.getRoleData()
+    }
+
+    private fun initRetrofitInstanceLowStockProducts(){
+        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
+        displayDataViewModel.getLowStockProductsData()
+        //observer
+        displayDataViewModel.lowStockProductList.observe(this,{
+            initAdapterProducts(it)
+        })
     }
 
 }
