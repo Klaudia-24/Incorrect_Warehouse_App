@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_display_data.view.*
 import kotlinx.android.synthetic.main.employee_admin_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_admin_dialog.view.*
+import kotlinx.android.synthetic.main.employee_admin_login_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.dialogEmpDeleteWindowTitle
 import kotlinx.android.synthetic.main.employee_dialog.view.*
@@ -99,23 +100,7 @@ class DisplayDataActivity : AppCompatActivity() {
 
             "Products" -> {
 
-//                val relativeLayout: RelativeLayout = findViewById(R.id.optionsRecView)
-//                val layoutParamsAddButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-//                //wszystkie val i setMargin osobno w klamrach
-//                layoutParamsAddButton.setMargins(140, 5, 50, 10)
-//
-//                val layoutParamsEditButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-//                layoutParamsEditButton.setMargins(400, 5, 50, 10)
-
                 when (currUser.roleid) {
-                    "admin" -> {
-//                        reserveButton.isClickable = false
-//                        reserveButton.isEnabled = false
-//                        reserveButton.isVisible = false
-//                        addButton.layoutParams = layoutParamsAddButton
-//                        modifyButton.layoutParams = layoutParamsEditButton
-
-                    }
                     "warMan" -> {
 
                         reserveButton.isClickable = false
@@ -132,8 +117,6 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         layoutParamsModifyButton.setMargins(600, 30, 50, 10)
                         modifyButton.layoutParams = layoutParamsModifyButton
-
-
                     }
                     "salRep" -> {
 
@@ -199,7 +182,7 @@ class DisplayDataActivity : AppCompatActivity() {
                             selectedProductId = productsList?.get(it1)?.productid
                         }
 
-                        val sdf = SimpleDateFormat("dd-MM-yyyy")
+                        val sdf = SimpleDateFormat("yyyy-MM-dd")
                         val currentDate = sdf.format(Date())
                         reserveDialogWindow.dialogNewResDateET.setText(currentDate.toString())
 
@@ -834,23 +817,73 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "New employees" ->{
 
-                layoutParamsAddButton.setMargins(250, 5, 50, 10)
-                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
-                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+                layoutParamsAddButton.setMargins(550, 5, 50, 10)
 
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
+
+                modifyButton.isClickable = false
+                modifyButton.isEnabled = false
+                modifyButton.isVisible = false
+
+                deleteButton.isClickable = false
+                deleteButton.isEnabled = false
+                deleteButton.isVisible = false
+
                 addButton.layoutParams = layoutParamsAddButton
-                modifyButton.layoutParams = layoutParamsModifyButton
-                deleteButton.layoutParams = layoutParamsDeleteButton
 
+                initRetrofitInstanceNewEmployees()
 
+//                addButton.setOnClickListener {
+//
+//                    val addEmployeeAdminLoginDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_admin_login_dialog, null)
+//                    val mBuilder = AlertDialog.Builder(this).setView(addEmployeeAdminLoginDialogWindow)
+//                    addEmployeeAdminLoginDialogWindow.dialogEmpAdminLoginWindowTitle.text = "New employee login"
+//                    val mAlertDialog = mBuilder.show()
+//
+//                    addEmployeeAdminLoginDialogWindow.saveButton.setOnClickListener{
+//
+//                        val empLogin = addEmployeeAdminLoginDialogWindow.dialogEmpAdminNameET.text.toString()
+//                        val empPassword = addEmployeeAdminLoginDialogWindow.dialogEmpAdminSurnameET.text.toString()
+//                        val empEmail = addEmployeeAdminLoginDialogWindow.dialogEmpAdminSalaryET.text.toString()
+//
+////                        val employeeid: Int,
+////                        val login: String,
+////                        val password: String,
+////                        val email: String,
+//
+//                        var employeeLoginDataRequest = EmployeeLoginDataRequest(
+//                            0,
+//                            empName,
+//                            empSurname,
+//                            empSalary,
+//                            empAddress,
+//                            empLogin,
+//                            empEmail,
+//                            empRole)
+//
+//                        displayDataViewModel.addNewEmployeeDataAdmin(newEmployeeAdmin){
+//
+//                            if(it){
+//                                initRetrofitInstanceEmployeesAdmin()
+//                            }
+//                        }
+//
+//                        mAlertDialog.dismiss()
+//                    }
+//
+//                    addEmployeeAdminDialogWindow.cancelButton.setOnClickListener{
+//
+//                        mAlertDialog.dismiss()
+//                    }
+//                }
+
+                refreshButton.setOnClickListener {
+                    initRetrofitInstanceNewEmployees()
+                }
             }
         }
-
-
-
     }
 
     private fun initRetrofitInstanceProducts(){
@@ -903,6 +936,15 @@ class DisplayDataActivity : AppCompatActivity() {
         displayDataViewModel.getEmployeeData()
         //observer
         displayDataViewModel.employeeList.observe(this,{
+            initAdapterEmployees(it)
+        })
+    }
+
+    private fun initRetrofitInstanceNewEmployees(){
+        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
+        displayDataViewModel.getNewEmployeeDataAdmin()
+        //observer
+        displayDataViewModel.newEmployeeList.observe(this,{
             initAdapterEmployees(it)
         })
     }

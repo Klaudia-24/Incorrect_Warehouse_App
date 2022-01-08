@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.*
@@ -36,34 +37,29 @@ class LoginActivity : AppCompatActivity() {
 //                return@setOnClickListner
 //            }
 
-            //Log.d("TEST","before loginViewModel")
-
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-            //Log.d("TEST","before signInUser method")
-            //loginViewModel.signInUser(userLogin, password)
 
             // warMan: JBrown user6
+            // admin: CHBaker user1
 
-            loginViewModel.signInUser("JBrown", "user6"){
-                //Log.d("TEST","before if")
-                //Log.d("TEST signInStatus: ", it.toString())
+            loginViewModel.signInUser("CHBaker", "user1"){
 
                 if(it){
-                    loginViewModel.getCurrentUser("JBrown"){
-                        //Log.d("TEST","LoginActivity if")
-                        //Log.d("TEST current user: ", it.toString())
+                    loginViewModel.getCurrentUser("CHBaker"){
 
                         val currUser = it
 
-                        //Log.d("TEST","LoginActivity: before NavigationActivity start")
                         Intent(this, NavigationActivity::class.java).also {
-                            Log.d("TEST LoginActivity:",currUser?.roleid.toString())
                             it.putExtra("EXTRA_CURRENT_USER", currUser)
                             startActivity(it)
                         }
-
-                        //Log.d("TEST","LoginActivity: after NavigationActivity start")
                     }
+                }
+                else{
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Problem with server connection",
+                        android.widget.Toast.LENGTH_LONG).show()
                 }
             }
         }

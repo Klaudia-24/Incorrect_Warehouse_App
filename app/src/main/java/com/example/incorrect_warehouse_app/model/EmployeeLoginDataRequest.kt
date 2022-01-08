@@ -6,4 +6,5 @@ data class EmployeeLoginDataRequest(
     val login: String,
     val password: String,
     val email: String,
+    val rolename: String
 )

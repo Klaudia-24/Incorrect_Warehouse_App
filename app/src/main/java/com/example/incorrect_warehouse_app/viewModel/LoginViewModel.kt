@@ -12,7 +12,6 @@ import java.security.MessageDigest
 
 class LoginViewModel: ViewModel() {
 
-    var signInStatus: String? = null
     var currentUser: CurrentUser? = null
     private val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
@@ -24,7 +23,6 @@ class LoginViewModel: ViewModel() {
         retrofitService.isSignInSuccessful(signInRequest).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
 
-                signInStatus = response.body().toString()
                 onResult(response.body().toBoolean())
             }
             override fun onFailure(call: Call<String>, t: Throwable) {
@@ -39,7 +37,6 @@ class LoginViewModel: ViewModel() {
         retrofitService.getCurrentUser(login).enqueue(object : Callback<CurrentUser?> {
             override fun onResponse(call: Call<CurrentUser?>, response: Response<CurrentUser?>) {
 
-                //Log.d("TEST body", response.body().toString())
                 currentUser = response.body()!!
                 onResult(response.body())
             }

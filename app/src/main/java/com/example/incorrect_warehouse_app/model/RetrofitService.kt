@@ -5,33 +5,33 @@ import retrofit2.http.*
 
 interface RetrofitService {
 
-    @POST("signIn")
+    @POST("signIn")//
     fun isSignInSuccessful(@Body signInRequest: SignInRequest): Call<String>
 
-    @POST("currentUser")
+    @POST("currentUser")//
     fun getCurrentUser(@Body login: String): Call<CurrentUser>
 
 // PRODUCTS
-    @GET("products")
+    @GET("products")//
     fun getAllProducts(): Call<List<Product>>
 
-    @GET("products/lowStock")
+    @GET("products/lowStock")//
     fun getLowStockProducts(): Call<List<Product>>
 
-    @POST("products")
+    @POST("products")//
     fun addNewProduct(@Body product: Product): Call<String>
 
-    @PUT("products")
+    @PUT("products")//
     fun modifyProduct(@Body product: Product): Call<String>
 
-    @DELETE("products/{id}")
+    @DELETE("products/{id}")//
     fun deleteProduct(@Path("id") id: Int): Call<String>
 
 // RESERVATIONS
-    @GET("reservations")
+    @GET("reservations")//
     fun getAllReservations(): Call<List<Reservation>>
 
-    @POST("reservations")
+    @POST("reservations")//
     fun addNewReservation(@Body newReservation: NewReservation): Call<String>
 
     @PUT("reservations")
@@ -41,30 +41,36 @@ interface RetrofitService {
     fun deleteReservation(@Path("id") id: Int): Call<String>
 
 // EMPLOYEES
-    @GET("employees")
+    @GET("employees")//
     fun getAllEmployees(): Call<List<Employee>>
 
-    @POST("employees")
+    @POST("employees")//
     fun addNewEmployee(@Body employee: Employee): Call<String>
 
-    @PUT("employees")
+    @PUT("employees")//
     fun modifyEmployee(@Body employee: Employee): Call<String>
 
     @DELETE("employees/{id}")
     fun deleteEmployee(@Path("id") id: Int): Call<String>
 
 // EMPLOYEES ADMIN
-    @GET("admin/employees")
+    @GET("admin/employees")//
     fun getAllEmployeesAdmin(): Call<List<EmployeeAdminData>>
 
-    @GET("admin/employees/new")
+    @GET("admin/employees/new")//
     fun getAllNewEmployeesAdmin(): Call<List<Employee>>
 
     @POST("admin/employees")
     fun addNewEmployeeAdmin(@Body employeeAdminData: EmployeeAdminData): Call<String>
 
+    @POST("admin/employees/login")
+    fun addEmployeeAdminLogin(@Body employeeLoginDataRequest: EmployeeLoginDataRequest): Call<String>
+
     @PUT("admin/employees")
     fun modifyEmployeeAdmin(@Body employeeAdminData: EmployeeAdminData): Call<String>
+
+    @PUT("admin/employees/login")
+    fun modifyEmployeeAdminLogin(@Body employeeAdminData: EmployeeAdminData): Call<String>
 
     @DELETE("admin/employees/{id}")
     fun deleteEmployeeAdmin(@Path("id") id: Int): Call<String>
