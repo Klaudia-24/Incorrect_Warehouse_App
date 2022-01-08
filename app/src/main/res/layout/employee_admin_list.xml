@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
         android:text="Login: "
+        android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -77,6 +78,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeLoginText"
         android:text="E-mail:"
+        android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>

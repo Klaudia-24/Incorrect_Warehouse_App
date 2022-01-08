@@ -27,10 +27,11 @@
             android:id="@+id/employeeNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteEmpName"
+            android:layout_marginTop="5dp"
             android:text="Name: "
-            android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="45dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dialogDeleteEmpName"
@@ -38,11 +39,10 @@
             android:layout_height="40dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/rounded_border"
             android:ems="10"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="5dp"
+            android:paddingRight="10dp"
             android:textColor="@color/blue_dark_1"
             android:textSize="18sp" />
 
@@ -50,44 +50,47 @@
             android:id="@+id/employeeSurnameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteEmpSurname"
+            android:layout_marginTop="5dp"
             android:text="Surname:"
             android:textColor="@color/blue_dark_2"
-            android:textSize="18sp"
-            android:layout_marginTop="105dp"/>
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/dialogDeleteEmpSurname"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:textSize="18sp"
-            android:textColor="@color/blue_dark_2"
-            android:ems="10"
-            android:background="@drawable/rounded_border"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
+            android:layout_below="@+id/dialogDeleteEmpName"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/employeeSalaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteEmpSalary"
+            android:layout_marginTop="5dp"
             android:text="Salary: "
-            android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="165dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dialogDeleteEmpSalary"
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:layout_below="@+id/dialogDeleteEmpSurname"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="160dp"
-            android:background="@drawable/rounded_border"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="5dp"
+            android:paddingRight="10dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
@@ -95,22 +98,26 @@
             android:id="@+id/employeeAddressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogDeleteEmpAddress"
+            android:layout_marginTop="5dp"
             android:text="Address:"
-            android:textSize="18sp"
             android:textColor="@color/blue_dark_2"
-            android:layout_marginTop="225dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dialogDeleteEmpAddress"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogDeleteEmpSalary"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="220dp"
-            android:background="@drawable/rounded_border"
+            android:layout_marginTop="20dp"
             android:ems="10"
+            android:maxWidth="250dp"
+            android:maxLines="2"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 
@@ -118,26 +125,27 @@
             android:id="@+id/confirmButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogDeleteEmpAddress"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="41dp"
             android:background="@drawable/button_navigation"
             android:text="Confirm"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="300dp"
-            android:layout_alignParentLeft="true"
-            />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogDeleteEmpAddress"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="41dp"
+            android:layout_marginRight="10sp"
             android:background="@drawable/button_cancel"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="300dp"
-            android:layout_alignParentRight="true"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
