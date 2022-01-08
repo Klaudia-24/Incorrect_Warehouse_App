@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.textview.MaterialTextView
@@ -132,5 +132,10 @@
         android:textSize="16sp"
         android:textColor="@color/blue_dark_3"
         android:layout_marginStart="7dp"/>
+
+    <View style="@style/ListDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resEmpNameText"
+        android:layout_marginTop="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
