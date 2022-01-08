@@ -256,6 +256,34 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
+    fun addNewEmployeeAdminLogin(employeeLoginDataRequest: EmployeeLoginDataRequest, onResult: (Boolean)->Unit){
+
+        retrofitService.addEmployeeAdminLogin(employeeLoginDataRequest).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
+    fun modifyEmployeeAdminLogin(employeeLoginDataRequest: EmployeeLoginDataRequest, onResult: (Boolean)->Unit){
+
+        retrofitService.modifyEmployeeAdminLogin(employeeLoginDataRequest).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>){
+
+                onResult(response.body().toBoolean())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                onResult(false)
+            }
+        })
+    }
+
     fun deleteEmployeeAdmin(id: Int, onResult: (Boolean)->Unit){
 
         retrofitService.deleteEmployeeAdmin(id).enqueue(object : Callback<String> {

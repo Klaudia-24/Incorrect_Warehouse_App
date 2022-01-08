@@ -27,7 +27,8 @@
             android:id="@+id/employeeLoginText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_alignTop="@+id/dialogEmpAdminLoginLoginET"
+            android:layout_marginTop="5dp"
             android:text="Login: "
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
@@ -50,17 +51,19 @@
             android:id="@+id/employeePasswordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogEmpAdminLoginPasswordET"
+            android:layout_marginTop="5dp"
             android:text="Password:"
             android:textColor="@color/blue_dark_2"
-            android:textSize="18sp"
-            android:layout_marginTop="105dp"/>
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/dialogEmpAdminLoginPasswordET"
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:layout_below="@+id/dialogEmpAdminLoginLoginET"
             android:layout_marginStart="90dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_border"
             android:ems="10"
             android:inputType="textPassword"
@@ -73,48 +76,77 @@
             android:id="@+id/employeeEmailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="165dp"
+            android:layout_alignTop="@+id/dialogEmpAdminLoginEmailET"
+            android:layout_marginTop="5dp"
             android:text="E-mail: "
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
+
         <EditText
             android:id="@+id/dialogEmpAdminLoginEmailET"
-            android:inputType="text"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:textSize="18sp"
-            android:textColor="@color/blue_dark_2"
-            android:ems="10"
+            android:layout_below="@+id/dialogEmpAdminLoginPasswordET"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_border"
+            android:ems="10"
+            android:inputType="text"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/employeeRoleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dialogEmpAdminLoginRoleET"
+            android:layout_marginTop="5dp"
+            android:text="Role: "
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dialogEmpAdminLoginRoleET"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/dialogEmpAdminLoginEmailET"
             android:layout_marginStart="90dp"
-            android:layout_marginTop="160dp"/>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_border"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/blue_dark_2"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/confirmButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogEmpAdminLoginRoleET"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_navigation"
             android:text="Confirm"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="220dp"
-            android:layout_alignParentLeft="true"
-            />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogEmpAdminLoginRoleET"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10sp"
             android:background="@drawable/button_cancel"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="220dp"
-            android:layout_alignParentRight="true"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

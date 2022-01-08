@@ -70,7 +70,7 @@ interface RetrofitService {
     fun modifyEmployeeAdmin(@Body employeeAdminData: EmployeeAdminData): Call<String>
 
     @PUT("admin/employees/login")
-    fun modifyEmployeeAdminLogin(@Body employeeAdminData: EmployeeAdminData): Call<String>
+    fun modifyEmployeeAdminLogin(@Body employeeLoginDataRequest: EmployeeLoginDataRequest): Call<String>
 
     @DELETE("admin/employees/{id}")
     fun deleteEmployeeAdmin(@Path("id") id: Int): Call<String>

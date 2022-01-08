@@ -28,6 +28,8 @@ import kotlinx.android.synthetic.main.activity_display_data.view.*
 import kotlinx.android.synthetic.main.employee_admin_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_admin_dialog.view.*
 import kotlinx.android.synthetic.main.employee_admin_login_dialog.view.*
+import kotlinx.android.synthetic.main.employee_admin_login_dialog.view.dialogEmpAdminLoginWindowTitle
+import kotlinx.android.synthetic.main.employee_admin_password_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.*
 import kotlinx.android.synthetic.main.employee_delete_dialog.view.dialogEmpDeleteWindowTitle
 import kotlinx.android.synthetic.main.employee_dialog.view.*
@@ -96,10 +98,15 @@ class DisplayDataActivity : AppCompatActivity() {
             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         val layoutParamsDeleteButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        val layoutParamsSetPasswordButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
 
         when(listType){
 
             "Products" -> {
+                passwordSetButton.isClickable = false
+                passwordSetButton.isEnabled = false
+                passwordSetButton.isVisible = false
 
                 when (currUser.roleid) {
                     "warMan" -> {
@@ -187,7 +194,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         val currentDate = sdf.format(Date())
                         reserveDialogWindow.dialogNewResDateET.setText(currentDate.toString())
 
-                        reserveDialogWindow.saveButton.setOnClickListener {
+                        reserveDialogWindow.confirmButton.setOnClickListener {
 
                             var newReservation = selectedProductId?.let { it1 ->
                                 NewReservation(
@@ -396,19 +403,15 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Employees" -> {
 
-                layoutParamsAddButton.setMargins(250, 5, 50, 10)
-                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
-                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
-
-                reserveButton.isClickable = false
-                reserveButton.isEnabled = false
-                reserveButton.isVisible = false
-                addButton.layoutParams = layoutParamsAddButton
-                modifyButton.layoutParams = layoutParamsModifyButton
-                deleteButton.layoutParams = layoutParamsDeleteButton
-
                 when (currUser.roleid) {
                     "admin" -> {
+
+                        reserveButton.isClickable = false
+                        reserveButton.isEnabled = false
+                        reserveButton.isVisible = false
+
+
+                        layoutParamsSetPasswordButton.setMargins(250, 5, 50, 10)
 
                         initRetrofitInstanceEmployeesAdmin()
                         initRetrofitInstanceRoles()
@@ -417,6 +420,86 @@ class DisplayDataActivity : AppCompatActivity() {
                         displayDataViewModel.roleList.observe(this, {
                             rolesList = it
                         })
+
+                        passwordSetButton.setOnClickListener {
+
+                            if(selectedItem==null){
+                                Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
+                            }else {
+
+                                val empPasswordAdminDialogWindow = LayoutInflater.from(this)
+                                    .inflate(R.layout.employee_admin_password_dialog, null)
+                                val mBuilder =
+                                    AlertDialog.Builder(this).setView(empPasswordAdminDialogWindow)
+                                empPasswordAdminDialogWindow.dialogEmpAdminPassWindowTitle.text =
+                                    "Employee new pasword"
+                                val mAlertDialog = mBuilder.show()
+
+                                var employeesAdminList: List<EmployeeAdminData>? = null
+                                displayDataViewModel.employeeAdminList.observe(this, {
+                                    employeesAdminList = it
+                                })
+
+                                var selectedEmployeeId: Int? = null
+                                var selectedEmployeeLogin: String? = null
+                                var selectedEmployeeEmail: String? = null
+                                var selectedEmployeeRole: String? = null
+
+                                selectedItem?.let { it1 ->
+
+                                    selectedEmployeeId = employeesAdminList?.get(it1)?.employeeid
+                                    selectedEmployeeLogin = employeesAdminList?.get(it1)?.login
+                                    selectedEmployeeEmail = employeesAdminList?.get(it1)?.email
+                                    selectedEmployeeRole = employeesAdminList?.get(it1)?.rolename
+                                }
+
+                                empPasswordAdminDialogWindow.confirmButton.setOnClickListener {
+
+                                    var password1: String = empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()
+                                    var password2: String = empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword2ET.text.toString()
+
+                                    if(password1.equals(password2,true)){
+
+                                        Toast.makeText(this@DisplayDataActivity, "Passwords are equal", Toast.LENGTH_SHORT).show()
+
+
+                                        var employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
+                                            selectedEmployeeLogin?.let { it2 ->
+                                                selectedEmployeeRole?.let { it3 ->
+                                                    selectedEmployeeEmail?.let { it4 ->
+                                                        EmployeeLoginDataRequest(
+                                                            it1,
+                                                            it2,
+                                                            empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString(),
+                                                            it4,
+                                                            it3
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if (employeeLoginDataRequest != null) {
+                                            displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest) {
+
+                                                if (it) {
+                                                    initRetrofitInstanceEmployeesAdmin()
+                                                }
+                                            }
+                                        }
+                                        mAlertDialog.dismiss()
+                                    }
+                                    else{
+                                        Toast.makeText(this@DisplayDataActivity, "Passwords are not equal", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+
+                                empPasswordAdminDialogWindow.cancelButton.setOnClickListener {
+
+                                    mAlertDialog.dismiss()
+                                }
+                            }
+                        }
 
                         addButton.setOnClickListener {
 
@@ -600,6 +683,20 @@ class DisplayDataActivity : AppCompatActivity() {
                     }
                     "acc" -> {
 
+                        layoutParamsAddButton.setMargins(250, 5, 50, 10)
+                        layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                        layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+
+                        passwordSetButton.isClickable = false
+                        passwordSetButton.isEnabled = false
+                        passwordSetButton.isVisible = false
+                        reserveButton.isClickable = false
+                        reserveButton.isEnabled = false
+                        reserveButton.isVisible = false
+                        addButton.layoutParams = layoutParamsAddButton
+                        modifyButton.layoutParams = layoutParamsModifyButton
+                        deleteButton.layoutParams = layoutParamsDeleteButton
+
                         initRetrofitInstanceEmployees()
 
                         addButton.setOnClickListener {
@@ -761,8 +858,11 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Reservations" -> {
 
-                layoutParamsDeleteButton.setMargins(650, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(600, 30, 50, 10)
 
+                passwordSetButton.isClickable = false
+                passwordSetButton.isEnabled = false
+                passwordSetButton.isVisible = false
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
@@ -857,6 +957,10 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Low stock" ->{
 
+                passwordSetButton.isClickable = false
+                passwordSetButton.isEnabled = false
+                passwordSetButton.isVisible = false
+
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
@@ -884,6 +988,10 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 layoutParamsAddButton.setMargins(550, 5, 50, 10)
 
+                passwordSetButton.isClickable = false
+                passwordSetButton.isEnabled = false
+                passwordSetButton.isVisible = false
+
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
@@ -900,49 +1008,62 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 initRetrofitInstanceNewEmployees()
 
-//                addButton.setOnClickListener {
-//
-//                    val addEmployeeAdminLoginDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_admin_login_dialog, null)
-//                    val mBuilder = AlertDialog.Builder(this).setView(addEmployeeAdminLoginDialogWindow)
-//                    addEmployeeAdminLoginDialogWindow.dialogEmpAdminLoginWindowTitle.text = "New employee login"
-//                    val mAlertDialog = mBuilder.show()
-//
-//                    addEmployeeAdminLoginDialogWindow.saveButton.setOnClickListener{
-//
-//                        val empLogin = addEmployeeAdminLoginDialogWindow.dialogEmpAdminNameET.text.toString()
-//                        val empPassword = addEmployeeAdminLoginDialogWindow.dialogEmpAdminSurnameET.text.toString()
-//                        val empEmail = addEmployeeAdminLoginDialogWindow.dialogEmpAdminSalaryET.text.toString()
-//
-////                        val employeeid: Int,
-////                        val login: String,
-////                        val password: String,
-////                        val email: String,
-//
-//                        var employeeLoginDataRequest = EmployeeLoginDataRequest(
-//                            0,
-//                            empName,
-//                            empSurname,
-//                            empSalary,
-//                            empAddress,
-//                            empLogin,
-//                            empEmail,
-//                            empRole)
-//
-//                        displayDataViewModel.addNewEmployeeDataAdmin(newEmployeeAdmin){
-//
-//                            if(it){
-//                                initRetrofitInstanceEmployeesAdmin()
-//                            }
-//                        }
-//
-//                        mAlertDialog.dismiss()
-//                    }
-//
-//                    addEmployeeAdminDialogWindow.cancelButton.setOnClickListener{
-//
-//                        mAlertDialog.dismiss()
-//                    }
-//                }
+                addButton.setOnClickListener {
+
+                    if(selectedItem==null){
+                        Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
+                    }else {
+
+                        val empLoginAdminDialogWindow = LayoutInflater.from(this)
+                            .inflate(R.layout.employee_admin_dialog, null)
+                        val mBuilder =
+                            AlertDialog.Builder(this).setView(empLoginAdminDialogWindow)
+                        empLoginAdminDialogWindow.dialogEmpAdminLoginWindowTitle.text =
+                            "Employee login data"
+                        val mAlertDialog = mBuilder.show()
+
+                        var employeesAdminList: List<Employee>? = null
+                        displayDataViewModel.newEmployeeList.observe(this, {
+                            employeesAdminList = it
+                        })
+
+                        var selectedEmployeeId: Int? = null
+
+                        selectedItem?.let { it1 ->
+
+                            selectedEmployeeId = employeesAdminList?.get(it1)?.employeeid
+                        }
+
+                        empLoginAdminDialogWindow.confirmButton.setOnClickListener {
+
+                            var employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
+                                EmployeeLoginDataRequest(
+                                    it1,
+                                    empLoginAdminDialogWindow.dialogEmpAdminLoginLoginET.text.toString(),
+                                    empLoginAdminDialogWindow.dialogEmpAdminLoginPasswordET.text.toString(),
+                                    empLoginAdminDialogWindow.dialogEmpAdminLoginEmailET.text.toString(),
+                                    empLoginAdminDialogWindow.dialogEmpAdminLoginRoleET.text.toString()
+                                )
+                            }
+
+                            if (employeeLoginDataRequest != null) {
+                                displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest) {
+
+                                    if (it) {
+                                        initRetrofitInstanceEmployeesAdmin()
+                                    }
+                                }
+                            }
+
+                            mAlertDialog.dismiss()
+                        }
+
+                        empLoginAdminDialogWindow.cancelButton.setOnClickListener {
+
+                            mAlertDialog.dismiss()
+                        }
+                    }
+                }
 
                 refreshButton.setOnClickListener {
                     initRetrofitInstanceNewEmployees()
