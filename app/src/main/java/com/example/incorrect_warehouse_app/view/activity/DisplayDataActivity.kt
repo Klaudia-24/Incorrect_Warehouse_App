@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.*
+import com.example.incorrect_warehouse_app.utils.HashString
 import com.example.incorrect_warehouse_app.view.fragment.AccountantNavFragment
 import com.example.incorrect_warehouse_app.view.fragment.AdministratorNavFragment
 import com.example.incorrect_warehouse_app.view.fragment.SalesRepNavFragment
@@ -379,6 +380,8 @@ class DisplayDataActivity : AppCompatActivity() {
                                 Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
                             }else {
 
+                                var hashString = HashString()
+
                                 val empPasswordAdminDialogWindow = LayoutInflater.from(this)
                                     .inflate(R.layout.employee_admin_password_dialog, null)
                                 val mBuilder =
@@ -422,7 +425,8 @@ class DisplayDataActivity : AppCompatActivity() {
                                                         EmployeeLoginDataRequest(
                                                             it1,
                                                             it2,
-                                                            empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString(),
+                                                            hashString.hashString(
+                                                                empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()),
                                                             it4,
                                                             it3
                                                         )
@@ -443,6 +447,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                     }
                                     else{
                                         Toast.makeText(this@DisplayDataActivity, "Passwords are not equal", Toast.LENGTH_SHORT).show()
+                                        Log.d("TEST",hashString.hashString("xxx"))
                                     }
                                 }
 

@@ -1,4 +1,4 @@
-package com.example.incorrect_warehouse_app.model
+package com.example.incorrect_warehouse_app.utils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

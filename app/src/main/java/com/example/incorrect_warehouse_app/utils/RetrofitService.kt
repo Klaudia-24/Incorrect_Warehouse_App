@@ -1,5 +1,6 @@
-package com.example.incorrect_warehouse_app.model
+package com.example.incorrect_warehouse_app.utils
 
+import com.example.incorrect_warehouse_app.model.*
 import retrofit2.Call
 import retrofit2.http.*
 

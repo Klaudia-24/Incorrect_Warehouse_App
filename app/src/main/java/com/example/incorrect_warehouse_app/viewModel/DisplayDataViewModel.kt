@@ -1,9 +1,10 @@
 package com.example.incorrect_warehouse_app.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.incorrect_warehouse_app.model.*
+import com.example.incorrect_warehouse_app.utils.RetrofitInstance
+import com.example.incorrect_warehouse_app.utils.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
