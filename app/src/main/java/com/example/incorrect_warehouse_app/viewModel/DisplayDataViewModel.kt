@@ -14,6 +14,7 @@ class DisplayDataViewModel: ViewModel() {
     var reservationList = MutableLiveData<List<Reservation>>()
     var employeeList = MutableLiveData<List<Employee>>()
     var employeeAdminList = MutableLiveData<List<EmployeeAdminData>>()
+    var roleList = MutableLiveData<List<Role>>()
 
     val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
@@ -241,4 +242,17 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
+    // ROLE
+    fun getRoleData(){
+
+        retrofitService.getAllRoles().enqueue(object : Callback<List<Role>> {
+            override fun onResponse(call: Call<List<Role>>, response: Response<List<Role>>){
+                //success
+                roleList.value = response.body()
+            }
+            override fun onFailure(call: Call<List<Role>>, t: Throwable) {
+                // failure
+            }
+        })
+    }
 }

@@ -375,6 +375,12 @@ class DisplayDataActivity : AppCompatActivity() {
                     "admin" -> {
 
                         initRetrofitInstanceEmployeesAdmin()
+                        initRetrofitInstanceRoles()
+
+                        var rolesList: List<Role>? = null
+                        displayDataViewModel.roleList.observe(this, {
+                            rolesList = it
+                        })
 
                         addButton.setOnClickListener {
 
@@ -719,18 +725,29 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Reservations" -> {
 
-                layoutParamsAddButton.setMargins(250, 5, 50, 10)
-                layoutParamsModifyButton.setMargins(600, 30, 50, 10)
-                layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+                layoutParamsModifyButton.setMargins(400, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(850, 30, 50, 10)
 
                 reserveButton.isClickable = false
                 reserveButton.isEnabled = false
                 reserveButton.isVisible = false
-                addButton.layoutParams = layoutParamsAddButton
+                addButton.isClickable = false
+                addButton.isEnabled = false
+                addButton.isVisible = false
                 modifyButton.layoutParams = layoutParamsModifyButton
                 deleteButton.layoutParams = layoutParamsDeleteButton
 
                 initRetrofitInstanceReservations()
+
+                when (currUser.roleid) {
+                    "admin" -> {
+
+                    }
+                    "salRep" -> {
+
+                    }
+                    else -> null
+                }
 
 
                 refreshButton.setOnClickListener {
@@ -861,4 +878,10 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun initRetrofitInstanceRoles(){
+        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
+        displayDataViewModel.getRoleData()
+    }
+
 }
