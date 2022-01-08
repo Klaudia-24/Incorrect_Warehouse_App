@@ -55,16 +55,11 @@ class DisplayDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_data)
-        //Log.d("TEST","DisplayDataActivity: DisplayDataActivity start")
 
         val currUser = intent.getSerializableExtra("EXTRA_CURRENT_USER") as CurrentUser
         val listType = intent.getSerializableExtra("EXTRA_LIST_TYPE") as String
 
-        //(R.id.dataTitle)
         dataTitle.setText(listType)
-
-//        Log.d("TEST DisplayDataAct:",currUser?.toString())
-//        Log.d("TEST DisplayDataAct:", listType)
 
         backToNavButton.setOnClickListener {
             Intent(this, NavigationActivity::class.java).also {
@@ -72,23 +67,6 @@ class DisplayDataActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
-
-//        when (currUser.roleid) {
-//            "admin" -> {
-//
-//            }
-//            "warMan" -> {
-//
-//
-//            }
-//            "salRep" -> {
-//
-//            }
-//            "acc" -> {
-//
-//            }
-//            else -> null
-//        }
 
         val layoutParamsReserveButton: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
@@ -224,7 +202,6 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
 
                 addButton.setOnClickListener {
-                    //Log.d("TEST addButton:", "dialog window open")
 
                     val addProductDialogWindow = LayoutInflater.from(this).inflate(R.layout.product_dialog, null)
                     val mBuilder = AlertDialog.Builder(this).setView(addProductDialogWindow)
@@ -233,17 +210,10 @@ class DisplayDataActivity : AppCompatActivity() {
 
                     addProductDialogWindow.saveButton.setOnClickListener{
 
-                        //Log.d("TEST saveButton:","")
-
                         val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
                         val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
                         val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
                         val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
-
-//                        Log.d("TEST saveButton:", prodName)
-//                        Log.d("TEST saveButton:", prodSize.toString())
-//                        Log.d("TEST saveButton:", prodAmount.toString())
-//                        Log.d("TEST saveButton:", prodPrice.toString())
 
                         var newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
 
@@ -264,8 +234,6 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
 
                 modifyButton.setOnClickListener {
-
-                    Log.d("TEST modifyButton:", "dialog window open")
 
                     if(selectedItem==null){
                         Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
@@ -326,8 +294,6 @@ class DisplayDataActivity : AppCompatActivity() {
 
                 deleteButton.setOnClickListener {
 
-                    Log.d("TEST deleteButton:", "dialog window open")
-
                     if(selectedItem==null){
                         Toast.makeText(this@DisplayDataActivity, "No product selected", Toast.LENGTH_SHORT).show()
                     }else {
@@ -337,14 +303,10 @@ class DisplayDataActivity : AppCompatActivity() {
                         deleteProductDialogWindow.dialogDeleteWindowTitle.text = "Delete product"
                         val mAlertDialog = mBuilder.show()
 
-                        Log.d("TEST deleteButton:", "after initialization")
-
                         var productsList: List<Product>? = null
                         displayDataViewModel.productList.observe(this, {
                             productsList = it
                         })
-
-                        Log.d("TEST deleteButton:", "product list get")
 
                         var selectedProductId: Int? = null
                         var prodName: String? = null
@@ -353,10 +315,6 @@ class DisplayDataActivity : AppCompatActivity() {
                         var prodPrice: String? = null
 
                         selectedItem?.let { it1 ->
-//                    deleteProductDialogWindow.dialogDeleteProdName.setText(productsList?.get(it1)?.name.toString())
-//                    deleteProductDialogWindow.dialogDeleteProdSize.setText(productsList?.get(it1)?.sizeofproduct.toString())
-//                    deleteProductDialogWindow.dialogDeleteProdAmount.setText(productsList?.get(it1)?.amount.toString())
-//                    deleteProductDialogWindow.dialogDeleteProdPrice.setText(productsList?.get(it1)?.price.toString())
 
                             prodName = productsList?.get(it1)?.name.toString()
                             prodSize = productsList?.get(it1)?.sizeofproduct.toString()
@@ -370,16 +328,10 @@ class DisplayDataActivity : AppCompatActivity() {
                         deleteProductDialogWindow.dialogDeleteProdAmount.text = prodAmount
                         deleteProductDialogWindow.dialogDeleteProdPrice.text = prodPrice
 
-
-                        Log.d("TEST deleteButton:", "after setting texts")
-
                         deleteProductDialogWindow.confirmButton.setOnClickListener {
-
-                            Log.d("TEST selectedProductId:", selectedProductId.toString())
 
                             if(selectedProductId!=null) {
                                 displayDataViewModel.deleteProduct(selectedProductId!!){
-                                    Log.d("TEST status:", it.toString())
                                     if(it){
                                         initRetrofitInstanceProducts()
                                         selectedProductId = null
