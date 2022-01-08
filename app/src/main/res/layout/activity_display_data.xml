@@ -6,14 +6,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.DisplayDataActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewDisplayData"
+        android:layout_width="match_parent"
+        android:layout_height="510dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/optionsRecView"
+        app:layout_constraintTop_toBottomOf="@+id/navRecView"
+        />
+
     <RelativeLayout
         android:id="@+id/navRecView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/blue_dark_4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/backToNavButton"
@@ -49,34 +57,15 @@
     </RelativeLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewDisplayData"
-        android:layout_width="match_parent"
-        android:layout_height="510dp"
-        android:layout_margin="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/optionsRecView"
-        app:layout_constraintTop_toBottomOf="@+id/navRecView"
-        tools:layout_editor_absoluteX="5dp"
-        />
-
-<!--    <ListView-->
-<!--        android:id="@+id/listViewDisplayData"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="510dp"-->
-<!--        android:layout_margin="5dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/optionsRecView"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/navRecView"-->
-<!--        tools:layout_editor_absoluteX="5dp"-->
-<!--        />-->
 
 
     <RelativeLayout
         android:id="@+id/optionsRecView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:background="@color/blue_dark_5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recViewDisplayData">
+        >
 
         <ImageButton
             android:id="@+id/reserveButton"

@@ -4,25 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.core.view.marginLeft
-import androidx.core.view.marginRight
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.*
 import com.example.incorrect_warehouse_app.utils.HashString
-import com.example.incorrect_warehouse_app.view.fragment.AccountantNavFragment
-import com.example.incorrect_warehouse_app.view.fragment.AdministratorNavFragment
-import com.example.incorrect_warehouse_app.view.fragment.SalesRepNavFragment
-import com.example.incorrect_warehouse_app.view.fragment.WarehousemanNavFragment
 import com.example.incorrect_warehouse_app.viewModel.DisplayDataViewModel
 import kotlinx.android.synthetic.main.activity_display_data.*
 import kotlinx.android.synthetic.main.activity_display_data.view.*
@@ -41,10 +32,10 @@ import kotlinx.android.synthetic.main.product_dialog.view.*
 import kotlinx.android.synthetic.main.product_dialog.view.cancelButton
 import kotlinx.android.synthetic.main.product_dialog.view.dialogProdNameET
 import kotlinx.android.synthetic.main.product_dialog.view.dialogWindowTitle
-import kotlinx.android.synthetic.main.product_dialog.view.productSizeText
 import kotlinx.android.synthetic.main.product_dialog.view.saveButton
 import kotlinx.android.synthetic.main.product_list.view.*
 import kotlinx.android.synthetic.main.reservation_delete_dialog.view.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -211,21 +202,36 @@ class DisplayDataActivity : AppCompatActivity() {
 
                     addProductDialogWindow.saveButton.setOnClickListener{
 
-                        val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
-                        val prodSize = addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
-                        val prodAmount = addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
-                        val prodPrice = addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
+                        var newProduct: Product? = null
+                        try {
+                            val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
+                            val prodSize =
+                                addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
+                            val prodAmount =
+                                addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
+                            val prodPrice =
+                                addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
 
-                        var newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
-
-                        displayDataViewModel.addNewProductData(newProduct){
-
-                            if(it){
-                                initRetrofitInstanceProducts()
-                            }
+                            newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
+                        }catch(e: Exception){
+                            Log.d("TEST",e.message.toString())
+                            Toast.makeText(this@DisplayDataActivity, "Fields are empty", Toast.LENGTH_SHORT).show()
                         }
 
-                        mAlertDialog.dismiss()
+
+                        if(newProduct!=null) {
+                            displayDataViewModel.addNewProductData(newProduct) {
+
+                                if (it) {
+                                    initRetrofitInstanceProducts()
+                                }
+                            }
+
+                            mAlertDialog.dismiss()
+                        }
+                        else{
+                            Log.d("TEST","new product")
+                        }
                     }
 
                     addProductDialogWindow.cancelButton.setOnClickListener{
@@ -380,8 +386,6 @@ class DisplayDataActivity : AppCompatActivity() {
                                 Toast.makeText(this@DisplayDataActivity, "No employee selected", Toast.LENGTH_SHORT).show()
                             }else {
 
-                                var hashString = HashString()
-
                                 val empPasswordAdminDialogWindow = LayoutInflater.from(this)
                                     .inflate(R.layout.employee_admin_password_dialog, null)
                                 val mBuilder =
@@ -415,28 +419,19 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                     if(password1.equals(password2,true)){
 
-                                        Toast.makeText(this@DisplayDataActivity, "Passwords are equal", Toast.LENGTH_SHORT).show()
-
-
                                         var employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
-                                            selectedEmployeeLogin?.let { it2 ->
-                                                selectedEmployeeRole?.let { it3 ->
-                                                    selectedEmployeeEmail?.let { it4 ->
-                                                        EmployeeLoginDataRequest(
-                                                            it1,
-                                                            it2,
-                                                            hashString.hashString(
-                                                                empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()),
-                                                            it4,
-                                                            it3
-                                                        )
-                                                    }
-                                                }
-                                            }
+                                            EmployeeLoginDataRequest(
+                                                it1,
+                                                "",
+                                                HashString.hash(empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()),
+                                                "",
+                                                ""
+                                            )
+
                                         }
 
                                         if (employeeLoginDataRequest != null) {
-                                            displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest) {
+                                            displayDataViewModel.modifyEmployeeAdminLogin(employeeLoginDataRequest) {
 
                                                 if (it) {
                                                     initRetrofitInstanceEmployeesAdmin()
@@ -447,7 +442,6 @@ class DisplayDataActivity : AppCompatActivity() {
                                     }
                                     else{
                                         Toast.makeText(this@DisplayDataActivity, "Passwords are not equal", Toast.LENGTH_SHORT).show()
-                                        Log.d("TEST",hashString.hashString("xxx"))
                                     }
                                 }
 
@@ -972,7 +966,7 @@ class DisplayDataActivity : AppCompatActivity() {
                     }else {
 
                         val empLoginAdminDialogWindow = LayoutInflater.from(this)
-                            .inflate(R.layout.employee_admin_dialog, null)
+                            .inflate(R.layout.employee_admin_login_dialog, null)
                         val mBuilder =
                             AlertDialog.Builder(this).setView(empLoginAdminDialogWindow)
                         empLoginAdminDialogWindow.dialogEmpAdminLoginWindowTitle.text =
@@ -997,7 +991,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 EmployeeLoginDataRequest(
                                     it1,
                                     empLoginAdminDialogWindow.dialogEmpAdminLoginLoginET.text.toString(),
-                                    empLoginAdminDialogWindow.dialogEmpAdminLoginPasswordET.text.toString(),
+                                    HashString.hash(empLoginAdminDialogWindow.dialogEmpAdminLoginPasswordET.text.toString()),
                                     empLoginAdminDialogWindow.dialogEmpAdminLoginEmailET.text.toString(),
                                     empLoginAdminDialogWindow.dialogEmpAdminLoginRoleET.text.toString()
                                 )
@@ -1007,7 +1001,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest) {
 
                                     if (it) {
-                                        initRetrofitInstanceEmployeesAdmin()
+                                        initRetrofitInstanceNewEmployees()
                                     }
                                 }
                             }

@@ -111,13 +111,13 @@
             android:layout_below="@+id/dialogDeleteEmpAdminSalary"
             android:layout_marginStart="80dp"
             android:layout_marginTop="0dp"
+            android:ems="10"
             android:maxWidth="250dp"
             android:maxLines="2"
-            android:paddingBottom="10dp"
-            android:ems="10"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@color/blue_dark_2"
             android:textSize="18sp" />
 

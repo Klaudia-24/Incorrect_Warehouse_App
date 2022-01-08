@@ -8,17 +8,15 @@ import com.example.incorrect_warehouse_app.utils.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.MessageDigest
 
 class LoginViewModel: ViewModel() {
 
     var currentUser: CurrentUser? = null
     private val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-    var hashString = HashString()
 
     fun signInUser(login: String, password: String, onResult: (Boolean)->Unit){
 
-        val hashedPassword = hashString.hashString(password)
+        val hashedPassword = HashString.hash(password)
         val signInRequest = SignInRequest(login, hashedPassword)
 
         retrofitService.isSignInSuccessful(signInRequest).enqueue(object : Callback<String> {

@@ -2,7 +2,7 @@ package com.example.incorrect_warehouse_app.utils
 
 import java.security.MessageDigest
 
-class HashString {
+object HashString {
 
     private fun ByteArray.toHex(): String {
         return joinToString("") { "%02x".format(it) }
@@ -13,7 +13,9 @@ class HashString {
         return bytes.toHex()
     }
 
-    fun hashString(input: String): String {
+    @JvmStatic
+    fun hash(input: String): String {
         return input.toMD5()
     }
+
 }

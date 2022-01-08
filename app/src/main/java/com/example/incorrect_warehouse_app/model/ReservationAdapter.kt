@@ -1,6 +1,5 @@
 package com.example.incorrect_warehouse_app.model
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,7 @@ class ReservationAdapter(private var reservationList: List<Reservation>):
         val productName: MaterialTextView = reservationView.findViewById(R.id.resProductName)
         val productSize: MaterialTextView = reservationView.findViewById(R.id.resProductSize)
         val productAmount: MaterialTextView = reservationView.findViewById(R.id.resProductAmount)
-        val productPrice: MaterialTextView = reservationView.findViewById(R.id.resProductPrice)
+        val productPrice: MaterialTextView = reservationView.findViewById(R.id.resProductTotal)
         val reservationDate: MaterialTextView = reservationView.findViewById(R.id.resDate)
         val employeeName: MaterialTextView = reservationView.findViewById(R.id.resEmployeeName)
         val employeeSurname: MaterialTextView = reservationView.findViewById(R.id.resEmployeeSurname)

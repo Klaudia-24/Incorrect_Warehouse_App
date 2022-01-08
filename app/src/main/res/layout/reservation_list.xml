@@ -60,22 +60,22 @@
         android:layout_marginStart="7dp"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/resProductPriceText"
+        android:id="@+id/resProductTotalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
-        android:text="Price:"
+        android:text="Total:"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/resProductPrice"
+        android:id="@+id/resProductTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/resProductAmount"
-        app:layout_constraintStart_toEndOf="@+id/resProductPriceText"
-        android:text="Price"
+        app:layout_constraintStart_toEndOf="@+id/resProductTotalText"
+        android:text="Total"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         android:layout_marginStart="7dp"/>
@@ -106,7 +106,7 @@
         android:id="@+id/resEmpNameText"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/resProductTotal"
         android:text="Employee:"
         android:textSize="16sp"
         android:textColor="@color/blue_dark_3"
@@ -116,7 +116,7 @@
         android:id="@+id/resEmployeeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/resProductTotal"
         app:layout_constraintStart_toEndOf="@+id/resEmpNameText"
         android:text="Name"
         android:textSize="16sp"
@@ -126,7 +126,7 @@
         android:id="@+id/resEmployeeSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/resProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/resProductTotal"
         app:layout_constraintStart_toEndOf="@+id/resEmployeeName"
         android:text="Surname"
         android:textSize="16sp"
