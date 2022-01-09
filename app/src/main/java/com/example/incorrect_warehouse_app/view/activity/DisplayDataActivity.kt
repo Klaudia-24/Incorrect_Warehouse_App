@@ -398,7 +398,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mBuilder =
                                     AlertDialog.Builder(this).setView(empPasswordAdminDialogWindow)
                                 empPasswordAdminDialogWindow.dialogEmpAdminPassWindowTitle.text =
-                                    "Employee new pasword"
+                                    "Employee new password"
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesAdminList: List<EmployeeAdminData>? = null
@@ -832,7 +832,7 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                 val deleteResDialogWindow = LayoutInflater.from(this).inflate(R.layout.reservation_delete_dialog, null)
                                 val mBuilder = AlertDialog.Builder(this).setView(deleteResDialogWindow)
-                                deleteResDialogWindow.dialogDeleteResWindowTitle.text = "Delete erservation"
+                                deleteResDialogWindow.dialogDeleteResWindowTitle.text = "Delete reservation"
                                 val mAlertDialog = mBuilder.show()
 
                                 var reservationsList: List<Reservation>? = null

@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeSurname"
         android:layout_marginStart="160dp"
         android:text="Salary:"
+        android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -102,6 +103,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeEmailText"
         android:text="Role: "
+        android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -123,6 +125,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/empEmployeeRoleText"
         android:text="Address:"
+        android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/blue_dark_2"
         app:layout_constraintStart_toStartOf="parent"/>
