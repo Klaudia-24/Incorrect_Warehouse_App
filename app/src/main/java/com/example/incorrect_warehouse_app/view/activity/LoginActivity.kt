@@ -41,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
             // warMan: JBrown user6
             // admin: CHBaker user1
+            // acc: SWilson user2
 
             loginViewModel.signInUser("CHBaker", "user1"){
 

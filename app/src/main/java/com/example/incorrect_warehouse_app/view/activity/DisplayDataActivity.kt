@@ -373,7 +373,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         layoutParamsSetPasswordButton.setMargins(250, 5, 50, 10)
 
                         initRetrofitInstanceEmployeesAdmin()
-                        initRetrofitInstanceRoles()
+                        //initRetrofitInstanceRoles()
 
                         var rolesList: List<Role>? = null
                         displayDataViewModel.roleList.observe(this, {
@@ -1082,7 +1082,7 @@ class DisplayDataActivity : AppCompatActivity() {
         displayDataViewModel.getNewEmployeeDataAdmin()
         //observer
         displayDataViewModel.newEmployeeList.observe(this,{
-            initAdapterEmployees(it)
+            initAdapterNewEmployees(it)
         })
     }
 
@@ -1091,6 +1091,18 @@ class DisplayDataActivity : AppCompatActivity() {
         val adapter = EmployeeAdapter(employeesList)
         recViewDisplayData.adapter = adapter
         adapter.setOnItemClickListener(object : EmployeeAdapter.onItemClickListner{
+            override fun onItemClick(position: Int) {
+
+                selectedItem = position
+            }
+        })
+    }
+
+    private fun initAdapterNewEmployees(employeesList: List<Employee>){
+        recViewDisplayData.layoutManager = LinearLayoutManager(this)
+        val adapter = NewEmployeeAdapter(employeesList)
+        recViewDisplayData.adapter = adapter
+        adapter.setOnItemClickListener(object : NewEmployeeAdapter.onItemClickListner{
             override fun onItemClick(position: Int) {
 
                 selectedItem = position

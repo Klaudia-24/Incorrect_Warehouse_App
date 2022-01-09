@@ -21,25 +21,20 @@ class NewEmployeeAdapter(private var newEmployeeList: List<Employee>):
         mListner = listener
     }
 
-    inner class ViewHolder(employeeAdminView: View, listener: onItemClickListner): RecyclerView.ViewHolder(employeeAdminView){
+    inner class ViewHolder(newEmployeeAdminView: View, listener: onItemClickListner): RecyclerView.ViewHolder(newEmployeeAdminView){
 
-        val employeeName: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeName)
-        val employeeSurname: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeSurname)
-        val salary: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeSalary)
-        val address: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeAddress)
-        val empLogin: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeLogin)
-        val email: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeEmail)
-        val roleName: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeRole)
+        val employeeName: MaterialTextView = newEmployeeAdminView.findViewById(R.id.empNewEmployeeSurname)
+        val employeeSurname: MaterialTextView = newEmployeeAdminView.findViewById(R.id.empNewEmployeeName)
 
         init {
-            employeeAdminView.setOnClickListener {
+            newEmployeeAdminView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.employee_admin_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.new_employee_list, parent, false)
         return ViewHolder(view, mListner)
     }
 
