@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
 
 //            if(userLogin.isEmpty()){
-//                Log.d("TEST","user login empty")
 //                userLoginEditText.error = "Enter Your user login"
 //                userLoginEditText.requestFocus()
 //                return@setOnClickListner
@@ -42,6 +41,13 @@ class LoginActivity : AppCompatActivity() {
             // warMan: JBrown user6
             // admin: CHBaker user1
             // acc: SWilson user2
+
+            Log.d("TEST login",userLogin)
+            Log.d("TEST password",password)
+
+            // loginViewModel.signInUser(userLogin.trim(), password.trim()){
+
+            // loginViewModel.signInUser("CHBaker", "user1"){
 
             loginViewModel.signInUser("CHBaker", "user1"){
 

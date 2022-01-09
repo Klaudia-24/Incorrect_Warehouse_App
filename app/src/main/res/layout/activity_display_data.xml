@@ -68,19 +68,6 @@
         >
 
         <ImageButton
-            android:id="@+id/reserveButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:src="@drawable/ic_archive" />
-
-        <ImageButton
             android:id="@+id/passwordSetButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -94,12 +81,26 @@
             android:src="@drawable/ic_lock" />
 
         <ImageButton
+            android:id="@+id/reserveButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:src="@drawable/ic_archive" />
+
+
+        <ImageButton
             android:id="@+id/addButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toLeftOf="@+id/modifyButton"
             android:background="?android:attr/selectableItemBackground"
@@ -112,12 +113,12 @@
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toLeftOf="@+id/deleteButton"
+            android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:src="@drawable/ic_mode_edit"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:src="@drawable/ic_mode_edit" />
 
         <ImageButton
             android:id="@+id/deleteButton"

@@ -79,6 +79,13 @@ class DisplayDataActivity : AppCompatActivity() {
                 passwordSetButton.isVisible = false
 
                 when (currUser.roleid) {
+                    "admin" -> {
+
+                        layoutParamsReserveButton.setMargins(550, 5, 50, 10)
+                        layoutParamsAddButton.setMargins(350, 5, 50, 10)
+                        layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                        layoutParamsDeleteButton.setMargins(950, 30, 50, 10)
+                    }
                     "warMan" -> {
 
                         reserveButton.isClickable = false
@@ -454,32 +461,21 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         addButton.setOnClickListener {
 
-                            val addEmployeeAdminDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_admin_dialog, null)
-                            val mBuilder = AlertDialog.Builder(this).setView(addEmployeeAdminDialogWindow)
-                            addEmployeeAdminDialogWindow.dialogEmpAdminWindowTitle.text = "New employee"
+                            val addEmployeeDialogWindow = LayoutInflater.from(this).inflate(R.layout.employee_dialog, null)
+                            val mBuilder = AlertDialog.Builder(this).setView(addEmployeeDialogWindow)
+                            addEmployeeDialogWindow.dialogWindowTitle.text = "New employee"
                             val mAlertDialog = mBuilder.show()
 
-                            addEmployeeAdminDialogWindow.saveButton.setOnClickListener{
+                            addEmployeeDialogWindow.saveButton.setOnClickListener{
 
-                                val empName = addEmployeeAdminDialogWindow.dialogEmpAdminNameET.text.toString()
-                                val empSurname = addEmployeeAdminDialogWindow.dialogEmpAdminSurnameET.text.toString()
-                                val empSalary = addEmployeeAdminDialogWindow.dialogEmpAdminSalaryET.text.toString().toFloat()
-                                val empAddress = addEmployeeAdminDialogWindow.dialogEmpAdminAddressET.text.toString()
-                                val empLogin = addEmployeeAdminDialogWindow.dialogEmpAdminLoginET.text.toString()
-                                val empEmail = addEmployeeAdminDialogWindow.dialogEmpAdminEmailET.text.toString()
-                                val empRole = addEmployeeAdminDialogWindow.dialogEmpAdminRoleET.text.toString()
+                                val empName = addEmployeeDialogWindow.dialogEmpNameET.text.toString()
+                                val empSurname = addEmployeeDialogWindow.dialogEmpSurnameET.text.toString()
+                                val empSalary = addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat()
+                                val empAddress = addEmployeeDialogWindow.dialogEmpAddressET.text.toString()
 
-                                var newEmployeeAdmin = EmployeeAdminData(
-                                    0,
-                                    empName,
-                                    empSurname,
-                                    empSalary,
-                                    empAddress,
-                                    empLogin,
-                                    empEmail,
-                                    empRole)
+                                var newEmployee = Employee(0,empName,empSurname,empSalary,empAddress)
 
-                                displayDataViewModel.addNewEmployeeDataAdmin(newEmployeeAdmin){
+                                displayDataViewModel.addNewEmployeeData(newEmployee){
 
                                     if(it){
                                         initRetrofitInstanceEmployeesAdmin()
@@ -489,7 +485,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 mAlertDialog.dismiss()
                             }
 
-                            addEmployeeAdminDialogWindow.cancelButton.setOnClickListener{
+                            addEmployeeDialogWindow.cancelButton.setOnClickListener{
 
                                 mAlertDialog.dismiss()
                             }
@@ -531,10 +527,10 @@ class DisplayDataActivity : AppCompatActivity() {
                                     var employee = selectedEmployeeId?.let { it1 ->
                                         EmployeeAdminData(
                                             it1,
-                                            modifyEmployeeAdminDialogWindow.dialogEmpNameET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpSurnameET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAddressET.text.toString(),
+                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminNameET.text.toString(),
+                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminSurnameET.text.toString(),
+                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminSalaryET.text.toString().toFloat(),
+                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminAddressET.text.toString(),
                                             modifyEmployeeAdminDialogWindow.dialogEmpAdminLoginET.text.toString(),
                                             modifyEmployeeAdminDialogWindow.dialogEmpAdminEmailET.text.toString(),
                                             modifyEmployeeAdminDialogWindow.dialogEmpAdminRoleET.text.toString()
@@ -678,8 +674,6 @@ class DisplayDataActivity : AppCompatActivity() {
 
                             addEmployeeDialogWindow.cancelButton.setOnClickListener{
 
-                                Log.d("TEST cancelButton:","")
-
                                 mAlertDialog.dismiss()
                             }
                         }
@@ -809,7 +803,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "Reservations" -> {
 
-                layoutParamsDeleteButton.setMargins(600, 30, 50, 10)
+                layoutParamsDeleteButton.setMargins(440, 30, 50, 10)
 
                 passwordSetButton.isClickable = false
                 passwordSetButton.isEnabled = false
@@ -937,7 +931,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
             "New employees" ->{
 
-                layoutParamsAddButton.setMargins(550, 5, 50, 10)
+                layoutParamsAddButton.setMargins(420, 5, 50, 10)
 
                 passwordSetButton.isClickable = false
                 passwordSetButton.isEnabled = false

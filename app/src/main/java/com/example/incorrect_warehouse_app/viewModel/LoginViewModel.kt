@@ -1,5 +1,6 @@
 package com.example.incorrect_warehouse_app.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.incorrect_warehouse_app.model.*
 import com.example.incorrect_warehouse_app.utils.HashString
@@ -18,6 +19,7 @@ class LoginViewModel: ViewModel() {
 
         val hashedPassword = HashString.hash(password)
         val signInRequest = SignInRequest(login, hashedPassword)
+        Log.d("TEST signInRequest",signInRequest.toString())
 
         retrofitService.isSignInSuccessful(signInRequest).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
