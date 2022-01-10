@@ -11,17 +11,17 @@ import java.util.*
 class EmployeeAdminAdapter(private var employeeAdminList: List<EmployeeAdminData>):
     RecyclerView.Adapter<EmployeeAdminAdapter.ViewHolder>()  {
 
-    private lateinit var mListner: onItemClickListner
+    private lateinit var mListener: onItemClickListener
 
-    interface onItemClickListner{
+    interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(listener: onItemClickListner){
-        mListner = listener
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
     }
 
-    inner class ViewHolder(employeeAdminView: View, listener: onItemClickListner): RecyclerView.ViewHolder(employeeAdminView){
+    inner class ViewHolder(employeeAdminView: View, listener: onItemClickListener): RecyclerView.ViewHolder(employeeAdminView){
 
         val employeeName: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeName)
         val employeeSurname: MaterialTextView = employeeAdminView.findViewById(R.id.empEmployeeSurname)
@@ -40,7 +40,7 @@ class EmployeeAdminAdapter(private var employeeAdminList: List<EmployeeAdminData
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.employee_admin_list, parent, false)
-        return ViewHolder(view, mListner)
+        return ViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

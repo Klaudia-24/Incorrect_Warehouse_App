@@ -12,14 +12,14 @@ import retrofit2.Response
 
 class LoginViewModel: ViewModel() {
 
-    var currentUser: CurrentUser? = null
+    //var currentUser: CurrentUser? = null
     private val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
     fun signInUser(login: String, password: String, onResult: (Boolean)->Unit){
 
         val hashedPassword = HashString.hash(password)
         val signInRequest = SignInRequest(login, hashedPassword)
-        Log.d("TEST signInRequest",signInRequest.toString())
+        //Log.d("TEST signInRequest",signInRequest.toString())
 
         retrofitService.isSignInSuccessful(signInRequest).enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -38,7 +38,7 @@ class LoginViewModel: ViewModel() {
         retrofitService.getCurrentUser(login).enqueue(object : Callback<CurrentUser?> {
             override fun onResponse(call: Call<CurrentUser?>, response: Response<CurrentUser?>) {
 
-                currentUser = response.body()!!
+                //currentUser = response.body()!!
                 onResult(response.body())
             }
             override fun onFailure(call: Call<CurrentUser?>, t: Throwable) {

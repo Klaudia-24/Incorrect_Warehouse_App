@@ -100,7 +100,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         deleteButton.isEnabled = false
                         deleteButton.isVisible = false
 
-                        layoutParamsModifyButton.setMargins(600, 30, 50, 10)
+                        layoutParamsModifyButton.setMargins(450, 30, 50, 10)
                         modifyButton.layoutParams = layoutParamsModifyButton
                     }
                     "salRep" -> {
@@ -1030,7 +1030,7 @@ class DisplayDataActivity : AppCompatActivity() {
         recViewDisplayData.layoutManager = LinearLayoutManager(this)
         val adapter = ProductAdapter(productsList)
         recViewDisplayData.adapter = adapter
-        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListner{
+        adapter.setOnItemClickListener(object : ProductAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 selectedItem = position
@@ -1084,7 +1084,7 @@ class DisplayDataActivity : AppCompatActivity() {
         recViewDisplayData.layoutManager = LinearLayoutManager(this)
         val adapter = EmployeeAdapter(employeesList)
         recViewDisplayData.adapter = adapter
-        adapter.setOnItemClickListener(object : EmployeeAdapter.onItemClickListner{
+        adapter.setOnItemClickListener(object : EmployeeAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 selectedItem = position
@@ -1096,7 +1096,7 @@ class DisplayDataActivity : AppCompatActivity() {
         recViewDisplayData.layoutManager = LinearLayoutManager(this)
         val adapter = NewEmployeeAdapter(employeesList)
         recViewDisplayData.adapter = adapter
-        adapter.setOnItemClickListener(object : NewEmployeeAdapter.onItemClickListner{
+        adapter.setOnItemClickListener(object : NewEmployeeAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 selectedItem = position
@@ -1117,7 +1117,7 @@ class DisplayDataActivity : AppCompatActivity() {
         recViewDisplayData.layoutManager = LinearLayoutManager(this)
         val adapter = EmployeeAdminAdapter(employeesAdminList)
         recViewDisplayData.adapter = adapter
-        adapter.setOnItemClickListener(object : EmployeeAdminAdapter.onItemClickListner{
+        adapter.setOnItemClickListener(object : EmployeeAdminAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 
                 selectedItem = position

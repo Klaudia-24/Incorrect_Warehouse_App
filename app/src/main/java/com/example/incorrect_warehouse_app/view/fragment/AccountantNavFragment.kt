@@ -56,13 +56,6 @@ class AccountantNavFragment: Fragment() {
             }
         }
 
-//        productsButton.setOnClickListener {
-//            activity?.let {
-//                val intent = Intent(it, DisplayDataActivity::class.java)
-//                it.startActivity(intent)
-//            }
-//        }
-
         productsButton.setOnClickListener {
             activity?.let {
                 val intent = Intent(it, DisplayDataActivity::class.java).also {
@@ -85,15 +78,4 @@ class AccountantNavFragment: Fragment() {
             }
         }
     }
-
-    //        myProfileButtonNav.setOnClickListener{
-//            Log.d("TEST NavActivity:", "onClick")
-//            Intent(this, ProfileActivity::class.java).also {
-//                it.putExtra("EXTRA_CURRENT_USER", currUser)
-//                startActivity(it)
-//            }
-
-
-
-
 }

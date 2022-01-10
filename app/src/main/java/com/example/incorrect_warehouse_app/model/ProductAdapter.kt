@@ -1,6 +1,5 @@
 package com.example.incorrect_warehouse_app.model
 
-import android.icu.util.Currency
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +11,17 @@ import java.util.*
 class ProductAdapter(private var productList: List<Product>):
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    private lateinit var mListner: onItemClickListner
+    private lateinit var mListener: onItemClickListener
 
-    interface onItemClickListner{
+    interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(listener: onItemClickListner){
-        mListner = listener
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
     }
 
-    inner class ViewHolder(productView: View, listener: onItemClickListner): RecyclerView.ViewHolder(productView){
+    inner class ViewHolder(productView: View, listener: onItemClickListener): RecyclerView.ViewHolder(productView){
         val productName: MaterialTextView = productView.findViewById(R.id.productName)
         val productSize: MaterialTextView = productView.findViewById(R.id.productSize)
         val productAmount: MaterialTextView = productView.findViewById(R.id.productAmount)
@@ -37,7 +36,7 @@ class ProductAdapter(private var productList: List<Product>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.product_list, parent, false)
-        return ViewHolder(view, mListner)
+        return ViewHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

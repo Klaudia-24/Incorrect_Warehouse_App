@@ -11,12 +11,4 @@ import com.google.android.material.textview.MaterialTextView
 
 class ProfileViewModel: ViewModel() {
 
-    private lateinit var loginViewModel: LoginViewModel
-    private var currentUser = loginViewModel.currentUser
-
-    fun setCurrentUserData(currentUser: CurrentUser){
-
-        
-    }
-
 }

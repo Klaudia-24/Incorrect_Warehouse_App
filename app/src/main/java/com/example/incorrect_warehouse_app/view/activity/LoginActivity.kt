@@ -25,16 +25,16 @@ class LoginActivity : AppCompatActivity() {
             val userLogin = userLoginEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-//            if(userLogin.isEmpty()){
-//                userLoginEditText.error = "Enter Your user login"
-//                userLoginEditText.requestFocus()
-//                return@setOnClickListner
-//            }
-//            if(password.isEmpty()){
-//                passwordEditText.error = "Enter Your password"
-//                passwordEditText.requestFocus()
-//                return@setOnClickListner
-//            }
+            if(userLogin.isEmpty()){
+                userLoginEditText.error = "Enter Your user login"
+                userLoginEditText.requestFocus()
+                return@setOnClickListner
+            }
+            if(password.isEmpty()){
+                passwordEditText.error = "Enter Your password"
+                passwordEditText.requestFocus()
+                return@setOnClickListner
+            }
 
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
@@ -42,17 +42,15 @@ class LoginActivity : AppCompatActivity() {
             // admin: CHBaker user1
             // acc: SWilson user2
 
-            Log.d("TEST login",userLogin)
-            Log.d("TEST password",password)
 
             // loginViewModel.signInUser(userLogin.trim(), password.trim()){
 
             // loginViewModel.signInUser("CHBaker", "user1"){
 
-            loginViewModel.signInUser("CHBaker", "user1"){
+            loginViewModel.signInUser(userLogin, password){
 
                 if(it){
-                    loginViewModel.getCurrentUser("CHBaker"){
+                    loginViewModel.getCurrentUser(userLogin){
 
                         val currUser = it
 
