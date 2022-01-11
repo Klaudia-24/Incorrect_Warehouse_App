@@ -25,22 +25,11 @@ class AccountantNavFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
-
-//        myProfileButton.setOnClickListener{
-//            //Log.d("TEST","productsButton: before DisplayDataActivity start")
-//            val intent = Intent(activity, DisplayDataActivity::class.java)
-//            activity?.startActivity(intent)
-//            //Log.d("TEST","productsButton: after DisplayDataActivity start")
-//        }
 
         val bundle = arguments
         currUser = bundle!!.get("EXTRA_CURRENT_USER") as CurrentUser
 
         return inflater.inflate(R.layout.accountant_nav_fragment, container, false)
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +39,6 @@ class AccountantNavFragment: Fragment() {
             activity?.let {
                 val intent = Intent(it, ProfileActivity::class.java).also {
                     it.putExtra("EXTRA_CURRENT_USER", currUser)
-                    //startActivity(it)
                 }
                 it.startActivity(intent)
             }
@@ -61,7 +49,6 @@ class AccountantNavFragment: Fragment() {
                 val intent = Intent(it, DisplayDataActivity::class.java).also {
                     it.putExtra("EXTRA_CURRENT_USER", currUser)
                     it.putExtra("EXTRA_LIST_TYPE", "Products")
-                    //startActivity(it)
                 }
                 it.startActivity(intent)
             }
@@ -72,7 +59,6 @@ class AccountantNavFragment: Fragment() {
                 val intent = Intent(it, DisplayDataActivity::class.java).also {
                     it.putExtra("EXTRA_CURRENT_USER", currUser)
                     it.putExtra("EXTRA_LIST_TYPE", "Employees")
-                    //startActivity(it)
                 }
                 it.startActivity(intent)
             }

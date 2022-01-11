@@ -1109,7 +1109,6 @@ class DisplayDataActivity : AppCompatActivity() {
                     android.widget.Toast.LENGTH_LONG).show()
             }
         }
-        //observer
         displayDataViewModel.getProductList().observe(this,{
             initAdapterProducts(it)
         })
@@ -1123,10 +1122,7 @@ class DisplayDataActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
 
                 selectedItem = position
-
-                //Toast.makeText(this@DisplayDataActivity, "Selected item: $position", Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 

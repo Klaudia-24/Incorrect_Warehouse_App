@@ -14,19 +14,9 @@ import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    //private lateinit var profileViewModel: ProfileViewModel
-
-    //private var loginViewModel: LoginViewModel? = null
-    //private var currentUser = loginViewModel?.currentUser
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-
-        Log.d("TEST ProfileActivity:", "start")
-
-        //surname.setText(intent.getStringExtra("EXTRA_SURNAME"))
-//        name.setText(loginViewModel.currentUser?.name)
 
         val currUser = intent.getSerializableExtra("EXTRA_CURRENT_USER") as CurrentUser
         name.setText(currUser.name)
@@ -41,7 +31,6 @@ class ProfileActivity : AppCompatActivity() {
 
         backToNavButton.setOnClickListener {
             Intent(this, NavigationActivity::class.java).also {
-                Log.d("TEST LoginActivity:",currUser?.roleid.toString())
                 it.putExtra("EXTRA_CURRENT_USER", currUser)
                 startActivity(it)
             }

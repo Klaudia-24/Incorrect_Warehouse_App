@@ -25,16 +25,16 @@ class LoginActivity : AppCompatActivity() {
             val userLogin = userLoginEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-//            if(userLogin.isEmpty()){
-//                userLoginEditText.error = "Enter Your user login"
-//                userLoginEditText.requestFocus()
-//                return@setOnClickListner
-//            }
-//            if(password.isEmpty()){
-//                passwordEditText.error = "Enter Your password"
-//                passwordEditText.requestFocus()
-//                return@setOnClickListner
-//            }
+            if(userLogin.isEmpty()){
+                userLoginEditText.error = "Enter Your user login"
+                userLoginEditText.requestFocus()
+                return@setOnClickListner
+            }
+            if(password.isEmpty()){
+                passwordEditText.error = "Enter Your password"
+                passwordEditText.requestFocus()
+                return@setOnClickListner
+            }
 
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
@@ -43,14 +43,14 @@ class LoginActivity : AppCompatActivity() {
             // acc: SWilson user2
 
 
-            // loginViewModel.signInUser(userLogin.trim(), password.trim()){
+            // loginViewModel.signInUser(userLogin, password){
 
             // loginViewModel.signInUser("CHBaker", "user1"){
 
-            loginViewModel.signInUser("CHBaker", "user1"){
+            loginViewModel.signInUser(userLogin, password){
 
                 if(it){
-                    loginViewModel.getCurrentUser("CHBaker"){
+                    loginViewModel.getCurrentUser(userLogin){
 
                         val currUser = it
 
@@ -69,11 +69,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-//    override fun onBackPressed() {
-//        //Toast.makeText(this@LoginActivity, "Disabled Back Press", Toast.LENGTH_SHORT).show()
-//    }
-
 }
 
 
