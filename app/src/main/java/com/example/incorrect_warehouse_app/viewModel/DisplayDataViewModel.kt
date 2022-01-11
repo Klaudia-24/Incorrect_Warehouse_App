@@ -11,15 +11,39 @@ import retrofit2.Response
 
 class DisplayDataViewModel: ViewModel() {
 
-    var productList = MutableLiveData<List<Product>>()
-    var lowStockProductList = MutableLiveData<List<Product>>()
-    var reservationList = MutableLiveData<List<Reservation>>()
-    var employeeList = MutableLiveData<List<Employee>>()
-    var employeeAdminList = MutableLiveData<List<EmployeeAdminData>>()
-    var newEmployeeList = MutableLiveData<List<Employee>>()
+    private var productList = MutableLiveData<List<Product>>()
+    private var lowStockProductList = MutableLiveData<List<Product>>()
+    private var reservationList = MutableLiveData<List<Reservation>>()
+    private var employeeList = MutableLiveData<List<Employee>>()
+    private var employeeAdminList = MutableLiveData<List<EmployeeAdminData>>()
+    private var newEmployeeList = MutableLiveData<List<Employee>>()
     var roleList = MutableLiveData<List<Role>>()
 
     val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
+
+    fun getProductList(): MutableLiveData<List<Product>> {
+        return productList
+    }
+
+    fun getLowStockProductList(): MutableLiveData<List<Product>> {
+        return lowStockProductList
+    }
+
+    fun getReservationList(): MutableLiveData<List<Reservation>> {
+        return reservationList
+    }
+
+    fun getEmployeeList(): MutableLiveData<List<Employee>> {
+        return employeeList
+    }
+
+    fun getEmployeeAdminList(): MutableLiveData<List<EmployeeAdminData>> {
+        return employeeAdminList
+    }
+
+    fun getNewEmployeeList(): MutableLiveData<List<Employee>> {
+        return newEmployeeList
+    }
 
     fun getProductsData(onResult: (Boolean)->Unit){
 

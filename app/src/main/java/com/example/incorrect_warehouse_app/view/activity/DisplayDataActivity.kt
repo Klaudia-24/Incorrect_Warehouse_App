@@ -1,7 +1,6 @@
 package com.example.incorrect_warehouse_app.view.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,10 +8,8 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
-import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
@@ -46,7 +43,7 @@ import java.util.*
 class DisplayDataActivity : AppCompatActivity() {
 
     private lateinit var displayDataViewModel: DisplayDataViewModel
-    var selectedItem: Int? = null
+    private var selectedItem: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,7 +155,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         val mAlertDialog = mBuilder.show()
 
                         var productsList: List<Product>? = null
-                        displayDataViewModel.productList.observe(this, {
+                        displayDataViewModel.getProductList().observe(this, {
                             productsList = it
                         })
 
@@ -266,7 +263,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         val mAlertDialog = mBuilder.show()
 
                         var productsList: List<Product>? = null
-                        displayDataViewModel.productList.observe(this, {
+                        displayDataViewModel.getProductList().observe(this, {
                             productsList = it
                         })
 
@@ -329,7 +326,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         val mAlertDialog = mBuilder.show()
 
                         var productsList: List<Product>? = null
-                        displayDataViewModel.productList.observe(this, {
+                        displayDataViewModel.getProductList().observe(this, {
                             productsList = it
                         })
 
@@ -408,7 +405,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesAdminList: List<EmployeeAdminData>? = null
-                                displayDataViewModel.employeeAdminList.observe(this, {
+                                displayDataViewModel.getEmployeeAdminList().observe(this, {
                                     employeesAdminList = it
                                 })
 
@@ -548,7 +545,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesAdminList: List<EmployeeAdminData>? = null
-                                displayDataViewModel.employeeAdminList.observe(this, {
+                                displayDataViewModel.getEmployeeAdminList().observe(this, {
                                     employeesAdminList = it
                                 })
 
@@ -617,7 +614,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesAdminList: List<EmployeeAdminData>? = null
-                                displayDataViewModel.employeeAdminList.observe(this, {
+                                displayDataViewModel.getEmployeeAdminList().observe(this, {
                                     employeesAdminList = it
                                 })
 
@@ -751,7 +748,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesList: List<Employee>? = null
-                                displayDataViewModel.employeeList.observe(this, {
+                                displayDataViewModel.getEmployeeList().observe(this, {
                                     employeesList = it
                                 })
 
@@ -815,7 +812,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesList: List<Employee>? = null
-                                displayDataViewModel.employeeList.observe(this, {
+                                displayDataViewModel.getEmployeeList().observe(this, {
                                     employeesList = it
                                 })
 
@@ -905,7 +902,7 @@ class DisplayDataActivity : AppCompatActivity() {
                                 val mAlertDialog = mBuilder.show()
 
                                 var reservationsList: List<Reservation>? = null
-                                displayDataViewModel.reservationList.observe(this, {
+                                displayDataViewModel.getReservationList().observe(this, {
                                     reservationsList = it
                                 })
 
@@ -1041,7 +1038,7 @@ class DisplayDataActivity : AppCompatActivity() {
                         val mAlertDialog = mBuilder.show()
 
                         var employeesAdminList: List<Employee>? = null
-                        displayDataViewModel.newEmployeeList.observe(this, {
+                        displayDataViewModel.getNewEmployeeList().observe(this, {
                             employeesAdminList = it
                         })
 
@@ -1113,7 +1110,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.productList.observe(this,{
+        displayDataViewModel.getProductList().observe(this,{
             initAdapterProducts(it)
         })
     }
@@ -1148,7 +1145,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.reservationList.observe(this,{
+        displayDataViewModel.getReservationList().observe(this,{
             initAdapterReservations(it)
         })
     }
@@ -1180,7 +1177,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.employeeList.observe(this,{
+        displayDataViewModel.getEmployeeList().observe(this,{
             initAdapterEmployees(it)
         })
     }
@@ -1200,7 +1197,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.newEmployeeList.observe(this,{
+        displayDataViewModel.getNewEmployeeList().observe(this,{
             initAdapterNewEmployees(it)
         })
     }
@@ -1244,7 +1241,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.employeeAdminList.observe(this,{
+        displayDataViewModel.getEmployeeAdminList().observe(this,{
             initAdapterEmployeesAdmin(it)
         })
     }
@@ -1276,7 +1273,7 @@ class DisplayDataActivity : AppCompatActivity() {
             }
         }
         //observer
-        displayDataViewModel.lowStockProductList.observe(this,{
+        displayDataViewModel.getLowStockProductList().observe(this,{
             initAdapterProducts(it)
         })
     }
