@@ -1,6 +1,7 @@
 package com.example.incorrect_warehouse_app.view.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +9,10 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.incorrect_warehouse_app.R
@@ -364,6 +368,9 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
 
                 refreshButton.setOnClickListener {
+
+                    dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                    errorInfo.setText("")
                     initRetrofitInstanceProducts()
                 }
             }
@@ -624,6 +631,9 @@ class DisplayDataActivity : AppCompatActivity() {
                         }
 
                         refreshButton.setOnClickListener {
+
+                            dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                            errorInfo.setText("")
                             initRetrofitInstanceEmployeesAdmin()
                         }
 
@@ -795,6 +805,9 @@ class DisplayDataActivity : AppCompatActivity() {
                         }
 
                         refreshButton.setOnClickListener {
+
+                            dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                            errorInfo.setText("")
                             initRetrofitInstanceEmployees()
                         }
                     }
@@ -896,6 +909,9 @@ class DisplayDataActivity : AppCompatActivity() {
 
 
                 refreshButton.setOnClickListener {
+
+                    dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                    errorInfo.setText("")
                     initRetrofitInstanceReservations()
                 }
 
@@ -925,6 +941,9 @@ class DisplayDataActivity : AppCompatActivity() {
                 initRetrofitInstanceLowStockProducts()
 
                 refreshButton.setOnClickListener {
+
+                    dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                    errorInfo.setText("")
                     initRetrofitInstanceLowStockProducts()
                 }
 
@@ -1011,6 +1030,9 @@ class DisplayDataActivity : AppCompatActivity() {
                 }
 
                 refreshButton.setOnClickListener {
+
+                    dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.blue_dark_8, null))
+                    errorInfo.setText("")
                     initRetrofitInstanceNewEmployees()
                 }
             }
@@ -1019,7 +1041,18 @@ class DisplayDataActivity : AppCompatActivity() {
 
     private fun initRetrofitInstanceProducts(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getProductsData()
+        displayDataViewModel.getProductsData(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.productList.observe(this,{
             initAdapterProducts(it)
@@ -1043,7 +1076,18 @@ class DisplayDataActivity : AppCompatActivity() {
 
     private fun initRetrofitInstanceReservations(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getReservationsData()
+        displayDataViewModel.getReservationsData(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.reservationList.observe(this,{
             initAdapterReservations(it)
@@ -1064,7 +1108,18 @@ class DisplayDataActivity : AppCompatActivity() {
 
     private fun initRetrofitInstanceEmployees(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getEmployeeData()
+        displayDataViewModel.getEmployeeData(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.employeeList.observe(this,{
             initAdapterEmployees(it)
@@ -1073,7 +1128,18 @@ class DisplayDataActivity : AppCompatActivity() {
 
     private fun initRetrofitInstanceNewEmployees(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getNewEmployeeDataAdmin()
+        displayDataViewModel.getNewEmployeeDataAdmin(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.newEmployeeList.observe(this,{
             initAdapterNewEmployees(it)
@@ -1106,7 +1172,18 @@ class DisplayDataActivity : AppCompatActivity() {
 
     private fun initRetrofitInstanceEmployeesAdmin(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getEmployeeDataAdmin()
+        displayDataViewModel.getEmployeeDataAdmin(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.employeeAdminList.observe(this,{
             initAdapterEmployeesAdmin(it)
@@ -1125,14 +1202,20 @@ class DisplayDataActivity : AppCompatActivity() {
         })
     }
 
-    private fun initRetrofitInstanceRoles(){
-        displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getRoleData()
-    }
-
     private fun initRetrofitInstanceLowStockProducts(){
         displayDataViewModel = ViewModelProvider(this).get(DisplayDataViewModel::class.java)
-        displayDataViewModel.getLowStockProductsData()
+        displayDataViewModel.getLowStockProductsData(){
+            if(!it){
+
+                dataTitle.setTextColor(ResourcesCompat.getColor(resources, R.color.error_color, null))
+                errorInfo.setText("Server error")
+
+                Toast.makeText(
+                    this@DisplayDataActivity,
+                    "Cannot connect to the server",
+                    android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
         //observer
         displayDataViewModel.lowStockProductList.observe(this,{
             initAdapterProducts(it)

@@ -21,28 +21,32 @@ class DisplayDataViewModel: ViewModel() {
 
     val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
-    fun getProductsData(){
+    fun getProductsData(onResult: (Boolean)->Unit){
 
         retrofitService.getAllProducts().enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
-                //success
+
                 productList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                // failure
+
+                onResult(false)
             }
         })
     }
 
-    fun getLowStockProductsData(){
+    fun getLowStockProductsData(onResult: (Boolean)->Unit){
 
         retrofitService.getLowStockProducts().enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>){
-                //success
+
                 lowStockProductList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                // failure
+
+                onResult(false)
             }
         })
     }
@@ -91,15 +95,16 @@ class DisplayDataViewModel: ViewModel() {
 
     // RESERVATIONS
 
-    fun getReservationsData(){
+    fun getReservationsData(onResult: (Boolean)->Unit){
 
         retrofitService.getAllReservations().enqueue(object : Callback<List<Reservation>> {
             override fun onResponse(call: Call<List<Reservation>>, response: Response<List<Reservation>>){
-                //success
+
                 reservationList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<Reservation>>, t: Throwable) {
-                // failure
+                onResult(false)
             }
         })
     }
@@ -148,15 +153,17 @@ class DisplayDataViewModel: ViewModel() {
 
     // EMPLOYEE
 
-    fun getEmployeeData(){
+    fun getEmployeeData(onResult: (Boolean)->Unit){
 
         retrofitService.getAllEmployees().enqueue(object : Callback<List<Employee>> {
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>){
-                //success
+
                 employeeList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
-                // failure
+
+                onResult(false)
             }
         })
     }
@@ -203,28 +210,32 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
-    fun getEmployeeDataAdmin(){
+    fun getEmployeeDataAdmin(onResult: (Boolean)->Unit){
 
         retrofitService.getAllEmployeesAdmin().enqueue(object : Callback<List<EmployeeAdminData>> {
             override fun onResponse(call: Call<List<EmployeeAdminData>>, response: Response<List<EmployeeAdminData>>){
-                //success
+
                 employeeAdminList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<EmployeeAdminData>>, t: Throwable) {
-                // failure
+
+                onResult(false)
             }
         })
     }
 
-    fun getNewEmployeeDataAdmin(){
+    fun getNewEmployeeDataAdmin(onResult: (Boolean)->Unit){
 
         retrofitService.getAllNewEmployeesAdmin().enqueue(object : Callback<List<Employee>> {
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>){
-                //success
+
                 newEmployeeList.value = response.body()
+                onResult(true)
             }
             override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
-                // failure
+
+                onResult(false)
             }
         })
     }
@@ -299,17 +310,4 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
-    // ROLE
-    fun getRoleData(){
-
-        retrofitService.getAllRoles().enqueue(object : Callback<List<Role>> {
-            override fun onResponse(call: Call<List<Role>>, response: Response<List<Role>>){
-                //success
-                roleList.value = response.body()
-            }
-            override fun onFailure(call: Call<List<Role>>, t: Throwable) {
-                // failure
-            }
-        })
-    }
 }

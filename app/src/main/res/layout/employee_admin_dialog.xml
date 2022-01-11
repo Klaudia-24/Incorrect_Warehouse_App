@@ -197,13 +197,13 @@
             android:id="@+id/cancelButton"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="460dp"
+            android:layout_marginRight="10sp"
             android:background="@drawable/button_cancel"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginTop="460dp"
-            android:layout_alignParentRight="true"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

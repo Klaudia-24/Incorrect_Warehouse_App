@@ -38,9 +38,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:text="Products"
             android:layout_centerVertical="true"
             android:textColor="@color/blue_dark_8"
             android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/errorInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/dataTitle"
+            android:textColor="@color/error_color"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageButton

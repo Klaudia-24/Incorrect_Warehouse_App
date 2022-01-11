@@ -25,16 +25,16 @@ class LoginActivity : AppCompatActivity() {
             val userLogin = userLoginEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            if(userLogin.isEmpty()){
-                userLoginEditText.error = "Enter Your user login"
-                userLoginEditText.requestFocus()
-                return@setOnClickListner
-            }
-            if(password.isEmpty()){
-                passwordEditText.error = "Enter Your password"
-                passwordEditText.requestFocus()
-                return@setOnClickListner
-            }
+//            if(userLogin.isEmpty()){
+//                userLoginEditText.error = "Enter Your user login"
+//                userLoginEditText.requestFocus()
+//                return@setOnClickListner
+//            }
+//            if(password.isEmpty()){
+//                passwordEditText.error = "Enter Your password"
+//                passwordEditText.requestFocus()
+//                return@setOnClickListner
+//            }
 
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
@@ -47,10 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
             // loginViewModel.signInUser("CHBaker", "user1"){
 
-            loginViewModel.signInUser(userLogin, password){
+            loginViewModel.signInUser("CHBaker", "user1"){
 
                 if(it){
-                    loginViewModel.getCurrentUser(userLogin){
+                    loginViewModel.getCurrentUser("CHBaker"){
 
                         val currUser = it
 
@@ -63,10 +63,17 @@ class LoginActivity : AppCompatActivity() {
                 else{
                     Toast.makeText(
                         this@LoginActivity,
-                        "Problem with server connection",
+                        "Cannot connect to the server",
                         android.widget.Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
+
+//    override fun onBackPressed() {
+//        //Toast.makeText(this@LoginActivity, "Disabled Back Press", Toast.LENGTH_SHORT).show()
+//    }
+
 }
+
+
