@@ -177,13 +177,20 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         reserveDialogWindow.confirmButton.setOnClickListener {
 
-                            var newReservation = selectedProductId?.let { it1 ->
-                                NewReservation(
-                                    currUser.employeeid,
-                                    reserveDialogWindow.dialogNewResDateET.text.toString(),
-                                    it1,
-                                    reserveDialogWindow.dialogNewResAmountET.text.toString().toInt()
-                                )
+                            var newReservation: NewReservation? = null
+
+                            try {
+                                newReservation = selectedProductId?.let { it1 ->
+                                    NewReservation(
+                                        currUser.employeeid,
+                                        reserveDialogWindow.dialogNewResDateET.text.toString(),
+                                        it1,
+                                        reserveDialogWindow.dialogNewResAmountET.text.toString()
+                                            .toInt()
+                                    )
+                                }
+                            }catch(e: Exception){
+                                Toast.makeText(this@DisplayDataActivity, "One field is empty", Toast.LENGTH_LONG).show()
                             }
 
                             if (newReservation != null) {
@@ -193,8 +200,8 @@ class DisplayDataActivity : AppCompatActivity() {
                                         initRetrofitInstanceProducts()
                                     }
                                 }
+                                mAlertDialog.dismiss()
                             }
-                            mAlertDialog.dismiss()
                         }
 
                         reserveDialogWindow.cancelButton.setOnClickListener {
@@ -215,18 +222,13 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         var newProduct: Product? = null
                         try {
-                            val prodName = addProductDialogWindow.dialogProdNameET.text.toString()
-                            val prodSize =
-                                addProductDialogWindow.dialogProdSizeET.text.toString().toInt()
-                            val prodAmount =
-                                addProductDialogWindow.dialogProdAmountET.text.toString().toInt()
-                            val prodPrice =
-                                addProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
-
-                            newProduct = Product(0, prodName, prodSize, prodAmount, prodPrice)
+                            newProduct = Product(0,
+                                addProductDialogWindow.dialogProdNameET.text.toString(),
+                                addProductDialogWindow.dialogProdSizeET.text.toString().toInt(),
+                                addProductDialogWindow.dialogProdAmountET.text.toString().toInt(),
+                                addProductDialogWindow.dialogProdPriceET.text.toString().toFloat())
                         }catch(e: Exception){
-                            Log.d("TEST",e.message.toString())
-                            Toast.makeText(this@DisplayDataActivity, "Fields are empty", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                         }
 
 
@@ -281,14 +283,20 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         modifyProductDialogWindow.saveButton.setOnClickListener {
 
-                            var product = selectedProductId?.let { it1 ->
-                                Product(
-                                    it1,
-                                    modifyProductDialogWindow.dialogProdNameET.text.toString(),
-                                    modifyProductDialogWindow.dialogProdSizeET.text.toString().toInt(),
-                                    modifyProductDialogWindow.dialogProdAmountET.text.toString().toInt(),
-                                    modifyProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
-                                )
+                            var product: Product? = null
+
+                            try {
+                                product = selectedProductId?.let { it1 ->
+                                    Product(
+                                        it1,
+                                        modifyProductDialogWindow.dialogProdNameET.text.toString(),
+                                        modifyProductDialogWindow.dialogProdSizeET.text.toString().toInt(),
+                                        modifyProductDialogWindow.dialogProdAmountET.text.toString().toInt(),
+                                        modifyProductDialogWindow.dialogProdPriceET.text.toString().toFloat()
+                                    )
+                                }
+                            }catch(e: Exception){
+                                Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                             }
 
                             if (product != null) {
@@ -298,9 +306,8 @@ class DisplayDataActivity : AppCompatActivity() {
                                         initRetrofitInstanceProducts()
                                     }
                                 }
+                                mAlertDialog.dismiss()
                             }
-
-                            mAlertDialog.dismiss()
                         }
 
                         modifyProductDialogWindow.cancelButton.setOnClickListener {
@@ -387,12 +394,6 @@ class DisplayDataActivity : AppCompatActivity() {
                         layoutParamsSetPasswordButton.setMargins(250, 5, 50, 10)
 
                         initRetrofitInstanceEmployeesAdmin()
-                        //initRetrofitInstanceRoles()
-
-                        var rolesList: List<Role>? = null
-                        displayDataViewModel.roleList.observe(this, {
-                            rolesList = it
-                        })
 
                         passwordSetButton.setOnClickListener {
 
@@ -402,10 +403,8 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                 val empPasswordAdminDialogWindow = LayoutInflater.from(this)
                                     .inflate(R.layout.employee_admin_password_dialog, null)
-                                val mBuilder =
-                                    AlertDialog.Builder(this).setView(empPasswordAdminDialogWindow)
-                                empPasswordAdminDialogWindow.dialogEmpAdminPassWindowTitle.text =
-                                    "Employee new password"
+                                val mBuilder = AlertDialog.Builder(this).setView(empPasswordAdminDialogWindow)
+                                empPasswordAdminDialogWindow.dialogEmpAdminPassWindowTitle.text = "Employee new password"
                                 val mAlertDialog = mBuilder.show()
 
                                 var employeesAdminList: List<EmployeeAdminData>? = null
@@ -428,34 +427,63 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                 empPasswordAdminDialogWindow.confirmButton.setOnClickListener {
 
-                                    var password1: String = empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()
-                                    var password2: String = empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword2ET.text.toString()
+                                    var password1: String =
+                                        empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()
+                                    var password2: String =
+                                        empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword2ET.text.toString()
 
-                                    if(password1.equals(password2,true)){
+                                    if (password1.equals(password2, true)) {
 
-                                        var employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
-                                            EmployeeLoginDataRequest(
-                                                it1,
-                                                "",
-                                                HashString.hash(empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()),
-                                                "",
-                                                ""
-                                            )
+                                        var employeeLoginDataRequest: EmployeeLoginDataRequest? =
+                                            null
 
-                                        }
+                                        if (!password1.isEmpty() and !password2.isEmpty()) {
 
-                                        if (employeeLoginDataRequest != null) {
-                                            displayDataViewModel.modifyEmployeeAdminLogin(employeeLoginDataRequest) {
-
-                                                if (it) {
-                                                    initRetrofitInstanceEmployeesAdmin()
-                                                }
+                                            try {
+                                                employeeLoginDataRequest =
+                                                    selectedEmployeeId?.let { it1 ->
+                                                        EmployeeLoginDataRequest(
+                                                            it1,
+                                                            "",
+                                                            HashString.hash(
+                                                                empPasswordAdminDialogWindow.dialogEmpAdminLoginPassword1ET.text.toString()
+                                                            ),
+                                                            "",
+                                                            ""
+                                                        )
+                                                    }
+                                            } catch (e: Exception) {
+                                                Toast.makeText(
+                                                    this@DisplayDataActivity,
+                                                    "Some of the fields are empty",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
                                             }
+
+                                            if (employeeLoginDataRequest != null) {
+                                                displayDataViewModel.modifyEmployeeAdminLogin(
+                                                    employeeLoginDataRequest
+                                                ) {
+
+                                                    if (it) {
+                                                        initRetrofitInstanceEmployeesAdmin()
+                                                    }
+                                                }
+                                                mAlertDialog.dismiss()
+                                            }
+                                        } else {
+                                            Toast.makeText(
+                                                this@DisplayDataActivity,
+                                                "Some of the fields are empty",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
-                                        mAlertDialog.dismiss()
-                                    }
-                                    else{
-                                        Toast.makeText(this@DisplayDataActivity, "Passwords are not equal", Toast.LENGTH_SHORT).show()
+                                    }else{
+                                        Toast.makeText(
+                                            this@DisplayDataActivity,
+                                            "Passwords are not equal",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
 
@@ -475,21 +503,30 @@ class DisplayDataActivity : AppCompatActivity() {
 
                             addEmployeeDialogWindow.saveButton.setOnClickListener{
 
-                                val empName = addEmployeeDialogWindow.dialogEmpNameET.text.toString()
-                                val empSurname = addEmployeeDialogWindow.dialogEmpSurnameET.text.toString()
-                                val empSalary = addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat()
-                                val empAddress = addEmployeeDialogWindow.dialogEmpAddressET.text.toString()
+                                var newEmployee: Employee? = null
 
-                                var newEmployee = Employee(0,empName,empSurname,empSalary,empAddress)
+                                try {
 
-                                displayDataViewModel.addNewEmployeeData(newEmployee){
+                                    newEmployee = Employee(0,
+                                        addEmployeeDialogWindow.dialogEmpNameET.text.toString(),
+                                        addEmployeeDialogWindow.dialogEmpSurnameET.text.toString(),
+                                        addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
+                                        addEmployeeDialogWindow.dialogEmpAddressET.text.toString())
 
-                                    if(it){
-                                        initRetrofitInstanceEmployeesAdmin()
-                                    }
+                                }catch(e: Exception){
+                                    Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                                 }
 
-                                mAlertDialog.dismiss()
+                                if(newEmployee != null) {
+
+                                    displayDataViewModel.addNewEmployeeData(newEmployee) {
+
+                                        if (it) {
+                                            initRetrofitInstanceEmployeesAdmin()
+                                        }
+                                    }
+                                    mAlertDialog.dismiss()
+                                }
                             }
 
                             addEmployeeDialogWindow.cancelButton.setOnClickListener{
@@ -531,17 +568,23 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                 modifyEmployeeAdminDialogWindow.saveButton.setOnClickListener {
 
-                                    var employee = selectedEmployeeId?.let { it1 ->
-                                        EmployeeAdminData(
-                                            it1,
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminNameET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminSurnameET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminSalaryET.text.toString().toFloat(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminAddressET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminLoginET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminEmailET.text.toString(),
-                                            modifyEmployeeAdminDialogWindow.dialogEmpAdminRoleET.text.toString()
-                                        )
+                                    var employee: EmployeeAdminData? = null
+
+                                    try {
+                                        employee = selectedEmployeeId?.let { it1 ->
+                                            EmployeeAdminData(
+                                                it1,
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminNameET.text.toString(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminSurnameET.text.toString(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminSalaryET.text.toString().toFloat(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminAddressET.text.toString(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminLoginET.text.toString(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminEmailET.text.toString(),
+                                                modifyEmployeeAdminDialogWindow.dialogEmpAdminRoleET.text.toString()
+                                            )
+                                        }
+                                    }catch(e: Exception){
+                                        Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                                     }
 
                                     if (employee != null) {
@@ -551,9 +594,8 @@ class DisplayDataActivity : AppCompatActivity() {
                                                 initRetrofitInstanceEmployeesAdmin()
                                             }
                                         }
+                                        mAlertDialog.dismiss()
                                     }
-
-                                    mAlertDialog.dismiss()
                                 }
 
                                 modifyEmployeeAdminDialogWindow.cancelButton.setOnClickListener {
@@ -665,21 +707,29 @@ class DisplayDataActivity : AppCompatActivity() {
 
                             addEmployeeDialogWindow.saveButton.setOnClickListener{
 
-                                val empName = addEmployeeDialogWindow.dialogEmpNameET.text.toString()
-                                val empSurname = addEmployeeDialogWindow.dialogEmpSurnameET.text.toString()
-                                val empSalary = addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat()
-                                val empAddress = addEmployeeDialogWindow.dialogEmpAddressET.text.toString()
+                                var newEmployee: Employee? = null
 
-                                var newEmployee = Employee(0,empName,empSurname,empSalary,empAddress)
+                                try{
+                                    newEmployee = Employee(
+                                        0,
+                                        addEmployeeDialogWindow.dialogEmpNameET.text.toString(),
+                                        addEmployeeDialogWindow.dialogEmpSurnameET.text.toString(),
+                                        addEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
+                                        addEmployeeDialogWindow.dialogEmpAddressET.text.toString())
 
-                                displayDataViewModel.addNewEmployeeData(newEmployee){
-
-                                    if(it){
-                                        initRetrofitInstanceEmployees()
-                                    }
+                                }catch(e: Exception){
+                                    Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                                 }
 
-                                mAlertDialog.dismiss()
+                                if(newEmployee != null) {
+                                    displayDataViewModel.addNewEmployeeData(newEmployee!!) {
+
+                                        if (it) {
+                                            initRetrofitInstanceEmployees()
+                                        }
+                                    }
+                                    mAlertDialog.dismiss()
+                                }
                             }
 
                             addEmployeeDialogWindow.cancelButton.setOnClickListener{
@@ -718,26 +768,32 @@ class DisplayDataActivity : AppCompatActivity() {
 
                                 modifyEmployeeDialogWindow.saveButton.setOnClickListener {
 
-                                    var employee = selectedEmployeeId?.let { it1 ->
-                                        Employee(
-                                            it1,
-                                            modifyEmployeeDialogWindow.dialogEmpNameET.text.toString(),
-                                            modifyEmployeeDialogWindow.dialogEmpSurnameET.text.toString(),
-                                            modifyEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
-                                            modifyEmployeeDialogWindow.dialogEmpAddressET.text.toString()
-                                        )
+                                    var employee: Employee? = null
+
+                                    try {
+                                        employee = selectedEmployeeId?.let { it1 ->
+                                            Employee(
+                                                it1,
+                                                modifyEmployeeDialogWindow.dialogEmpNameET.text.toString(),
+                                                modifyEmployeeDialogWindow.dialogEmpSurnameET.text.toString(),
+                                                modifyEmployeeDialogWindow.dialogEmpSalaryET.text.toString().toFloat(),
+                                                modifyEmployeeDialogWindow.dialogEmpAddressET.text.toString()
+                                            )
+                                        }
+                                    }catch(e: Exception){
+                                        Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                                     }
 
+
                                     if (employee != null) {
-                                        displayDataViewModel.modifyEmployee(employee){
+                                        displayDataViewModel.modifyEmployee(employee!!){
 
                                             if(it){
                                                 initRetrofitInstanceEmployees()
                                             }
                                         }
+                                        mAlertDialog.dismiss()
                                     }
-
-                                    mAlertDialog.dismiss()
                                 }
 
                                 modifyEmployeeDialogWindow.cancelButton.setOnClickListener {
@@ -980,10 +1036,8 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         val empLoginAdminDialogWindow = LayoutInflater.from(this)
                             .inflate(R.layout.employee_admin_login_dialog, null)
-                        val mBuilder =
-                            AlertDialog.Builder(this).setView(empLoginAdminDialogWindow)
-                        empLoginAdminDialogWindow.dialogEmpAdminLoginWindowTitle.text =
-                            "Employee login data"
+                        val mBuilder = AlertDialog.Builder(this).setView(empLoginAdminDialogWindow)
+                        empLoginAdminDialogWindow.dialogEmpAdminLoginWindowTitle.text = "Employee login data"
                         val mAlertDialog = mBuilder.show()
 
                         var employeesAdminList: List<Employee>? = null
@@ -1000,26 +1054,31 @@ class DisplayDataActivity : AppCompatActivity() {
 
                         empLoginAdminDialogWindow.confirmButton.setOnClickListener {
 
-                            var employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
-                                EmployeeLoginDataRequest(
-                                    it1,
-                                    empLoginAdminDialogWindow.dialogEmpAdminLoginLoginET.text.toString(),
-                                    HashString.hash(empLoginAdminDialogWindow.dialogEmpAdminLoginPasswordET.text.toString()),
-                                    empLoginAdminDialogWindow.dialogEmpAdminLoginEmailET.text.toString(),
-                                    empLoginAdminDialogWindow.dialogEmpAdminLoginRoleET.text.toString()
-                                )
+                            var employeeLoginDataRequest: EmployeeLoginDataRequest? = null
+
+                            try {
+                                employeeLoginDataRequest = selectedEmployeeId?.let { it1 ->
+                                    EmployeeLoginDataRequest(
+                                        it1,
+                                        empLoginAdminDialogWindow.dialogEmpAdminLoginLoginET.text.toString(),
+                                        HashString.hash(empLoginAdminDialogWindow.dialogEmpAdminLoginPasswordET.text.toString()),
+                                        empLoginAdminDialogWindow.dialogEmpAdminLoginEmailET.text.toString(),
+                                        empLoginAdminDialogWindow.dialogEmpAdminLoginRoleET.text.toString()
+                                    )
+                                }
+                            }catch(e: Exception){
+                                Toast.makeText(this@DisplayDataActivity, "Some of the fields are empty", Toast.LENGTH_LONG).show()
                             }
 
                             if (employeeLoginDataRequest != null) {
-                                displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest) {
+                                displayDataViewModel.addNewEmployeeAdminLogin(employeeLoginDataRequest!!) {
 
                                     if (it) {
                                         initRetrofitInstanceNewEmployees()
                                     }
                                 }
+                                mAlertDialog.dismiss()
                             }
-
-                            mAlertDialog.dismiss()
                         }
 
                         empLoginAdminDialogWindow.cancelButton.setOnClickListener {
