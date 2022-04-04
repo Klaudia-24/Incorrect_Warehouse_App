@@ -52,24 +52,6 @@ class ReservationAdapter(private var reservationList: List<Reservation>):
         )
 
         val simpleDateFormat = SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss")
-        //val date = reservationList[position].reservationdate
-        //val date = LocalDateTime.parse(reservationList[position].reservationdate)
-        //Log.d("TEST onBindViewH 1:",date.toString())
-        //val newDate = simpleDateFormat.format(date)
-
-//        val parser = SimpleDateFormat("EEE, dd MM yyyy 'T'HH:mm:ss z")
-//        val formatter = SimpleDateFormat("dd-MM-yyyy")
-//        Log.d("TEST onBindViewH date:",reservationList[position].resdate)
-//        Log.d("TEST onBindViewH 1:","before")
-        //val output = formatter.format(parser.parse("Wed, 08 Dec 2021 00:00:00 GMT"))
-
-        //Log.d("TEST onBindViewH 2:",output.toString())
-
-
-        //Log.d("TEST onBindViewH 2:",newDate.toString())
-
-        //holder.reservationDate.text = simpleDateFormat.format(reservationList[position].reservationdate)
-
 
         holder.reservationDate.text = reservationList[position].resdate
         holder.employeeName.text = reservationList[position].employeename

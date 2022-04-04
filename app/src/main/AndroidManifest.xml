@@ -7,6 +7,7 @@
 
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,7 +17,7 @@
 
         <activity
             android:name="com.example.incorrect_warehouse_app.view.activity.NavigationActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/NavigationActivityStyle"
             android:screenOrientation="portrait"
             />
@@ -35,14 +36,14 @@
 
         <activity
             android:name="com.example.incorrect_warehouse_app.view.activity.DisplayDataActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/DisplayDataActivityStyle"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:name="com.example.incorrect_warehouse_app.view.activity.ProfileActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/ProfileActivityStyle"
             android:screenOrientation="portrait"
             />

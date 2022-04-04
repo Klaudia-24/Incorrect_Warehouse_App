@@ -38,15 +38,6 @@ class LoginActivity : AppCompatActivity() {
 
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-            // warMan: JBrown user6
-            // admin: CHBaker user1
-            // acc: SWilson user2
-
-
-            // loginViewModel.signInUser(userLogin, password){
-
-            // loginViewModel.signInUser("CHBaker", "user1"){
-
             loginViewModel.signInUser(userLogin, password){
 
                 if(it){

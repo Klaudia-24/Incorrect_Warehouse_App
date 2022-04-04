@@ -2,14 +2,10 @@ package com.example.incorrect_warehouse_app.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.incorrect_warehouse_app.R
 import com.example.incorrect_warehouse_app.model.CurrentUser
-import com.example.incorrect_warehouse_app.viewModel.LoginViewModel
-import com.example.incorrect_warehouse_app.viewModel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.employee_list.*
 import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
