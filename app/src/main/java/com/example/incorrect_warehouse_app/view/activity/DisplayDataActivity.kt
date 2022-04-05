@@ -888,7 +888,7 @@ class DisplayDataActivity : AppCompatActivity() {
                 initRetrofitInstanceReservations()
 
                 when (currUser.roleid) {
-                    "admin" -> {
+                    "admin", "salRep" -> {
 
                         deleteButton.setOnClickListener {
 
@@ -952,9 +952,6 @@ class DisplayDataActivity : AppCompatActivity() {
                                 }
                             }
                         }
-
-                    }
-                    "salRep" -> {
 
                     }
                     else -> null

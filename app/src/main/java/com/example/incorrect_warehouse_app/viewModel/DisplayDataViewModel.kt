@@ -146,20 +146,6 @@ class DisplayDataViewModel: ViewModel() {
         })
     }
 
-    fun modifyReservation(reservation: Reservation, onResult: (Boolean)->Unit){
-
-        retrofitObject.modifyReservation(reservation).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>){
-
-                onResult(response.body().toBoolean())
-            }
-            override fun onFailure(call: Call<String>, t: Throwable) {
-
-                onResult(false)
-            }
-        })
-    }
-
     fun deleteReservation(id: Int, onResult: (Boolean)->Unit){
 
         retrofitObject.deleteReservation(id).enqueue(object : Callback<String> {
@@ -257,20 +243,6 @@ class DisplayDataViewModel: ViewModel() {
                 onResult(true)
             }
             override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
-
-                onResult(false)
-            }
-        })
-    }
-
-    fun addNewEmployeeDataAdmin(newEmployeeAdmin: EmployeeAdminData, onResult: (Boolean)->Unit){
-
-        retrofitObject.addNewEmployeeAdmin(newEmployeeAdmin).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>){
-
-                onResult(response.body().toBoolean())
-            }
-            override fun onFailure(call: Call<String>, t: Throwable) {
 
                 onResult(false)
             }
